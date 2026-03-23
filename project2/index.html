@@ -107,7 +107,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Color bar accent for Tab 3 */
         .color-bar-olive { border-top: 4px solid var(--olive); }
         .color-bar-sienna { border-top: 4px solid var(--sienna); }
         .color-bar-sage { border-top: 4px solid var(--sage); }
@@ -269,7 +268,20 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white/50 p-6 rounded-2xl border border-white">
+                        <h4 class="text-center font-bold text-slate-600 mb-6 uppercase text-xs">หน่วยงานจัดสรรทุน</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-sm"><span>สำนักงานบัณฑิตศึกษา</span><span class="font-bold">67 คน</span></div>
+                            <div class="flex justify-between items-center text-sm"><span>ส่วนพัฒนาความสัมพันธ์ระหว่างประเทศ</span><span class="font-bold">63 คน</span></div>
+                            <div class="flex justify-between items-center text-sm"><span>ส่วนการเจ้าหน้าที่</span><span class="font-bold">8 คน</span></div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-[#E9E4D9] flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase">
+                            <span>Scholarship Source Summary</span><span class="text-[#A0522D] font-bold">TOTAL 138 STUDENTS</span>
+                        </div>
+                    </div>
+
                     <div class="bg-white/50 p-6 rounded-2xl border border-white">
                         <h4 class="text-center font-bold text-slate-600 mb-6 uppercase text-xs">สัญชาตินักศึกษาทุน</h4>
                         <div class="flex flex-col gap-6">
@@ -320,17 +332,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white/50 p-6 rounded-2xl border border-white">
-                        <h4 class="text-center font-bold text-slate-600 mb-6 uppercase text-xs">หน่วยงานจัดสรรทุน</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center text-sm"><span>สำนักงานบัณฑิตศึกษา</span><span class="font-bold">67 คน</span></div>
-                            <div class="flex justify-between items-center text-sm"><span>ส่วนพัฒนาความสัมพันธ์ระหว่างประเทศ</span><span class="font-bold">63 คน</span></div>
-                            <div class="flex justify-between items-center text-sm"><span>ส่วนการเจ้าหน้าที่</span><span class="font-bold">8 คน</span></div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-[#E9E4D9] flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase">
-                            <span>Scholarship Source Summary</span><span class="text-[#A0522D] font-bold">TOTAL 138 STUDENTS</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="glass-card bg-white border-2 border-[#E9E4D9]">
@@ -375,7 +376,6 @@
         <!-- TAB 3: การกระจายตัวของนักศึกษาทุน -->
         <div id="tab3" class="tab-content">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <!-- Group 1: 5 อันดับสำนักวิชา (จำนวน) -->
                 <div class="glass-card color-bar-olive shadow-sm">
                     <h3 class="text-sm font-bold text-[#556B2F] uppercase mb-4 flex items-center">
                         <i class="fas fa-building-columns mr-2"></i> 5 อันดับสำนักวิชา ที่มีจำนวนนักศึกษาทุนมากที่สุด
@@ -384,32 +384,31 @@
                         <div class="flex items-center gap-3 p-2 rounded-lg bg-[#556B2F]/5">
                             <div class="rank-badge bg-[#556B2F]">1</div>
                             <span class="flex-1">วิทยาศาสตร์</span>
-                            <span class="font-bold text-right text-[#556B2F]">49 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(รวม 88)</span></span>
+                            <span class="font-bold text-right text-[#556B2F]">49 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(นศ.รวม 88 คน)</span></span>
                         </div>
                         <div class="flex items-center gap-3 p-2 rounded-lg">
                             <div class="rank-badge bg-[#6B8E23]">2</div>
                             <span class="flex-1">วิทยาศาสตร์สุขภาพ</span>
-                            <span class="font-bold text-right">18 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(รวม 59)</span></span>
+                            <span class="font-bold text-right">18 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(นศ.รวม 59 คน)</span></span>
                         </div>
                         <div class="flex items-center gap-3 p-2 rounded-lg bg-slate-50">
                             <div class="rank-badge bg-[#8A9A5B]">3</div>
                             <span class="flex-1">อุตสาหกรรมเกษตร</span>
-                            <span class="font-bold text-right">17 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(รวม 35)</span></span>
+                            <span class="font-bold text-right">17 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(นศ.รวม 35 คน)</span></span>
                         </div>
                         <div class="flex items-center gap-3 p-2 rounded-lg">
                             <div class="rank-badge bg-[#A2AD91]">4</div>
                             <span class="flex-1">นวัตกรรมสังคม</span>
-                            <span class="font-bold text-right">10 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(รวม 12)</span></span>
+                            <span class="font-bold text-right">10 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(นศ.รวม 12 คน)</span></span>
                         </div>
                         <div class="flex items-center gap-3 p-2 rounded-lg bg-slate-50">
                             <div class="rank-badge bg-[#B5BFAB]">5</div>
                             <span class="flex-1">การจัดการ</span>
-                            <span class="font-bold text-right">9 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(รวม 52)</span></span>
+                            <span class="font-bold text-right">9 คน <span class="text-[10px] font-normal text-slate-400 ml-1">(นศ.รวม 52 คน)</span></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Group 2: 5 อันดับสำนักวิชา (สัดส่วน) -->
                 <div class="glass-card color-bar-sienna shadow-sm">
                     <h3 class="text-sm font-bold text-[#A0522D] uppercase mb-4 flex items-center">
                         <i class="fas fa-percentage mr-2"></i> 5 อันดับสำนักวิชา ที่มีสัดส่วนนักศึกษาทุนมากที่สุด
@@ -445,7 +444,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Group 3: 5 อันดับสาขาวิชา (จำนวน) -->
                 <div class="glass-card color-bar-sage shadow-sm">
                     <h3 class="text-sm font-bold text-[#8A9A5B] uppercase mb-4 flex items-center">
                         <i class="fas fa-user-tag mr-2"></i> 5 อันดับสาขาวิชา ที่มีจำนวนนักศึกษาทุนมากที่สุด
@@ -491,7 +489,6 @@
                     </div>
                 </div>
 
-                <!-- Group 4: 5 อันดับสาขาวิชา (สัดส่วน) -->
                 <div class="glass-card color-bar-tan shadow-sm">
                     <h3 class="text-sm font-bold text-[#A0522D] uppercase mb-4 flex items-center">
                         <i class="fas fa-chart-line mr-2"></i> 5 อันดับสาขาวิชา ที่มีสัดส่วนของนักศึกษาทุนมากที่สุด
@@ -571,3 +568,4 @@
     </script>
 </body>
 </html>
+
