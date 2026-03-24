@@ -82,40 +82,51 @@
         </div>
  
         <!-- KPI Row -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-            <div class="earth-card p-5 border-t-4 border-[#8ba391]">
-                <p class="text-xs font-bold text-[#8c7e6a] uppercase">ไทย</p>
-                <div class="flex items-baseline justify-between">
-                    <p class="text-2xl font-black mt-1" id="kpi-thai">73 <small class="text-xs font-normal">คน</small></p>
-                    <span class="text-[10px] text-gray-500 font-bold">71.57%</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="earth-card p-6 border-t-4 border-[#8ba391]">
+                <p class="text-xs font-bold text-[#8c7e6a] uppercase mb-4 tracking-wider">สัญชาติ (Nationality)</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-xs text-gray-500 block mb-1">ไทย</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black">73</span>
+                            <span class="text-[11px] text-gray-400">71.57%</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-xs text-gray-500 block mb-1">ต่างชาติ</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black">29</span>
+                            <span class="text-[11px] text-gray-400">28.43%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="earth-card p-5 border-t-4 border-[#d4a373]">
-                <p class="text-xs font-bold text-[#8c7e6a] uppercase">ต่างชาติ</p>
-                <div class="flex items-baseline justify-between">
-                    <p class="text-2xl font-black mt-1" id="kpi-foreign">29 <small class="text-xs font-normal">คน</small></p>
-                    <span class="text-[10px] text-gray-500 font-bold">28.43%</span>
-                </div>
-            </div>
-            <div class="earth-card p-5 border-t-4 border-[#a3b8a8]">
-                <p class="text-xs font-bold text-[#8c7e6a] uppercase">ปกติ</p>
-                <div class="flex items-baseline justify-between">
-                    <p class="text-2xl font-black mt-1" id="kpi-active">69 <small class="text-xs font-normal">คน</small></p>
-                    <span class="text-[10px] text-gray-500 font-bold">67.65%</span>
-                </div>
-            </div>
-            <div class="earth-card p-5 border-t-4 border-[#ccd5ae]">
-                <p class="text-xs font-bold text-[#8c7e6a] uppercase">สำเร็จการศึกษา</p>
-                <div class="flex items-baseline justify-between">
-                    <p class="text-2xl font-black mt-1" id="kpi-grad">33 <small class="text-xs font-normal">คน</small></p>
-                    <span class="text-[10px] text-gray-500 font-bold">32.35%</span>
-                </div>
-            </div>
-            <div class="earth-card p-5 border-t-4 border-[#bc6c25]">
-                <p class="text-[10px] font-bold text-[#8c7e6a] uppercase leading-tight">พ้นสภาพ/ลาออก/ยุติการรับทุน</p>
-                <div class="flex items-baseline justify-between">
-                    <p class="text-2xl font-black mt-1 text-[#bc6c25]" id="kpi-dismissed">10 <small class="text-xs font-normal">คน</small></p>
-                    <span class="text-[10px] text-gray-500 font-bold">8.93%</span>
+            
+            <div class="earth-card p-6 border-t-4 border-[#bc6c25]">
+                <p class="text-xs font-bold text-[#8c7e6a] uppercase mb-4 tracking-wider">สถานะการศึกษา (Educational Status)</p>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-[10px] text-gray-500 block mb-1">ปกติ</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#8ba391]">67</span>
+                            <span class="text-[9px] text-gray-400">65.7%</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-[10px] text-gray-500 block mb-1">สำเร็จการศึกษา</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#a3b8a8]">35</span>
+                            <span class="text-[9px] text-gray-400">34.3%</span>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                        <span class="text-[10px] text-orange-700 block mb-1 leading-tight">พ้นสภาพ/ลาออก/ยุติการรับทุน</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#bc6c25]">10</span>
+                            <span class="text-[9px] text-orange-400">8.9%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,8 +188,8 @@
                                     <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2563-2564</div>
                                 </td>
                                 <td class="p-2 text-center border border-[#e5e1d8]">4</td>
-                                <td class="p-2 text-center border border-[#e5e1d8]">15</td>
-                                <td class="p-2 text-center border border-[#e5e1d8]">8</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">17</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">6</td>
                                 <td class="p-2 text-center border border-[#e5e1d8]">12</td>
                                 <td class="p-4 text-center border border-[#e5e1d8] font-bold">39</td>
                                 <td class="p-4 text-right border border-[#e5e1d8] font-semibold">7,648,936</td>
@@ -241,8 +252,8 @@
                             <tr>
                                 <td class="p-4 text-right border border-[#e5e1d8]">รวมทั้งสิ้น</td>
                                 <td class="p-2 text-center border border-[#e5e1d8]">32</td>
-                                <td class="p-2 text-center border border-[#e5e1d8]">21</td>
-                                <td class="p-2 text-center border border-[#e5e1d8]">37</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">23</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">35</td>
                                 <td class="p-2 text-center border border-[#e5e1d8]">12</td>
                                 <td class="p-4 text-center border border-[#e5e1d8]">102</td>
                                 <td class="p-4 text-right border border-[#e5e1d8] text-[#8ba391] text-lg">23,750,576</td>
@@ -399,7 +410,7 @@
                             <tr>
                                 <td class="p-4 text-right">ยอดรวมทั้งสิ้น</td>
                                 <td class="p-4 text-center text-xl">151</td>
-                                <td class="p-4 text-center text-xl">77</td>
+                                <td class="p-4 text-center text-xl text-[#4a453e]">77</td>
                                 <td class="p-4 text-center text-xl text-[#4a453e]">38</td>
                                 <td class="p-4 text-center text-xl text-[#4a453e]">17</td>
                                 <td class="p-4 text-center text-xl">55</td>
@@ -426,23 +437,27 @@
             'เทคโนโลยีดิจิทัลประยุกต์', 'นวัตกรรมสังคม'
         ];
         
+        // ข้อมูลสถานะ
         const rawActive = [21, 11, 5, 5, 1, 4, 10, 6, 1, 4, 1]; 
-        const rawGrad = [18, 5, 1, 0, 0, 0, 2, 1, 0, 5, 1];   
+        const rawGrad = [18, 5, 1, 0, 0, 0, 2, 1, 0, 5, 1]; 
         const rawDismissed = [1, 4, 0, 1, 0, 0, 2, 1, 0, 0, 1]; 
-        const rawThai = [21, 13, 3, 1, 0, 4, 12, 7, 1, 9, 2];
-        const rawForeign = [18, 3, 3, 4, 1, 0, 0, 0, 0, 0, 0];
+        
+        // ข้อมูลสัญชาติ (ไทย 73 คน, ต่างชาติ 29 คน)
+        const rawThai = [21, 13, 3, 1, 0, 4, 12, 7, 1, 9, 2]; 
+        const rawForeign = [18, 3, 3, 4, 1, 0, 0, 0, 0, 0, 0]; 
  
-        const combinedData = rawSchools.map((name, i) => {
-            const active = rawActive[i];
-            const grad = rawGrad[i];
-            const dismissed = rawDismissed[i];
+        const combinedData = rawSchools.map((name, idx) => {
+            const active = rawActive[idx];
+            const grad = rawGrad[idx];
+            const dismissed = rawDismissed[idx];
             const total = active + grad + dismissed;
-            const thai = rawThai[i] || 0;
-            const foreign = rawForeign[i] || 0;
+            const thai = rawThai[idx] || 0;
+            const foreign = rawForeign[idx] || 0;
             return { name, active, grad, dismissed, total, thai, foreign };
         }).sort((a, b) => b.total - a.total);
  
         const sortedSchools = combinedData.map(d => d.name);
+        
         const countriesLabels = ['ไทย', 'จีน', 'พม่า', 'ศรีลังกา', 'มอริเซียส', 'เวียดนาม', 'อินโดนีเซีย', 'ภูฎาน', 'อุซเบกิสถาน'];
         const countriesValues = [73, 10, 5, 5, 3, 2, 2, 1, 1];
  
@@ -458,20 +473,68 @@
             document.getElementById('content-' + tab).classList.remove('hidden-tab');
         }
  
+        // กราฟจำนวนนักศึกษาทุนแยกตามสำนักวิชา (Tab: สถานะการศึกษา)
         new Chart(document.getElementById('mainBarChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: sortedSchools,
                 datasets: [
-                    { label: 'ปกติ', data: combinedData.map(d => d.active), backgroundColor: '#8ba391' },
-                    { label: 'สำเร็จการศึกษา', data: combinedData.map(d => d.grad), backgroundColor: '#e9edc9' }
+                    { 
+                        label: 'ปกติ (67 คน)', 
+                        data: combinedData.map(d => d.active), 
+                        backgroundColor: '#8ba391' 
+                    },
+                    { 
+                        label: 'สำเร็จการศึกษา (35 คน)', 
+                        data: combinedData.map(d => d.grad), 
+                        backgroundColor: '#e9edc9' 
+                    }
                 ]
             },
             options: { 
                 indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-                scales: { x: { stacked: true }, y: { stacked: true } },
-                plugins: { datalabels: { color: '#4a453e', formatter: (v) => v || '' } }
-            }
+                layout: {
+                    padding: { right: 40 } // เผื่อที่สำหรับแสดงตัวเลขท้ายแท่ง
+                },
+                scales: { 
+                    x: { stacked: true, beginAtZero: true }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: { 
+                        color: '#4a453e', 
+                        font: { weight: '600' },
+                        formatter: (v) => v > 0 ? v : '' 
+                    } 
+                }
+            },
+            plugins: [{
+                id: 'totalLabels',
+                afterDatasetsDraw(chart) {
+                    const { ctx, data } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 12px Sarabun';
+                    ctx.fillStyle = '#4a453e';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'middle';
+
+                    data.labels.forEach((label, i) => {
+                        let total = 0;
+                        data.datasets.forEach(dataset => {
+                            total += dataset.data[i];
+                        });
+                        
+                        // แสดงเฉพาะยอดรวมสำนักวิชาที่มีนักศึกษา (ไม่รวมพ้นสภาพตามโครงสร้างเดิมในกราฟนี้)
+                        if (total > 0) {
+                            const meta = chart.getDatasetMeta(data.datasets.length - 1);
+                            const bar = meta.data[i];
+                            // วาดวงเล็บยอดรวมท้ายแท่ง
+                            ctx.fillText(`(${total})`, bar.x + 8, bar.y);
+                        }
+                    });
+                    ctx.restore();
+                }
+            }]
         });
  
         new Chart(document.getElementById('levelDonutChart').getContext('2d'), {
@@ -488,32 +551,104 @@
             data: {
                 labels: sortedSchools,
                 datasets: [
-                    { label: 'ไทย', data: combinedData.map(d => d.thai), backgroundColor: '#8ba391' },
-                    { label: 'ต่างชาติ', data: combinedData.map(d => d.foreign), backgroundColor: '#d4a373' }
+                    { 
+                        label: 'ไทย (73 คน)', 
+                        data: combinedData.map(d => d.thai), 
+                        backgroundColor: '#8ba391',
+                        datalabels: {
+                            color: '#fff',
+                            font: { weight: 'bold' },
+                            formatter: (v) => (v && v > 0 ? v : '') 
+                        }
+                    },
+                    { 
+                        label: 'ต่างชาติ (29 คน)', 
+                        data: combinedData.map(d => d.foreign), 
+                        backgroundColor: '#d4a373',
+                        datalabels: {
+                            color: '#fff',
+                            font: { weight: 'bold' },
+                            formatter: (v) => (v && v > 0 ? v : '') 
+                        }
+                    }
                 ]
             },
             options: { 
                 indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-                scales: { x: { stacked: true }, y: { stacked: true } },
-                plugins: { datalabels: { color: '#fff', formatter: (v) => v || '' } }
-            }
+                scales: { 
+                    x: { stacked: true, beginAtZero: true, grace: '10%' }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: {
+                        display: true 
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.x + ' คน';
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                id: 'customTotalLabels',
+                afterDatasetsDraw(chart) {
+                    const { ctx, data } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 11px Sarabun';
+                    ctx.fillStyle = '#475569';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'middle';
+
+                    data.labels.forEach((label, i) => {
+                        let total = 0;
+                        data.datasets.forEach(dataset => {
+                            total += dataset.data[i];
+                        });
+                        
+                        if (total > 0) {
+                            const meta = chart.getDatasetMeta(data.datasets.length - 1);
+                            const bar = meta.data[i];
+                            ctx.fillText('(' + total + ')', bar.x + 5, bar.y);
+                        }
+                    });
+                    ctx.restore();
+                }
+            }]
         });
  
         new Chart(document.getElementById('nationalityStackedChart').getContext('2d'), {
             type: 'bar',
             data: {
-                labels: ['ป.เอก', 'ป.โท'],
+                labels: ['ป.เอก (49 คน)', 'ป.โท (53 คน)'],
                 datasets: [
-                    { label: 'ไทย', data: [22, 51], backgroundColor: '#8ba391' },
-                    { label: 'ต่างชาติ', data: [27, 2], backgroundColor: '#d4a373' }
+                    { 
+                        label: 'ไทย (73 คน)', 
+                        data: [22, 51], 
+                        backgroundColor: '#8ba391',
+                        datalabels: { color: '#fff', font: { weight: 'bold' }, formatter: (v) => v > 0 ? v : '' }
+                    },
+                    { 
+                        label: 'ต่างชาติ (29 คน)', 
+                        data: [27, 2], 
+                        backgroundColor: '#d4a373',
+                        datalabels: { color: '#fff', font: { weight: 'bold' }, formatter: (v) => v > 0 ? v : '' }
+                    }
                 ]
             },
             options: { 
                 indexAxis: 'y', 
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { x: { stacked: true }, y: { stacked: true } },
-                plugins: { datalabels: { color: '#fff', font: { weight: 'bold' }, formatter: (v) => v || '' } }
+                scales: { 
+                    x: { stacked: true, beginAtZero: true, grace: '15%' }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: { display: true }
+                }
             }
         });
 
@@ -533,9 +668,22 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false },
-                    datalabels: { anchor: 'end', align: 'top', color: '#4a453e', font: { weight: 'bold' }, formatter: (v) => v }
+                    datalabels: { 
+                        anchor: 'end', 
+                        align: 'top', 
+                        color: '#4a453e', 
+                        font: { weight: 'bold' }, 
+                        formatter: (v) => (v && v > 0 ? v : '') 
+                    }
                 },
-                scales: { y: { beginAtZero: true, grid: { color: '#f0f0f0' } }, x: { grid: { display: false } } }
+                scales: { 
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#f0f0f0' },
+                        grace: '5%'
+                    }, 
+                    x: { grid: { display: false } } 
+                }
             }
         });
 
@@ -553,3 +701,4 @@
     </script>
 </body>
 </html>
+
