@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Quick Guide: Core Protocols (Earth Tone - Clean Version)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #F3EDE7; 
+            color: #3D352F; 
+        }
+        .bento-box {
+            background: #FFFFFF;
+            border: 2px solid #DED0C1; 
+            transition: all 0.3s ease;
+        }
+        .step-path::before {
+            content: '';
+            position: absolute;
+            left: 28px; 
+            top: 48px;
+            bottom: 48px;
+            width: 3px; 
+            background: #D1C4B5;
+            z-index: 0;
+        }
+        .card-shadow {
+            box-shadow: 0 15px 30px -10px rgba(74, 66, 60, 0.15); 
+        }
+    </style>
+</head>
+<body class="p-4 md:p-12 min-h-screen flex justify-center items-start">
+
+    <div class="max-w-7xl w-full">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">การจัดการข้อร้องเรียน</h1>
+            <p class="text-olive-800 font-bold tracking-[0.15em] uppercase text-sm md:text-base">Complaint Handling (Office of The Postgraduate Studies)</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            <!-- Left Side: Channels & Priority -->
+            <div class="md:col-span-5 space-y-8">
+                <!-- Channels Card -->
+                <div class="bento-box p-8 rounded-[2.5rem] shadow-lg bg-[#FCFBF9]">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                        <span class="text-2xl">📥</span> ช่องทางการร้องเรียน
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-5 bg-sage-100 rounded-2xl border-2 border-sage-200 group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl shadow-md mr-4 group-hover:rotate-6 transition-transform">📝</div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-lg">Google Form</p>
+                                <p class="text-sm text-slate-600 font-medium">ระบบออนไลน์ 24 ชม.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-5 bg-sage-100 rounded-2xl border-2 border-sage-200 group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl shadow-md mr-4 group-hover:rotate-6 transition-transform">👤</div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-lg">แจ้งด้วยตนเอง</p>
+                                <p class="text-sm text-slate-600 font-medium">ณ สำนักงานบัณฑิตศึกษา</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Card -->
+                <div class="bento-box p-8 rounded-[2.5rem] shadow-lg bg-[#FFF9F2] border-[#E8D9C5]">
+                    <h2 class="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900">
+                        <span class="text-2xl">⏱️</span> ประเภท & เวลาดำเนินการ
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="pl-5 border-l-4 border-terracotta-500 bg-terracotta-50/50 py-2 rounded-r-xl">
+                            <p class="text-sm font-black text-terracotta-700 uppercase tracking-wide">วิกฤต: 24 ชม.</p>
+                            <p class="text-base text-slate-800 leading-relaxed">กระทบชื่อเสียง/กฎหมาย/มาตรฐานวิชาการ</p>
+                        </div>
+                        <div class="pl-5 border-l-4 border-amber-600 bg-amber-50/50 py-2 rounded-r-xl">
+                            <p class="text-sm font-black text-amber-700 uppercase tracking-wide">สำคัญ: 3-5 วันทำการ</p>
+                            <p class="text-base text-slate-800 leading-relaxed">กระทบต่อการเรียน/การทำวิจัย</p>
+                        </div>
+                        <div class="pl-5 border-l-4 border-olive-600 bg-olive-50/50 py-2 rounded-r-xl">
+                            <p class="text-sm font-black text-olive-700 uppercase tracking-wide">ทั่วไป: 7 วันทำการ</p>
+                            <p class="text-base text-slate-800 leading-relaxed">ความพึงพอใจการบริการ/สถานที่</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Main Workflow -->
+            <div class="md:col-span-7 bento-box p-10 rounded-[2.5rem] shadow-lg relative overflow-hidden bg-white">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-sand-200 rounded-full -mr-24 -mt-24 opacity-40"></div>
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 relative z-10">
+                    <span class="w-12 h-12 bg-olive-700 rounded-2xl flex items-center justify-center text-white text-xl shadow-xl ring-4 ring-olive-100">⚡</span> 
+                    ขั้นตอนการรับเรื่อง
+                </h2>
+                
+                <div class="step-path relative space-y-8 flex-1 ml-2">
+                    <!-- Step Items -->
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-10 h-10 rounded-full bg-white border-4 border-olive-700 flex items-center justify-center font-black text-sm text-olive-700 shrink-0 shadow-md">1</div>
+                        <div class="flex-1 bg-olive-50/40 p-4 rounded-2xl border border-olive-100">
+                            <p class="font-bold text-slate-900 text-lg md:text-xl">รับเรื่อง & สรุปข้อมูล</p>
+                            <p class="text-sm text-slate-700 font-medium mt-1">รับข้อร้องเรียน สรุปประเด็นสำคัญ และนำเสนอเข้าที่ประชุม</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-10 h-10 rounded-full bg-white border-4 border-olive-700 flex items-center justify-center font-black text-sm text-olive-700 shrink-0 shadow-md">2</div>
+                        <div class="flex-1 bg-olive-50/40 p-4 rounded-2xl border border-olive-100">
+                            <p class="font-bold text-slate-900 text-lg md:text-xl">พิจารณา & หาทางแก้ไข</p>
+                            <p class="text-sm text-slate-700 font-medium mt-1">ที่ประชุมร่วมกันพิจารณาประเด็นและกำหนดแนวทางจัดการ</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-10 h-10 rounded-full bg-white border-4 border-olive-700 flex items-center justify-center font-black text-sm text-olive-700 shrink-0 shadow-md">3</div>
+                        <div class="flex-1 bg-olive-50/40 p-4 rounded-2xl border border-olive-100">
+                            <p class="font-bold text-slate-900 text-lg md:text-xl">ดำเนินการแก้ไขปัญหา</p>
+                            <p class="text-sm text-slate-700 font-medium mt-1">ดำเนินการจัดการปัญหาตามแนวทางที่ได้รับมอบหมายทันที</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-10 h-10 rounded-full bg-white border-4 border-olive-700 flex items-center justify-center font-black text-sm text-olive-700 shrink-0 shadow-md">4</div>
+                        <div class="flex-1 bg-olive-50/40 p-4 rounded-2xl border border-olive-100">
+                            <p class="font-bold text-slate-900 text-lg md:text-xl">แจ้งผลให้ผู้ร้องเรียนทราบ</p>
+                            <p class="text-sm text-slate-700 font-medium mt-1">สื่อสารกลับไปยังผู้ร้องเรียนเพื่อแจ้งความคืบหน้าและผลลัพธ์</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-10 h-10 rounded-full bg-white border-4 border-olive-700 flex items-center justify-center font-black text-sm text-olive-700 shrink-0 shadow-md">5</div>
+                        <div class="flex-1 bg-olive-50/40 p-4 rounded-2xl border border-olive-100">
+                            <p class="font-bold text-slate-900 text-lg md:text-xl">รายงานผลต่อหัวหน้าหน่วยงาน</p>
+                            <p class="text-sm text-slate-700 font-medium mt-1">สรุปรายงานการดำเนินงานต่อหัวหน้าสำนักงานบัณฑิตศึกษา</p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-start gap-6">
+                        <div class="w-12 h-12 -ml-1 rounded-2xl bg-olive-700 flex items-center justify-center font-black text-lg text-white shrink-0 shadow-xl ring-4 ring-olive-100 mt-1">6</div>
+                        <div class="flex-1 bg-olive-100 p-5 rounded-2xl border-2 border-olive-200">
+                            <p class="font-extrabold text-olive-900 text-xl">ปรับปรุงเพื่อประสิทธิภาพ</p>
+                            <p class="text-sm text-olive-800 font-medium mt-1 uppercase tracking-tight">พัฒนาการทำงานเพื่อลดโอกาสการเกิดข้อร้องเรียนซ้ำ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1: Communication -->
+            <div class="bg-[#F4F7F9] rounded-[2.5rem] p-8 border-2 border-dusty-blue-200 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="w-14 h-14 bg-dusty-blue-700 rounded-2xl flex items-center justify-center text-white mb-6 shadow-xl relative z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 mb-8 relative z-10">กำหนดช่องทางสื่อสาร</h3>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="bg-white p-5 rounded-2xl border-2 border-dusty-blue-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">📧</span>
+                            <span class="font-black text-dusty-blue-800 text-base">ประเด็นทั่วไป</span>
+                        </div>
+                        <p class="text-base text-slate-700 leading-relaxed">แจ้งผลการพิจารณาผ่าน Email อย่างเป็นลายลักษณ์อักษร</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border-2 border-terracotta-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl">📞</span>
+                            <span class="font-black text-terracotta-800 text-base">ประเด็นซับซ้อน</span>
+                        </div>
+                        <p class="text-base text-slate-700 leading-relaxed">โทรแจ้งเบื้องต้นเพื่อลดแรงปะทะ ก่อนส่งหนังสือทางการ</p>
+                    </div>
+                </div>
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-dusty-blue-100 rounded-full opacity-30"></div>
+            </div>
+
+            <!-- Card 2: Closing Process -->
+            <div class="bg-[#F9FAF6] rounded-[2.5rem] p-8 border-2 border-olive-200 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="w-14 h-14 bg-olive-600 rounded-2xl flex items-center justify-center text-white mb-8 shadow-xl relative z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 mb-8 relative z-10">ขั้นตอนการปิดประเด็น</h3>
+
+                <div class="space-y-3 relative z-10">
+                    <div class="flex items-center p-4 bg-white rounded-2xl border-2 border-olive-100 shadow-sm">
+                        <div class="w-10 h-10 bg-olive-100 rounded-lg flex items-center justify-center text-olive-700 mr-4 shrink-0 font-bold">✓</div>
+                        <div>
+                            <p class="text-base font-black text-slate-800">ตรวจสอบความเข้าใจ</p>
+                            <p class="text-[13px] text-slate-600 font-medium">ผู้ร้องเรียนเข้าใจผลพิจารณาตรงกัน</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-2xl border-2 border-olive-100 shadow-sm">
+                        <div class="w-10 h-10 bg-olive-100 rounded-lg flex items-center justify-center text-olive-700 mr-4 shrink-0 font-bold">⚖</div>
+                        <div>
+                            <p class="text-base font-black text-slate-800">แจ้งสิทธิการอุทธรณ์</p>
+                            <p class="text-[13px] text-olive-700">แจ้งขั้นตอนหากต้องการทบทวนผล</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-2xl border-2 border-olive-100 shadow-sm mt-2">
+                        <div class="w-10 h-10 bg-[#847363] rounded-lg flex items-center justify-center text-white mr-4 shrink-0 font-bold">★</div>
+                        <div>
+                            <p class="text-base font-black text-slate-800">เปลี่ยนสถานะงาน</p>
+                            <p class="text-[13px] text-slate-600 opacity-90">สถานะ: เสร็จสิ้น (Completed)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-olive-100 rounded-full opacity-30"></div>
+            </div>
+
+            <!-- Card 3: Monitoring & Review -->
+            <div class="bg-[#FFFDF9] rounded-[2.5rem] p-8 border-2 border-amber-200 card-shadow flex flex-col relative overflow-hidden group">
+                <div class="w-14 h-14 bg-amber-700 rounded-2xl flex items-center justify-center text-white mb-8 shadow-xl relative z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 mb-8 relative z-10">การติดตามและทบทวน</h3>
+
+                <div class="space-y-4 relative z-10">
+                    <div class="p-5 bg-white rounded-2xl border-2 border-sand-300 shadow-sm">
+                        <p class="font-black text-brown-900 text-base mb-2 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-amber-500 rounded-full"></span> การประชุมรายเดือน
+                        </p>
+                        <p class="text-[14px] text-brown-800 leading-relaxed">วิเคราะห์ข้อร้องเรียนที่ปิดแล้วทั้งหมด เพื่อหาแนวทางพัฒนาทีมและป้องกันการเกิดซ้ำ</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-2xl border-2 border-olive-200 shadow-sm">
+                        <p class="font-black text-olive-800 text-base mb-2 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-olive-500 rounded-full"></span> การทบทวนประจำปี
+                        </p>
+                        <p class="text-[14px] text-slate-800 leading-relaxed">ทบทวนภาพรวมและปรับปรุงกระบวนการหรือระบบให้มีประสิทธิภาพยิ่งขึ้น</p>
+                    </div>
+                </div>
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-100 rounded-full opacity-30"></div>
+            </div>
+        </div>
+
+        <footer class="mt-16 pt-8 pb-12 text-center border-t-2 border-[#DED0C1]">
+            <p class="text-slate-600 font-extrabold text-lg md:text-xl uppercase tracking-[0.2em] leading-relaxed">
+                Office of The Postgraduate Studies - Mae Fah Luang University
+            </p>
+        </footer>
+    </div>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'olive': {
+                        50: '#F1F4E8', 100: '#E2E8D2', 200: '#C7D1A9', 500: '#8A9A5B', 600: '#728148', 700: '#5F6B3E', 800: '#4A5330', 900: '#353D22'
+                    },
+                    'sage': {
+                        50: '#F0F2F0', 100: '#E1E6E1', 200: '#C4CCC4', 500: '#9FAF9F', 600: '#7E8F7E', 700: '#647264',
+                    },
+                    'sand': {
+                        50: '#F8F6F2', 100: '#F1EBE1', 200: '#E3D7C5', 300: '#D5C3A9', 500: '#C8B89F', 600: '#AA9C87',
+                    },
+                    'terracotta': {
+                        50: '#FEF8F6', 100: '#FCEFEB', 200: '#F8D6CC', 500: '#E2725B', 600: '#C0543E', 700: '#A14431',
+                    },
+                    'dusty-blue': {
+                        50: '#F2F6F9', 100: '#E5ECF2', 200: '#C8D6E2', 500: '#7A9EB1', 600: '#5A7D8F', 700: '#445E6C', 800: '#324651'
+                    },
+                    'brown': {
+                        50: '#F7F3F0', 200: '#DCCDC1', 600: '#847363', 700: '#6D5D4F', 800: '#4A423C', 900: '#2D2825',
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
