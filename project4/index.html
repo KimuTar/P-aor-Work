@@ -34,8 +34,7 @@
         }
         .school-table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
             table-layout: fixed;
         }
         .school-table th {
@@ -43,17 +42,19 @@
             color: #475569;
             font-weight: 700;
             padding: 0.75rem 0.5rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #cbd5e1;
             text-align: center;
             font-size: 0.85rem;
         }
         .school-table td {
             padding: 0.75rem 0.5rem;
-            border: 1px solid #f1f5f9;
+            border: 1px solid #e2e8f0;
             font-size: 0.85rem;
             color: #334155;
             word-wrap: break-word;
         }
+        .border-divider-right { border-right: 3px solid #94a3b8 !important; }
+        .border-divider-left  { border-left:  3px solid #94a3b8 !important; }
         .school-row-header {
             background-color: #f1f5f9;
             font-weight: 700;
@@ -89,7 +90,7 @@
         }
         .bg-plan { background-color: #f1f5f9; }
         .bg-total { background-color: #eff6ff; }
-        .percent-text { font-size: 0.75rem; color: #059669; font-weight: 600; }
+        .percent-text { font-size: 0.7rem; color: #059669; font-weight: 600; display: inline; margin-left: 2px; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -185,24 +186,22 @@
                             <tr>
                                 <th rowspan="3" style="width: 60px;">ลำดับ</th>
                                 <th rowspan="3" style="width: 320px;" class="text-left">สาขาวิชา</th>
-                                <th colspan="5" class="bg-blue-50 border-b-2 border-blue-200 text-blue-900 text-lg py-4">ระดับปริญญาโท</th>
-                                <th colspan="5" class="bg-slate-50 border-b-2 border-slate-200 text-slate-900 text-lg py-4">ระดับปริญญาเอก</th>
+                                <th colspan="4" class="bg-blue-50 border-b-2 border-blue-200 text-blue-900 text-lg py-4 border-divider-right">ระดับปริญญาโท</th>
+                                <th colspan="4" class="bg-slate-50 border-b-2 border-slate-200 text-slate-900 text-lg py-4">ระดับปริญญาเอก</th>
                             </tr>
                             <tr>
                                 <th rowspan="2" class="bg-plan" style="width: 70px;">แผน</th>
                                 <th colspan="3">ผลการรับ</th>
-                                <th rowspan="2" style="width: 80px;">นักศึกษา<br>ปัจจุบัน</th>
-                                <th rowspan="2" class="bg-plan" style="width: 70px;">แผน</th>
+                                <th rowspan="2" class="bg-plan border-divider-left" style="width: 70px;">แผน</th>
                                 <th colspan="3">ผลการรับ</th>
-                                <th rowspan="2" style="width: 80px;">นักศึกษา<br>ปัจจุบัน</th>
                             </tr>
                             <tr>
                                 <th style="width: 60px;">ไทย</th>
                                 <th style="width: 60px;">ตปท.</th>
-                                <th style="width: 75px;" class="bg-total">รวม</th>
+                                <th style="width: 110px;" class="bg-total border-divider-right">รวม</th>
                                 <th style="width: 60px;">ไทย</th>
                                 <th style="width: 60px;">ตปท.</th>
-                                <th style="width: 75px;" class="bg-total">รวม</th>
+                                <th style="width: 110px;" class="bg-total">รวม</th>
                             </tr>
                         </thead>
                         <tbody id="table-content">
@@ -422,13 +421,13 @@
                 ] },
                 { school: 'สำนักวิชาแพทยศาสตร์', courses: [
                     { id: 23, name: 'พาราคลินิก (เภสัชวิทยาและเภสัชบำบัด)', mPlan: 2, mTh: 1, mInt: 0, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
-                    { id: 24, name: 'พาราคลินิก (โรคติดเชื้อ)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
-                    { id: 25, name: 'พาราคลินิก (ประสาทวิทยาศาสตร์)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
-                    { id: 26, name: 'พาราคลินิก (มะเร็งวิทยาและวิทยาภูมิคุ้มกัน)', mPlan: 4, mTh: 3, mInt: 0, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                    { id: '', name: 'พาราคลินิก (โรคติดเชื้อ)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: '', name: 'พาราคลินิก (ประสาทวิทยาศาสตร์)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: '', name: 'พาราคลินิก (มะเร็งวิทยาและวิทยาภูมิคุ้มกัน)', mPlan: 4, mTh: 3, mInt: 0, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
                 ] },
-                { school: 'สำนักวิชาทันตแพทยศาสตร์', courses: [{ id: 27, name: 'ทันตแพทยศาสตร์', mPlan: 5, mTh: 0, mInt: 0, mCurr: '-', pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' }] },
-                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 28, name: 'การพัฒนาระหว่างประเทศ', mPlan: 17, mTh: 0, mInt: 9, mCurr: 8, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
-                { school: 'สำนักวิชาการแพทย์บูรณาการ', courses: [{ id: 29, name: 'การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ', mPlan: 20, mTh: 6, mInt: 0, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+                { school: 'สำนักวิชาทันตแพทยศาสตร์', courses: [{ id: 24, name: 'ทันตแพทยศาสตร์', mPlan: 5, mTh: 0, mInt: 0, mCurr: '-', pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' }] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 25, name: 'การพัฒนาระหว่างประเทศ', mPlan: 17, mTh: 0, mInt: 9, mCurr: 8, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาการแพทย์บูรณาการ', courses: [{ id: 26, name: 'การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ', mPlan: 20, mTh: 6, mInt: 0, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
             ]
 
         };
@@ -446,7 +445,7 @@
                 data.forEach(section => {
                     const headRow = document.createElement('tr');
                     headRow.className = 'school-row-header';
-                    headRow.innerHTML = `<td colspan="12" class="px-6 py-4 bg-slate-50 text-blue-900 font-black text-left text-lg">${section.school}</td>`;
+                    headRow.innerHTML = `<td colspan="10" class="px-6 py-4 bg-slate-50 text-blue-900 font-black text-left text-lg">${section.school}</td>`;
                     tbody.appendChild(headRow);
 
                     section.courses.forEach(c => {
@@ -463,19 +462,17 @@
                             <td class="text-center bg-plan font-black">${c.mPlan || '-'}</td>
                             <td class="text-center">${c.mTh !== '-' ? c.mTh : '-'}</td>
                             <td class="text-center">${c.mInt !== '-' ? c.mInt : '-'}</td>
-                            <td class="text-center bg-total font-black text-blue-600">${mSum || (c.mPlan === '-' ? '-' : 0)}<br><span class="percent-text">${mSum > 0 ? '('+mPercent+'%)' : ''}</span></td>
-                            <td class="text-center text-slate-500">${c.mCurr || '-'}</td>
-                            <td class="text-center bg-plan font-black">${c.pPlan || '-'}</td>
+                            <td class="text-center bg-total font-black text-blue-600 border-divider-right">${mSum || (c.mPlan === '-' ? '-' : 0)} <span class="percent-text">${mSum > 0 ? '('+mPercent+'%)' : ''}</span></td>
+                            <td class="text-center bg-plan font-black border-divider-left">${c.pPlan || '-'}</td>
                             <td class="text-center">${c.pTh !== '-' ? c.pTh : '-'}</td>
                             <td class="text-center">${c.pInt !== '-' ? c.pInt : '-'}</td>
-                            <td class="text-center bg-total font-black text-slate-600">${pSum || (c.pPlan === '-' ? '-' : 0)}<br><span class="percent-text">${pSum > 0 ? '('+pPercent+'%)' : ''}</span></td>
-                            <td class="text-center text-slate-500">${c.pCurr || '-'}</td>
+                            <td class="text-center bg-total font-black text-slate-600">${pSum || (c.pPlan === '-' ? '-' : 0)} <span class="percent-text">${pSum > 0 ? '('+pPercent+'%)' : ''}</span></td>
                         `;
                         tbody.appendChild(row);
                     });
                 });
             } else if (year !== '2565' && year !== '2564') {
-                tbody.innerHTML = '<tr><td colspan="12" class="text-center py-20 text-slate-400 text-xl font-bold">ไม่พบข้อมูลสาขาวิชาโดยละเอียดสำหรับปีการศึกษานี้</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="10" class="text-center py-20 text-slate-400 text-xl font-bold">ไม่พบข้อมูลสาขาวิชาโดยละเอียดสำหรับปีการศึกษานี้</td></tr>';
             }
 
             // Grand Total Values based on images
@@ -509,13 +506,11 @@
                 <td class="text-center bg-plan text-xl">${displayMP}</td>
                 <td class="text-center text-xl">${displayMT}</td>
                 <td class="text-center text-xl">${displayMI}</td>
-                <td class="text-center bg-total text-blue-700 text-2xl font-black">${displayMS}<br><span class="text-sm">(${totalMPercent}%)</span></td>
-                <td class="text-center text-xl">${displayMC}</td>
-                <td class="text-center bg-plan text-xl">${displayPP}</td>
+                <td class="text-center bg-total text-blue-700 text-2xl font-black border-divider-right">${displayMS} <span class="text-sm">(${totalMPercent}%)</span></td>
+                <td class="text-center bg-plan text-xl border-divider-left">${displayPP}</td>
                 <td class="text-center text-xl">${displayPT}</td>
                 <td class="text-center text-xl">${displayPI}</td>
-                <td class="text-center bg-total text-slate-700 text-2xl font-black">${displayPS}<br><span class="text-sm">(${totalPPercent}%)</span></td>
-                <td class="text-center text-xl">${displayPC}</td>
+                <td class="text-center bg-total text-slate-700 text-2xl font-black">${displayPS} <span class="text-sm">(${totalPPercent}%)</span></td>
             `;
             tbody.appendChild(totalRow);
         }
@@ -545,54 +540,54 @@
                         {
                             label: 'ผลการรับจริง (โท)',
                             data: mActuals,
-                            backgroundColor: get3DGradient(ctx, '#1e40af', '#93c5fd'),
+                            backgroundColor: '#1e40af',
                             stack: 'm',
                             categoryPercentage: 0.85,
                             barPercentage: 0.9,
                             borderRadius: 0,
                             textColor: '#ffffff',
-                            borderColor: '#1e3a8a',
-                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 },
+                            borderColor: 'transparent',
+                            borderWidth: 0,
                             originalPlan: mPlans
                         },
                         {
                             label: 'แผน (โท)',
                             data: mPlans.map((p, i) => Math.max(0, p - mActuals[i])),
-                            backgroundColor: get3DGradient(ctx, '#93c5fd', '#dbeafe'),
+                            backgroundColor: '#93c5fd',
                             stack: 'm',
                             categoryPercentage: 0.85,
                             barPercentage: 0.9,
                             borderRadius: 0,
                             originalPlan: mPlans,
                             textColor: '#1e40af',
-                            borderColor: '#bfdbfe',
-                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 }
+                            borderColor: 'transparent',
+                            borderWidth: 0
                         },
                         {
                             label: 'ผลการรับจริง (เอก)',
                             data: pActuals,
-                            backgroundColor: get3DGradient(ctx, '#475569', '#cbd5e1'),
+                            backgroundColor: '#64748b',
                             stack: 'p',
                             categoryPercentage: 0.85,
                             barPercentage: 0.9,
                             borderRadius: 0,
                             textColor: '#ffffff',
-                            borderColor: '#334155',
-                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 },
+                            borderColor: 'transparent',
+                            borderWidth: 0,
                             originalPlan: pPlans
                         },
                         {
                             label: 'แผน (เอก)',
                             data: pPlans.map((p, i) => Math.max(0, p - pActuals[i])),
-                            backgroundColor: get3DGradient(ctx, '#cbd5e1', '#f1f5f9'),
+                            backgroundColor: '#cbd5e1',
                             stack: 'p',
                             categoryPercentage: 0.85,
                             barPercentage: 0.9,
                             borderRadius: 0,
                             originalPlan: pPlans,
                             textColor: '#475569',
-                            borderColor: '#e2e8f0',
-                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 }
+                            borderColor: 'transparent',
+                            borderWidth: 0
                         }
                     ]
                 },
@@ -602,18 +597,33 @@
                     plugins: {
                         legend: { display: false },
                         datalabels: {
-                            font: { family: 'Kanit', weight: '800', size: 14 },
+                            font: (c) => ({
+                                family: 'Kanit',
+                                weight: '800',
+                                size: c.datasetIndex === 1 || c.datasetIndex === 3 ? 13 : 14
+                            }),
                             formatter: (v, c) => {
-                                const plan = c.dataset.originalPlan[c.dataIndex];
-                                if (!plan) return '';
-                                const percent = ((v / plan) * 100).toFixed(0);
-                                if (c.datasetIndex === 0 || c.datasetIndex === 2) {
-                                    return v + ' (' + percent + '%)';
+                                const di = c.datasetIndex;
+                                const i = c.dataIndex;
+                                if (di === 0) { // ผลจริง โท
+                                    const actual = mActuals[i];
+                                    const plan = mPlans[i];
+                                    const pct = plan > 0 ? ((actual / plan) * 100).toFixed(0) : 0;
+                                    return actual + ' (' + pct + '%)';
                                 }
-                                if (c.datasetIndex === 1 || c.datasetIndex === 3) {
-                                    return plan;
+                                if (di === 1) { // ส่วนแผนที่เหลือ โท → แสดงเลขแผน
+                                    return v > 0 ? mPlans[i] : '';
                                 }
-                                return v;
+                                if (di === 2) { // ผลจริง เอก
+                                    const actual = pActuals[i];
+                                    const plan = pPlans[i];
+                                    const pct = plan > 0 ? ((actual / plan) * 100).toFixed(0) : 0;
+                                    return actual + ' (' + pct + '%)';
+                                }
+                                if (di === 3) { // ส่วนแผนที่เหลือ เอก → แสดงเลขแผน
+                                    return v > 0 ? pPlans[i] : '';
+                                }
+                                return '';
                             },
                             color: (c) => c.dataset.textColor,
                             anchor: 'center',
