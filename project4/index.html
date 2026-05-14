@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถิติการรับนักศึกษา ระดับบัณฑิตศึกษา ปีการศึกษา 2564 - 2568</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3, .font-kanit {
+            font-family: 'Kanit', sans-serif;
+        }
+        .infographic-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+        }
+        .school-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+        .school-table th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            padding: 0.75rem 0.5rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .school-table td {
+            padding: 0.75rem 0.5rem;
+            border: 1px solid #f1f5f9;
+            font-size: 0.85rem;
+            color: #334155;
+            word-wrap: break-word;
+        }
+        .school-row-header {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .total-row {
+            background-color: #f8fafc;
+            font-weight: 800;
+            border-top: 2px solid #cbd5e1;
+        }
+        .chart-wrapper {
+            height: 550px; 
+            width: 100%;
+            position: relative;
+        }
+        .icon-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            font-family: 'Kanit', sans-serif;
+        }
+        .tab-btn {
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background-color: #1e40af;
+            color: white;
+            border-color: #1e40af;
+            box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2);
+        }
+        .bg-plan { background-color: #f1f5f9; }
+        .bg-total { background-color: #eff6ff; }
+        .percent-text { font-size: 0.75rem; color: #059669; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container border border-slate-200">
+        
+        <!-- HEADER SECTION -->
+        <div class="gradient-bg text-white p-10 md:p-14 relative">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+                    สถิติการรับนักศึกษา ระดับบัณฑิตศึกษา
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl font-medium">เปรียบเทียบแผนและผลการรับ ปีการศึกษา 2564 - 2568</p>
+            </div>
+            
+            <div class="mt-6 flex justify-end">
+                <span class="text-amber-400 text-sm font-bold bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm inline-block">
+                    <i class="fa-solid fa-calendar-days mr-2"></i>ข้อมูล ณ วันที่ 1 พฤษภาคม 2569
+                </span>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="p-6 md:p-12 space-y-20">
+            
+            <!-- SECTION 1: CHART -->
+            <section>
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="w-1.5 h-8 bg-blue-600 rounded-full"></div>
+                    <h2 class="text-lg md:text-2xl font-black text-slate-800">แผนและผลการรับนักศึกษาจำแนกตามระดับการศึกษา (ภาพรวม 5 ปี)</h2>
+                </div>
+
+                <div class="bg-slate-50 rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-inner">
+                    <div class="chart-wrapper">
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                    
+                    <div class="mt-16 flex flex-wrap justify-center gap-12 md:gap-32">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="icon-label">
+                                <i class="fa-solid fa-user-graduate text-blue-800 text-4xl"></i>
+                                <span class="text-3xl">ระดับปริญญาโท</span>
+                            </div>
+                            <div class="flex gap-8">
+                                <div class="flex items-center gap-3 text-lg font-bold text-slate-600">
+                                    <span class="w-8 h-8 bg-[#93c5fd] rounded-md border border-blue-200"></span> แผนการรับ
+                                </div>
+                                <div class="flex items-center gap-3 text-lg font-bold text-slate-600">
+                                    <span class="w-8 h-8 bg-[#1e40af] rounded-md shadow-sm"></span> ผลการรับจริง
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="w-px bg-slate-300 h-24 hidden md:block"></div>
+                        
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="icon-label">
+                                <i class="fa-solid fa-graduation-cap text-slate-600 text-4xl"></i>
+                                <span class="text-3xl">ระดับปริญญาเอก</span>
+                            </div>
+                            <div class="flex gap-8">
+                                <div class="flex items-center gap-3 text-lg font-bold text-slate-600">
+                                    <span class="w-8 h-8 bg-[#cbd5e1] rounded-md border border-slate-300"></span> แผนการรับ
+                                </div>
+                                <div class="flex items-center gap-3 text-lg font-bold text-slate-600">
+                                    <span class="w-8 h-8 bg-[#64748b] rounded-md shadow-sm"></span> ผลการรับจริง
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: TABLE -->
+            <section>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-2 h-10 bg-amber-500 rounded-full"></div>
+                    <h2 class="text-2xl md:text-4xl font-black text-slate-800">รายละเอียดสำนักวิชา / สาขาวิชา</h2>
+                </div>
+
+                <!-- Year Tabs -->
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button onclick="switchTableYear('2564')" id="btn-2564" class="tab-btn px-8 py-3 rounded-2xl border border-slate-200 font-black text-xl text-slate-600 hover:bg-slate-50">2564</button>
+                    <button onclick="switchTableYear('2565')" id="btn-2565" class="tab-btn px-8 py-3 rounded-2xl border border-slate-200 font-black text-xl text-slate-600 hover:bg-slate-50">2565</button>
+                    <button onclick="switchTableYear('2566')" id="btn-2566" class="tab-btn px-8 py-3 rounded-2xl border border-slate-200 font-black text-xl text-slate-600 hover:bg-slate-50">2566</button>
+                    <button onclick="switchTableYear('2567')" id="btn-2567" class="tab-btn px-8 py-3 rounded-2xl border border-slate-200 font-black text-xl text-slate-600 hover:bg-slate-50">2567</button>
+                    <button onclick="switchTableYear('2568')" id="btn-2568" class="tab-btn active px-8 py-3 rounded-2xl border border-slate-200 font-black text-xl text-slate-600 hover:bg-slate-50">2568</button>
+                </div>
+
+                <div class="overflow-x-auto bg-white border border-slate-200 rounded-[2.5rem] shadow-sm">
+                    <table class="school-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="3" style="width: 60px;">ลำดับ</th>
+                                <th rowspan="3" style="width: 320px;" class="text-left">สาขาวิชา</th>
+                                <th colspan="5" class="bg-blue-50 border-b-2 border-blue-200 text-blue-900 text-lg py-4">ระดับปริญญาโท</th>
+                                <th colspan="5" class="bg-slate-50 border-b-2 border-slate-200 text-slate-900 text-lg py-4">ระดับปริญญาเอก</th>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" class="bg-plan" style="width: 70px;">แผน</th>
+                                <th colspan="3">ผลการรับ</th>
+                                <th rowspan="2" style="width: 80px;">นักศึกษา<br>ปัจจุบัน</th>
+                                <th rowspan="2" class="bg-plan" style="width: 70px;">แผน</th>
+                                <th colspan="3">ผลการรับ</th>
+                                <th rowspan="2" style="width: 80px;">นักศึกษา<br>ปัจจุบัน</th>
+                            </tr>
+                            <tr>
+                                <th style="width: 60px;">ไทย</th>
+                                <th style="width: 60px;">ตปท.</th>
+                                <th style="width: 75px;" class="bg-total">รวม</th>
+                                <th style="width: 60px;">ไทย</th>
+                                <th style="width: 60px;">ตปท.</th>
+                                <th style="width: 75px;" class="bg-total">รวม</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-content">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-slate-900 p-10 text-center">
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-[0.2em]">
+                Office of the Postgraduate Studies : Mae Fah Luang University
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const tableData = {
+            '2564': [
+                { school: 'สำนักวิชาศิลปศาสตร์', courses: [{ id: 1, name: 'ภาษาอังกฤษเพื่อการพัฒนาวิชาชีพ', mPlan: 7, mTh: 2, mInt: 2, mCurr: '-', pPlan: 7, pTh: 2, pInt: 4, pCurr: 4 }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์', courses: [
+                    { id: 2, name: 'เคมีประยุกต์', mPlan: 6, mTh: 4, mInt: 0, mCurr: 2, pPlan: 7, pTh: 2, pInt: 0, pCurr: 1 },
+                    { id: 3, name: 'วิทยาศาสตร์ชีวภาพ', mPlan: 10, mTh: 1, mInt: 0, mCurr: 1, pPlan: 15, pTh: 1, pInt: 17, pCurr: 7 },
+                    { id: 4, name: 'วิทยาการเชิงคำนวณและข้อมูล', mPlan: 5, mTh: 2, mInt: 0, mCurr: 1, pPlan: 6, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 5, name: 'นวัตกรรมวัสดุเพื่อความยั่งยืน', mPlan: 5, mTh: 1, mInt: 2, mCurr: '-', pPlan: 6, pTh: 0, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาการจัดการ', courses: [
+                    { id: 6, name: 'บริหารธุรกิจ', mPlan: 30, mTh: 25, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 7, name: 'การจัดการโลจิสติกส์และโซ่อุปทานระหว่างประเทศ', mPlan: 25, mTh: 8, mInt: 6, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์', courses: [
+                    { id: 8, name: 'เทคโนโลยีการแปลงเป็นดิจิทัล', mPlan: 20, mTh: 5, mInt: 2, mCurr: 2, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 9, name: 'วิศวกรรมคอมพิวเตอร์', mPlan: 5, mTh: 13, mInt: 1, mCurr: '-', pPlan: 6, pTh: 3, pInt: 0, pCurr: 3 }
+                ] },
+                { school: 'สำนักวิชาอุตสาหกรรมเกษตร', courses: [
+                    { id: 10, name: 'นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร', mPlan: 5, mTh: 2, mInt: 4, mCurr: 1, pPlan: 4, pTh: 2, pInt: 0, pCurr: '-' },
+                    { id: 11, name: 'เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว', mPlan: 10, mTh: 0, mInt: 6, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานิติศาสตร์', courses: [{ id: 12, name: 'นิติศาสตร์', mPlan: 15, mTh: 12, mInt: 0, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์เครื่องสำอาง', courses: [
+                    { id: 13, name: 'นวัตกรรมวิทยาศาสตร์เครื่องสำอางเชิงสร้างสรรค์', mPlan: 5, mTh: 1, mInt: 1, mCurr: 1, pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 14, name: 'วิทยาศาสตร์เครื่องสำอาง', mPlan: 50, mTh: 43, mInt: 0, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาวิทยาศาสตร์สุขภาพ', courses: [
+                    { id: 15, name: 'สาธารณสุขศาสตร์ (ระบาดวิทยา)', mPlan: '-', mTh: '-', mInt: '-', mCurr: '-', pPlan: 5, pTh: 4, pInt: 0, pCurr: 4 },
+                    { id: 16, name: 'การจัดการสุขภาพชายแดน', mPlan: 10, mTh: 9, mInt: 8, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 17, name: 'วิทยาการวิเคราะห์ทางสุขภาพและชีวทางการแพทย์', mPlan: 10, mTh: 7, mInt: 1, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', courses: [
+                    { id: 18, name: 'ตจวิทยา', mPlan: 25, mTh: 24, mInt: 13, mCurr: '-', pPlan: 2, pTh: 2, pInt: 0, pCurr: '-' },
+                    { id: 19, name: 'เวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 20, mTh: 12, mInt: 3, mCurr: '-', pPlan: 2, pTh: 1, pInt: 0, pCurr: '-' },
+                    { id: 20, name: 'วิทยาศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 25, mTh: 21, mInt: 1, mCurr: 1, pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 21, name: 'การพัฒนาระหว่างประเทศ', mPlan: 10, mTh: 2, mInt: 3, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+            ],
+
+            '2565': [
+                { school: 'สำนักวิชาศิลปศาสตร์', courses: [{ id: 1, name: 'ภาษาอังกฤษเพื่อการพัฒนาวิชาชีพ', mPlan: 7, mTh: 3, mInt: 4, mCurr: 4, pPlan: 7, pTh: 2, pInt: 5, pCurr: 1 }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์', courses: [
+                    { id: 2, name: 'เคมีประยุกต์', mPlan: 6, mTh: 3, mInt: 0, mCurr: 1, pPlan: 6, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 3, name: 'วิทยาศาสตร์ชีวภาพ', mPlan: 5, mTh: 2, mInt: 2, mCurr: 2, pPlan: 20, pTh: 0, pInt: 27, pCurr: 18 },
+                    { id: 4, name: 'วิทยาการเชิงคำนวณและข้อมูล', mPlan: 5, mTh: 0, mInt: 0, mCurr: '-', pPlan: 5, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 5, name: 'นวัตกรรมวัสดุเพื่อความยั่งยืน', mPlan: 5, mTh: 1, mInt: 1, mCurr: 1, pPlan: 5, pTh: 1, pInt: 0, pCurr: 1 }
+                ] },
+                { school: 'สำนักวิชาการจัดการ', courses: [
+                    { id: 6, name: 'บริหารธุรกิจ', mPlan: 30, mTh: 17, mInt: 0, mCurr: '-', pPlan: 10, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 7, name: 'การจัดการโลจิสติกส์และโซ่อุปทานระหว่างประเทศ', mPlan: 25, mTh: 4, mInt: 8, mCurr: 9, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์', courses: [
+                    { id: 8, name: 'เทคโนโลยีการแปลงเป็นดิจิทัล', mPlan: 10, mTh: 10, mInt: 4, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 9, name: 'วิศวกรรมคอมพิวเตอร์', mPlan: 5, mTh: 4, mInt: 2, mCurr: 3, pPlan: 5, pTh: 1, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาอุตสาหกรรมเกษตร', courses: [
+                    { id: 10, name: 'นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร', mPlan: 5, mTh: 2, mInt: 4, mCurr: 1, pPlan: 3, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 11, name: 'เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว', mPlan: 10, mTh: 1, mInt: 2, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานิติศาสตร์', courses: [{ id: 12, name: 'นิติศาสตร์', mPlan: 15, mTh: 6, mInt: 0, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์เครื่องสำอาง', courses: [
+                    { id: 13, name: 'นวัตกรรมวิทยาศาสตร์เครื่องสำอางเชิงสร้างสรรค์', mPlan: 10, mTh: 3, mInt: 2, mCurr: 1, pPlan: 2, pTh: 1, pInt: 0, pCurr: '-' },
+                    { id: 14, name: 'วิทยาศาสตร์เครื่องสำอาง', mPlan: 50, mTh: 25, mInt: 0, mCurr: 13, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาวิทยาศาสตร์สุขภาพ', courses: [
+                    { id: 15, name: 'การจัดการสุขภาพชายแดน', mPlan: 10, mTh: 4, mInt: 2, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 16, name: 'วิทยาการวิเคราะห์ทางสุขภาพและชีวทางการแพทย์', mPlan: 10, mTh: 3, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 17, name: 'สาธารณสุขศาสตร์ (ระบาดวิทยา)', mPlan: '-', mTh: '-', mInt: '-', mCurr: '-', pPlan: 5, pTh: 2, pInt: 0, pCurr: 2 }
+                ] },
+                { school: 'สำนักวิชาเวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', courses: [
+                    { id: 18, name: 'ตจวิทยา', mPlan: 25, mTh: 21, mInt: 14, mCurr: 8, pPlan: 3, pTh: 2, pInt: 0, pCurr: '-' },
+                    { id: 19, name: 'เวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 20, mTh: 0, mInt: 13, mCurr: 4, pPlan: 3, pTh: 2, pInt: 0, pCurr: '-' },
+                    { id: 20, name: 'วิทยาศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 30, mTh: 22, mInt: 0, mCurr: 4, pPlan: 3, pTh: 0, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 21, name: 'การพัฒนาระหว่างประเทศ', mPlan: 10, mTh: 0, mInt: 14, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+            ],
+
+            '2566': [
+                { school: 'สำนักวิชาศิลปศาสตร์', courses: [{ id: 1, name: 'ภาษาอังกฤษเพื่อการพัฒนาวิชาชีพ', mPlan: 10, mTh: 4, mInt: 3, mCurr: 6, pPlan: 17, pTh: 0, pInt: 1, pCurr: 1 }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์', courses: [
+                    { id: 2, name: 'เคมีประยุกต์', mPlan: 3, mTh: 1, mInt: 1, mCurr: '-', pPlan: 6, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 3, name: 'วิทยาศาสตร์ชีวภาพ', mPlan: 5, mTh: 2, mInt: 1, mCurr: 5, pPlan: 10, pTh: 0, pInt: 9, pCurr: 5 },
+                    { id: 4, name: 'วิทยาการเชิงคำนวณและข้อมูล', mPlan: 5, mTh: 2, mInt: 0, mCurr: 1, pPlan: 3, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 5, name: 'นวัตกรรมวัสดุเพื่อความยั่งยืน', mPlan: 5, mTh: 1, mInt: 0, mCurr: '-', pPlan: 5, pTh: 0, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาการจัดการ', courses: [
+                    { id: 6, name: 'บริหารธุรกิจ', mPlan: 45, mTh: 21, mInt: 0, mCurr: '-', pPlan: 5, pTh: 1, pInt: 3, pCurr: 4 },
+                    { id: 7, name: 'การจัดการโลจิสติกส์และโซ่อุปทานระหว่างประเทศ', mPlan: 30, mTh: 2, mInt: 2, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 8, name: 'ผู้นำธุรกิจสุขภาพเชิงสร้างสรรค์', mPlan: 30, mTh: 7, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์', courses: [
+                    { id: 9, name: 'เทคโนโลยีการแปลงเป็นดิจิทัล', mPlan: 15, mTh: 5, mInt: 2, mCurr: 5, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 10, name: 'วิศวกรรมคอมพิวเตอร์', mPlan: 10, mTh: 0, mInt: 0, mCurr: '-', pPlan: 7, pTh: 1, pInt: 1, pCurr: 2 }
+                ] },
+                { school: 'สำนักวิชาอุตสาหกรรมเกษตร', courses: [
+                    { id: 11, name: 'นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร', mPlan: 10, mTh: 4, mInt: 1, mCurr: 4, pPlan: 5, pTh: 1, pInt: 1, pCurr: 2 },
+                    { id: 12, name: 'เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว', mPlan: 17, mTh: 1, mInt: 0, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานิติศาสตร์', courses: [{ id: 13, name: 'นิติศาสตร์', mPlan: 15, mTh: 8, mInt: 0, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์เครื่องสำอาง', courses: [
+                    { id: 14, name: 'นวัตกรรมวิทยาศาสตร์เครื่องสำอางเชิงสร้างสรรค์', mPlan: 10, mTh: 1, mInt: 2, mCurr: 1, pPlan: 4, pTh: 3, pInt: 0, pCurr: 3 },
+                    { id: 15, name: 'วิทยาศาสตร์เครื่องสำอาง', mPlan: 55, mTh: 30, mInt: 0, mCurr: 25, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาวิทยาศาสตร์สุขภาพ', courses: [
+                    { id: 16, name: 'การจัดการสุขภาพชายแดน', mPlan: 30, mTh: 3, mInt: 3, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 17, name: 'วิทยาการวิเคราะห์ทางสุขภาพและชีวทางการแพทย์', mPlan: 30, mTh: 0, mInt: 1, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 18, name: 'เทคโนโลยีและการจัดการสิ่งแวดล้อมอย่างยั่งยืน', mPlan: 10, mTh: 1, mInt: 0, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 19, name: 'วิทยาศาสตร์และเทคโนโลยีการกีฬาประยุกต์', mPlan: 10, mTh: 0, mInt: 0, mCurr: 0, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 20, name: 'สาธารณสุขศาสตร์ (ระบาดวิทยา)', mPlan: '-', mTh: '-', mInt: '-', mCurr: '-', pPlan: 10, pTh: 1, pInt: 3, pCurr: 4 }
+                ] },
+                { school: 'สำนักวิชาเวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', courses: [
+                    { id: 21, name: 'ตจวิทยา', mPlan: 35, mTh: 21, mInt: 10, mCurr: 14, pPlan: 2, pTh: 2, pInt: 0, pCurr: 1 },
+                    { id: 22, name: 'เวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 15, mTh: 7, mInt: 2, mCurr: 4, pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 23, name: 'วิทยาศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 15, mTh: 18, mInt: 2, mCurr: 9, pPlan: 1, pTh: 2, pInt: 0, pCurr: 1 }
+                ] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 24, name: 'การพัฒนาระหว่างประเทศ', mPlan: 15, mTh: 1, mInt: 4, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาการแพทย์บูรณาการ', courses: [{ id: 25, name: 'การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ', mPlan: 30, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+            ],
+
+'2567': [
+                { school: 'สำนักวิชาศิลปศาสตร์', courses: [{ id: 1, name: 'ภาษาอังกฤษเพื่อการพัฒนาวิชาชีพ', mPlan: 10, mTh: 0, mInt: 2, mCurr: 2, pPlan: 10, pTh: 0, pInt: 0, pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์', courses: [
+                    { id: 2, name: 'เคมีประยุกต์', mPlan: 6, mTh: 1, mInt: 0, mCurr: 1, pPlan: 6, pTh: 2, pInt: 0, pCurr: 2 },
+                    { id: 3, name: 'วิทยาศาสตร์ชีวภาพ', mPlan: 5, mTh: 1, mInt: 3, mCurr: 3, pPlan: 10, pTh: 1, pInt: 7, pCurr: 6 },
+                    { id: 4, name: 'วิทยาการเชิงคำนวณและข้อมูล', mPlan: 2, mTh: 0, mInt: 1, mCurr: 1, pPlan: 3, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 5, name: 'นวัตกรรมวัสดุเพื่อความยั่งยืน', mPlan: 5, mTh: 2, mInt: 0, mCurr: 1, pPlan: 5, pTh: 1, pInt: 0, pCurr: 1 }
+                ] },
+                { school: 'สำนักวิชาการจัดการ', courses: [
+                    { id: 6, name: 'บริหารธุรกิจ', mPlan: 30, mTh: 24, mInt: 0, mCurr: 6, pPlan: 3, pTh: 2, pInt: 0, pCurr: 2 },
+                    { id: 7, name: 'การจัดการโลจิสติกส์และโซ่อุปทานระหว่างประเทศ', mPlan: 15, mTh: 2, mInt: 2, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์', courses: [
+                    { id: 8, name: 'เทคโนโลยีการแปลงเป็นดิจิทัล', mPlan: 10, mTh: 3, mInt: 7, mCurr: 9, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 9, name: 'วิศวกรรมคอมพิวเตอร์', mPlan: 7, mTh: 4, mInt: 2, mCurr: 4, pPlan: 17, pTh: 1, pInt: 1, pCurr: 2 }
+                ] },
+                { school: 'สำนักวิชาอุตสาหกรรมเกษตร', courses: [
+                    { id: 10, name: 'นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร', mPlan: 10, mTh: 4, mInt: 9, mCurr: 10, pPlan: 5, pTh: 0, pInt: 3, pCurr: 1 },
+                    { id: 11, name: 'เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว', mPlan: 10, mTh: 3, mInt: 2, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานิติศาสตร์', courses: [{ id: 12, name: 'นิติศาสตร์', mPlan: 15, mTh: 7, mInt: 0, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์เครื่องสำอาง', courses: [
+                    { id: 13, name: 'นวัตกรรมวิทยาศาสตร์เครื่องสำอางเชิงสร้างสรรค์', mPlan: 10, mTh: 2, mInt: 0, mCurr: 2, pPlan: 4, pTh: 2, pInt: 0, pCurr: 1 },
+                    { id: 14, name: 'วิทยาศาสตร์เครื่องสำอาง', mPlan: 55, mTh: 37, mInt: 0, mCurr: 30, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาวิทยาศาสตร์สุขภาพ', courses: [
+                    { id: 15, name: 'การจัดการสุขภาพชายแดน', mPlan: 15, mTh: 3, mInt: 12, mCurr: 13, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 16, name: 'วิทยาการวิเคราะห์ทางสุขภาพและชีวทางการแพทย์', mPlan: 30, mTh: 3, mInt: 1, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 17, name: 'เทคโนโลยีและการจัดการสิ่งแวดล้อมอย่างยั่งยืน', mPlan: 20, mTh: 0, mInt: 2, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 18, name: 'วิทยาศาสตร์และเทคโนโลยีการกีฬาประยุกต์', mPlan: 20, mTh: 0, mInt: 1, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 19, name: 'สาธารณสุขศาสตร์ (ระบาดวิทยา)', mPlan: '-', mTh: '-', mInt: '-', mCurr: '-', pPlan: 10, pTh: 0, pInt: 1, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', courses: [
+                    { id: 20, name: 'ตจวิทยา', mPlan: 40, mTh: 25, mInt: 20, mCurr: 41, pPlan: 6, pTh: 0, pInt: 3, pCurr: 3 },
+                    { id: 21, name: 'เวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 15, mTh: 6, mInt: 0, mCurr: 6, pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 22, name: 'วิทยาศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 25, mTh: 21, mInt: 0, mCurr: 18, pPlan: 2, pTh: 4, pInt: 1, pCurr: 4 }
+                ] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 23, name: 'การพัฒนาระหว่างประเทศ', mPlan: 15, mTh: 1, mInt: 4, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาการแพทย์บูรณาการ', courses: [{ id: 24, name: 'การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ', mPlan: 20, mTh: 5, mInt: 0, mCurr: 5, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+            ],
+
+'2568': [
+                { school: 'สำนักวิชาศิลปศาสตร์', courses: [{ id: 1, name: 'ภาษาอังกฤษเพื่อการพัฒนาวิชาชีพ', mPlan: 10, mTh: 0, mInt: 4, mCurr: 4, pPlan: 10, pTh: 1, pInt: 0, pCurr: 1 }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์', courses: [
+                    { id: 2, name: 'เคมีประยุกต์', mPlan: 6, mTh: 3, mInt: 0, mCurr: 3, pPlan: 6, pTh: 0, pInt: 1, pCurr: 1 },
+                    { id: 3, name: 'วิทยาศาสตร์ชีวภาพ', mPlan: 5, mTh: 2, mInt: 6, mCurr: 7, pPlan: 10, pTh: 1, pInt: 4, pCurr: 4 },
+                    { id: 4, name: 'วิทยาการเชิงคำนวณและข้อมูล', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: 3, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 5, name: 'นวัตกรรมวัสดุเพื่อความยั่งยืน', mPlan: 5, mTh: 1, mInt: 1, mCurr: 2, pPlan: 5, pTh: 0, pInt: 0, pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาการจัดการ', courses: [
+                    { id: 6, name: 'บริหารธุรกิจ', mPlan: 45, mTh: 13, mInt: 2, mCurr: 15, pPlan: 5, pTh: 2, pInt: 0, pCurr: 2 },
+                    { id: 7, name: 'การจัดการโลจิสติกส์และโซ่อุปทานระหว่างประเทศ', mPlan: 30, mTh: 0, mInt: 4, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์', courses: [
+                    { id: 8, name: 'เทคโนโลยีการแปลงเป็นดิจิทัล', mPlan: 15, mTh: 4, mInt: 4, mCurr: 8, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 9, name: 'วิศวกรรมคอมพิวเตอร์', mPlan: 7, mTh: 0, mInt: 5, mCurr: 5, pPlan: 17, pTh: 2, pInt: 0, pCurr: 2 }
+                ] },
+                { school: 'สำนักวิชาอุตสาหกรรมเกษตร', courses: [
+                    { id: 10, name: 'นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร', mPlan: 10, mTh: 0, mInt: 6, mCurr: 3, pPlan: 5, pTh: 0, pInt: 1, pCurr: 1 },
+                    { id: 11, name: 'เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว', mPlan: 8, mTh: 3, mInt: 5, mCurr: 7, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชานิติศาสตร์', courses: [{ id: 12, name: 'นิติศาสตร์', mPlan: 15, mTh: 6, mInt: 0, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาวิทยาศาสตร์เครื่องสำอาง', courses: [
+                    { id: 13, name: 'นวัตกรรมวิทยาศาสตร์เครื่องสำอางเชิงสร้างสรรค์', mPlan: 10, mTh: 6, mInt: 1, mCurr: 7, pPlan: 4, pTh: 1, pInt: 0, pCurr: 1 },
+                    { id: 14, name: 'วิทยาศาสตร์เครื่องสำอาง', mPlan: 55, mTh: 39, mInt: 0, mCurr: 37, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาวิทยาศาสตร์สุขภาพ', courses: [
+                    { id: 15, name: 'การจัดการสุขภาพชายแดน', mPlan: 20, mTh: 0, mInt: 6, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 16, name: 'วิทยาการวิเคราะห์ทางสุขภาพและชีวทางการแพทย์', mPlan: 30, mTh: 2, mInt: 2, mCurr: 4, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 17, name: 'เทคโนโลยีและการจัดการสิ่งแวดล้อมอย่างยั่งยืน', mPlan: 20, mTh: 2, mInt: 0, mCurr: 2, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 18, name: 'วิทยาศาสตร์และเทคโนโลยีการกีฬาประยุกต์', mPlan: 20, mTh: 2, mInt: 1, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 19, name: 'สาธารณสุขศาสตร์ (ระบาดวิทยา)', mPlan: '-', mTh: '-', mInt: '-', mCurr: '-', pPlan: 10, pTh: 1, pInt: 0, pCurr: 1 }
+                ] },
+                { school: 'สำนักวิชาเวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', courses: [
+                    { id: 20, name: 'ตจวิทยา', mPlan: 40, mTh: 22, mInt: 12, mCurr: 34, pPlan: 6, pTh: 0, pInt: 0, pCurr: '-' },
+                    { id: 21, name: 'เวชศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 20, mTh: 5, mInt: 0, mCurr: 5, pPlan: 6, pTh: 1, pInt: 0, pCurr: 1 },
+                    { id: 22, name: 'วิทยาศาสตร์ชะลอวัยและฟื้นฟูสุขภาพ', mPlan: 20, mTh: 18, mInt: 1, mCurr: 17, pPlan: 3, pTh: 1, pInt: 0, pCurr: 1 }
+                ] },
+                { school: 'สำนักวิชาแพทยศาสตร์', courses: [
+                    { id: 23, name: 'พาราคลินิก (เภสัชวิทยาและเภสัชบำบัด)', mPlan: 2, mTh: 1, mInt: 0, mCurr: 1, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 24, name: 'พาราคลินิก (โรคติดเชื้อ)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 25, name: 'พาราคลินิก (ประสาทวิทยาศาสตร์)', mPlan: 2, mTh: 0, mInt: 0, mCurr: '-', pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' },
+                    { id: 26, name: 'พาราคลินิก (มะเร็งวิทยาและวิทยาภูมิคุ้มกัน)', mPlan: 4, mTh: 3, mInt: 0, mCurr: 3, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }
+                ] },
+                { school: 'สำนักวิชาทันตแพทยศาสตร์', courses: [{ id: 27, name: 'ทันตแพทยศาสตร์', mPlan: 5, mTh: 0, mInt: 0, mCurr: '-', pPlan: 2, pTh: 0, pInt: 0, pCurr: '-' }] },
+                { school: 'สำนักวิชานวัตกรรมสังคม', courses: [{ id: 28, name: 'การพัฒนาระหว่างประเทศ', mPlan: 17, mTh: 0, mInt: 9, mCurr: 8, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] },
+                { school: 'สำนักวิชาการแพทย์บูรณาการ', courses: [{ id: 29, name: 'การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ', mPlan: 20, mTh: 6, mInt: 0, mCurr: 6, pPlan: '-', pTh: '-', pInt: '-', pCurr: '-' }] }
+            ]
+
+        };
+
+        function switchTableYear(year) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${year}`).classList.add('active');
+
+            const tbody = document.getElementById('table-content');
+            tbody.innerHTML = '';
+
+            const data = tableData[year] || []; 
+            
+            if (data.length > 0) {
+                data.forEach(section => {
+                    const headRow = document.createElement('tr');
+                    headRow.className = 'school-row-header';
+                    headRow.innerHTML = `<td colspan="12" class="px-6 py-4 bg-slate-50 text-blue-900 font-black text-left text-lg">${section.school}</td>`;
+                    tbody.appendChild(headRow);
+
+                    section.courses.forEach(c => {
+                        const row = document.createElement('tr');
+                        const mSum = (typeof c.mTh === 'number' ? c.mTh : 0) + (typeof c.mInt === 'number' ? c.mInt : 0);
+                        const pSum = (typeof c.pTh === 'number' ? c.pTh : 0) + (typeof c.pInt === 'number' ? c.pInt : 0);
+                        
+                        const mPercent = (c.mPlan > 0) ? ((mSum / c.mPlan) * 100).toFixed(1) : 0;
+                        const pPercent = (c.pPlan > 0) ? ((pSum / c.pPlan) * 100).toFixed(1) : 0;
+
+                        row.innerHTML = `
+                            <td class="text-center font-bold text-slate-400">${c.id}</td>
+                            <td class="text-left font-bold text-slate-700">${c.name}</td>
+                            <td class="text-center bg-plan font-black">${c.mPlan || '-'}</td>
+                            <td class="text-center">${c.mTh !== '-' ? c.mTh : '-'}</td>
+                            <td class="text-center">${c.mInt !== '-' ? c.mInt : '-'}</td>
+                            <td class="text-center bg-total font-black text-blue-600">${mSum || (c.mPlan === '-' ? '-' : 0)}<br><span class="percent-text">${mSum > 0 ? '('+mPercent+'%)' : ''}</span></td>
+                            <td class="text-center text-slate-500">${c.mCurr || '-'}</td>
+                            <td class="text-center bg-plan font-black">${c.pPlan || '-'}</td>
+                            <td class="text-center">${c.pTh !== '-' ? c.pTh : '-'}</td>
+                            <td class="text-center">${c.pInt !== '-' ? c.pInt : '-'}</td>
+                            <td class="text-center bg-total font-black text-slate-600">${pSum || (c.pPlan === '-' ? '-' : 0)}<br><span class="percent-text">${pSum > 0 ? '('+pPercent+'%)' : ''}</span></td>
+                            <td class="text-center text-slate-500">${c.pCurr || '-'}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                });
+            } else if (year !== '2565' && year !== '2564') {
+                tbody.innerHTML = '<tr><td colspan="12" class="text-center py-20 text-slate-400 text-xl font-bold">ไม่พบข้อมูลสาขาวิชาโดยละเอียดสำหรับปีการศึกษานี้</td></tr>';
+            }
+
+            // Grand Total Values based on images
+            let displayMP, displayMT, displayMI, displayMS, displayMC;
+            let displayPP, displayPT, displayPI, displayPS, displayPC;
+
+            if (year === '2568') {
+                displayMP = 445; displayMT = 138; displayMI = 69; displayMS = 207; displayMC = 197;
+                displayPP = 92; displayPT = 10; displayPI = 6; displayPS = 16; displayPC = 15;
+            } else if (year === '2567') {
+                displayMP = 390; displayMT = 154; displayMI = 68; displayMS = 222; displayMC = 176;
+                displayPP = 83; displayPT = 13; displayPI = 16; displayPS = 29; displayPC = 22;
+            } else if (year === '2566') {
+                displayMP = 455; displayMT = 140; displayMI = 34; displayMS = 174; displayMC = 88;
+                displayPP = 77; displayPT = 11; displayPI = 18; displayPS = 29; displayPC = 23;
+            } else if (year === '2565') {
+                displayMP = 293; displayMT = 131; displayMI = 72; displayMS = 203; displayMC = 60;
+                displayPP = 77; displayPT = 11; displayPI = 32; displayPS = 43; displayPC = 22;
+            } else {
+                displayMP = 298; displayMT = 194; displayMI = 53; displayMS = 247; displayMC = 20;
+                displayPP = 64; displayPT = 17; displayPI = 21; displayPS = 38; displayPC = 19;
+            }
+
+            const totalMPercent = (displayMP > 0) ? ((displayMS / displayMP) * 100).toFixed(1) : 0;
+            const totalPPercent = (displayPP > 0) ? ((displayPS / displayPP) * 100).toFixed(1) : 0;
+
+            const totalRow = document.createElement('tr');
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `
+                <td colspan="2" class="text-center py-6 text-blue-900 font-black text-2xl">รวมทั้งสิ้น</td>
+                <td class="text-center bg-plan text-xl">${displayMP}</td>
+                <td class="text-center text-xl">${displayMT}</td>
+                <td class="text-center text-xl">${displayMI}</td>
+                <td class="text-center bg-total text-blue-700 text-2xl font-black">${displayMS}<br><span class="text-sm">(${totalMPercent}%)</span></td>
+                <td class="text-center text-xl">${displayMC}</td>
+                <td class="text-center bg-plan text-xl">${displayPP}</td>
+                <td class="text-center text-xl">${displayPT}</td>
+                <td class="text-center text-xl">${displayPI}</td>
+                <td class="text-center bg-total text-slate-700 text-2xl font-black">${displayPS}<br><span class="text-sm">(${totalPPercent}%)</span></td>
+                <td class="text-center text-xl">${displayPC}</td>
+            `;
+            tbody.appendChild(totalRow);
+        }
+
+        window.onload = function() {
+            Chart.register(ChartDataLabels);
+            const ctx = document.getElementById('enrollmentChart').getContext('2d');
+            
+            function get3DGradient(ctx, c1, c2) {
+                const g = ctx.createLinearGradient(0, 400, 0, 0); 
+                g.addColorStop(0, c1);
+                g.addColorStop(1, c2);
+                return g;
+            }
+
+            const years = ['2564', '2565', '2566', '2567', '2568'];
+            const mPlans = [298, 293, 455, 390, 445];
+            const mActuals = [247, 203, 174, 222, 207];
+            const pPlans = [64, 77, 77, 83, 92];
+            const pActuals = [38, 43, 29, 29, 16];
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'ผลการรับจริง (โท)',
+                            data: mActuals,
+                            backgroundColor: get3DGradient(ctx, '#1e40af', '#93c5fd'),
+                            stack: 'm',
+                            categoryPercentage: 0.85,
+                            barPercentage: 0.9,
+                            borderRadius: 0,
+                            textColor: '#ffffff',
+                            borderColor: '#1e3a8a',
+                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 },
+                            originalPlan: mPlans
+                        },
+                        {
+                            label: 'แผน (โท)',
+                            data: mPlans.map((p, i) => Math.max(0, p - mActuals[i])),
+                            backgroundColor: get3DGradient(ctx, '#93c5fd', '#dbeafe'),
+                            stack: 'm',
+                            categoryPercentage: 0.85,
+                            barPercentage: 0.9,
+                            borderRadius: 0,
+                            originalPlan: mPlans,
+                            textColor: '#1e40af',
+                            borderColor: '#bfdbfe',
+                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 }
+                        },
+                        {
+                            label: 'ผลการรับจริง (เอก)',
+                            data: pActuals,
+                            backgroundColor: get3DGradient(ctx, '#475569', '#cbd5e1'),
+                            stack: 'p',
+                            categoryPercentage: 0.85,
+                            barPercentage: 0.9,
+                            borderRadius: 0,
+                            textColor: '#ffffff',
+                            borderColor: '#334155',
+                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 },
+                            originalPlan: pPlans
+                        },
+                        {
+                            label: 'แผน (เอก)',
+                            data: pPlans.map((p, i) => Math.max(0, p - pActuals[i])),
+                            backgroundColor: get3DGradient(ctx, '#cbd5e1', '#f1f5f9'),
+                            stack: 'p',
+                            categoryPercentage: 0.85,
+                            barPercentage: 0.9,
+                            borderRadius: 0,
+                            originalPlan: pPlans,
+                            textColor: '#475569',
+                            borderColor: '#e2e8f0',
+                            borderWidth: { top: 0, left: 1, right: 3, bottom: 0 }
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            font: { family: 'Kanit', weight: '800', size: 14 },
+                            formatter: (v, c) => {
+                                const plan = c.dataset.originalPlan[c.dataIndex];
+                                if (!plan) return '';
+                                const percent = ((v / plan) * 100).toFixed(0);
+                                if (c.datasetIndex === 0 || c.datasetIndex === 2) {
+                                    return v + ' (' + percent + '%)';
+                                }
+                                if (c.datasetIndex === 1 || c.datasetIndex === 3) {
+                                    return plan;
+                                }
+                                return v;
+                            },
+                            color: (c) => c.dataset.textColor,
+                            anchor: 'center',
+                            align: 'center',
+                            display: (c) => c.dataset.data[c.dataIndex] > 0
+                        }
+                    },
+                    scales: {
+                        y: { stacked: true, display: false, beginAtZero: true, max: 600 },
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: { font: { size: 24, weight: '800', family: 'Kanit' }, color: '#334155', padding: 25 }
+                        }
+                    },
+                    layout: { padding: { top: 30, bottom: 20, left: 20, right: 20 } }
+                }
+            });
+
+            switchTableYear('2568');
+        };
+    </script>
+</body>
+</html>
