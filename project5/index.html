@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปข้อมูลนักศึกษาทุนระดับบัณฑิตศึกษา (สำนักงานบัณฑิตศึกษา)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f7f6f2; 
+            color: #4a453e;
+        }
+        .earth-card {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            border: 1px solid #e5e1d8;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: #a19a8e;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .tab-btn.active {
+            color: #8c7e6a;
+            border-bottom: 2px solid #8c7e6a;
+            background-color: rgba(140, 126, 106, 0.05);
+        }
+        .hidden-tab { display: none; }
+        .table-container {
+            scrollbar-width: thin;
+            scrollbar-color: #e2ddd3 transparent;
+        }
+        .highlight-q1 {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .highlight-q2 {
+            background-color: #e0f2fe;
+            color: #075985;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-[#5d574d]">สรุปข้อมูลนักศึกษาทุนระดับบัณฑิตศึกษา (สำนักงานบัณฑิตศึกษา)</h1>
+            <p class="text-[#a19a8e] text-lg">รายงานสถานะภาพรวมและผลการดำเนินงานทุนการศึกษา</p>
+        </header>
+ 
+        <!-- Highlight Banner -->
+        <div class="bg-gradient-to-r from-[#8ba391] to-[#a3b8a8] rounded-2xl p-6 mb-8 text-white shadow-lg flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <div class="bg-white/20 p-4 rounded-xl mr-5">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">จำนวนนักศึกษาทุนปัจจุบัน</h3>
+                    <p class="text-white/80 text-sm">จำนวนนักศึกษาทุนสะสม (ไม่รวมนักศึกษาที่พ้นสภาพ/ลาออก/ยุติการรับทุน)</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="text-5xl font-black" id="total-students-hero">102</span>
+                <span class="ml-2 text-xl font-medium">คน</span>
+                <div class="text-xs text-white/70 mt-1">ข้อมูล ณ วันที่ 4 มิถุนายน 2569</div>
+            </div>
+        </div>
+ 
+        <!-- KPI Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="earth-card p-6 border-t-4 border-[#8ba391]">
+                <p class="text-xs font-bold text-[#8c7e6a] uppercase mb-4 tracking-wider">สัญชาติ (Nationality)</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-xs text-gray-500 block mb-1">ไทย</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black">73</span>
+                            <span class="text-[11px] text-gray-400">71.57%</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-xs text-gray-500 block mb-1">ต่างชาติ</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black">29</span>
+                            <span class="text-[11px] text-gray-400">28.43%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="earth-card p-6 border-t-4 border-[#bc6c25]">
+                <p class="text-xs font-bold text-[#8c7e6a] uppercase mb-4 tracking-wider">สถานะการศึกษา (Educational Status)</p>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-[10px] text-gray-500 block mb-1">ปกติ</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#8ba391]">66</span>
+                            <span class="text-[9px] text-gray-400">64.7%</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <span class="text-[10px] text-gray-500 block mb-1">สำเร็จการศึกษา</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#a3b8a8]">36</span>
+                            <span class="text-[9px] text-gray-400">35.3%</span>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                        <span class="text-[10px] text-orange-700 block mb-1 leading-tight">พ้นสภาพ/ลาออก/ยุติการรับทุน</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-[#bc6c25]">10</span>
+                            <span class="text-[9px] text-orange-400">8.9%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Tabs -->
+        <div class="flex border-b border-[#e5e1d8] mb-8 overflow-x-auto">
+            <button onclick="switchTab('scholarship-type')" id="tab-scholarship-type" class="tab-btn active">📜 ประเภททุนการศึกษา</button>
+            <button onclick="switchTab('status')" id="tab-status" class="tab-btn">📊 สถานะการศึกษา</button>
+            <button onclick="switchTab('nationality')" id="tab-nationality" class="tab-btn">🌍 สัญชาติ</button>
+            <button onclick="switchTab('publications')" id="tab-publications" class="tab-btn">📝 ผลงานตีพิมพ์</button>
+        </div>
+ 
+        <!-- Tab 1: Scholarship Type -->
+        <section id="content-scholarship-type">
+            <div class="grid grid-cols-1 gap-8 mb-8">
+                <div class="earth-card p-6">
+                    <h2 class="text-lg font-bold mb-6">สรุปข้อมูลโครงการทุนสนับสนุน</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col justify-center">
+                            <span class="font-medium text-[#8c7e6a] text-sm mb-1">จำนวนโครงการทุนรวม</span>
+                            <span class="text-xl font-black text-[#8ba391]">5 โครงการ</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col justify-center">
+                            <span class="font-medium text-[#8c7e6a] text-sm mb-1">จำนวนผู้รับทุนสะสม</span>
+                            <span class="text-xl font-black text-[#d4a373]">102 คน</span>
+                        </div>
+                        <div class="p-4 bg-[#fcfbf9] rounded-xl border border-[#e5e1d8] flex flex-col justify-center">
+                            <span class="font-medium text-[#8c7e6a] text-sm mb-1">งบประมาณรวม</span>
+                            <span class="text-xl font-black text-[#a3b8a8]">23,750,576 บาท</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="earth-card p-6 overflow-hidden">
+                <h2 class="text-lg font-bold mb-6">ข้อมูลทุนการศึกษาตามปีการศึกษา (พร้อมงบประมาณเฉลี่ยรายบุคคล)</h2>
+                <div class="overflow-x-auto table-container">
+                    <table class="w-full text-sm border-collapse border border-[#e5e1d8]">
+                        <thead class="bg-[#fcfbf9] text-[#8c7e6a]">
+                            <tr>
+                                <th rowspan="2" class="p-4 text-left border border-[#e5e1d8] font-bold">ชื่อโครงการทุน / ปีการศึกษา</th>
+                                <th colspan="2" class="p-2 text-center border border-[#e5e1d8] font-bold">ป.โท (คน)</th>
+                                <th colspan="2" class="p-2 text-center border border-[#e5e1d8] font-bold">ป.เอก (คน)</th>
+                                <th rowspan="2" class="p-4 text-center border border-[#e5e1d8] font-bold">รวม (คน)</th>
+                                <th rowspan="2" class="p-4 text-right border border-[#e5e1d8] font-bold">งบประมาณ (บาท)</th>
+                                <th rowspan="2" class="p-4 text-right border border-[#e5e1d8] font-bold bg-[#f7f6f2]">เฉลี่ยต่อคน (บาท)</th>
+                            </tr>
+                            <tr class="bg-[#fcfbf9]">
+                                <th class="p-2 text-center border border-[#e5e1d8] text-xs">ปกติ</th>
+                                <th class="p-2 text-center border border-[#e5e1d8] text-xs">สำเร็จการศึกษา</th>
+                                <th class="p-2 text-center border border-[#e5e1d8] text-xs">ปกติ</th>
+                                <th class="p-2 text-center border border-[#e5e1d8] text-xs">สำเร็จการศึกษา</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr>
+                                <td class="p-4 border border-[#e5e1d8]">
+                                    <div class="font-medium">1. ทุนสนับสนุนค่าธรรมเนียมการศึกษา</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2563-2564</div>
+                                </td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">4</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">17</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">6</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">12</td>
+                                <td class="p-4 text-center border border-[#e5e1d8] font-bold">39</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-semibold">7,648,936</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-bold text-[#8c7e6a] bg-[#fcfbf9]">196,126.56</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border border-[#e5e1d8]">
+                                    <div class="font-medium">2. ทุนสนับสนุนค่าธรรมเนียมการศึกษา</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2566</div>
+                                </td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">5</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">6</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">9</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-4 text-center border border-[#e5e1d8] font-bold">20</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-semibold">4,753,640</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-bold text-[#8c7e6a] bg-[#fcfbf9]">237,682.00</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border border-[#e5e1d8]">
+                                    <div class="font-medium">3. ทุน Grad MFU Scholarship 2024</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2567</div>
+                                </td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">9</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-4 text-center border border-[#e5e1d8] font-bold">9</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-semibold">1,847,000</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-bold text-[#8c7e6a] bg-[#fcfbf9]">205,222.22</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border border-[#e5e1d8]">
+                                    <div class="font-medium">4. ทุน MFU 25th Anniversary 25 Ph.D.</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2567</div>
+                                </td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">10</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-4 text-center border border-[#e5e1d8] font-bold">10</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-semibold">4,774,000</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-bold text-[#8c7e6a] bg-[#fcfbf9]">477,400.00</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border border-[#e5e1d8]">
+                                    <div class="font-medium">5. ทุน Grad MFU Scholarship 2025</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2568</div>
+                                </td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">14</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">10</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">0</td>
+                                <td class="p-4 text-center border border-[#e5e1d8] font-bold">24</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-semibold">4,727,000</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] font-bold text-[#8c7e6a] bg-[#fcfbf9]">196,958.33</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="bg-[#fcfbf9] font-bold">
+                            <tr>
+                                <td class="p-4 text-right border border-[#e5e1d8]">รวมทั้งสิ้น</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">32</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">23</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">35</td>
+                                <td class="p-2 text-center border border-[#e5e1d8]">12</td>
+                                <td class="p-4 text-center border border-[#e5e1d8]">102</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] text-[#8ba391] text-lg">23,750,576</td>
+                                <td class="p-4 text-right border border-[#e5e1d8] bg-[#f7f6f2]">232,848.78</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 2: Status -->
+        <section id="content-status" class="hidden-tab">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="lg:col-span-2 earth-card p-6">
+                    <h2 class="text-lg font-bold mb-6">จำนวนนักศึกษาทุนแยกตามสำนักวิชา</h2>
+                    <div class="h-[450px]"><canvas id="mainBarChart"></canvas></div>
+                </div>
+                <div class="earth-card p-6 flex flex-col items-center">
+                    <h2 class="text-lg font-bold w-full mb-6">สัดส่วนระดับการศึกษา</h2>
+                    <div class="relative w-full max-w-[240px] aspect-square">
+                        <canvas id="levelDonutChart"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            <span class="text-3xl font-black text-[#4a453e]" id="total-donut-center">102</span>
+                            <span class="text-xs font-medium text-[#a19a8e]">คนรวม</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="earth-card p-6 overflow-hidden">
+                <div class="overflow-x-auto table-container">
+                    <table class="w-full text-sm">
+                        <thead class="bg-[#fcfbf9] text-[#8c7e6a]">
+                            <tr>
+                                <th class="p-4 text-left border-b font-bold">สำนักวิชา</th>
+                                <th class="p-4 text-center border-b font-bold">ปกติ</th>
+                                <th class="p-4 text-center border-b font-bold">สำเร็จการศึกษา</th>
+                                <th class="p-4 text-center border-b font-bold text-[#bc6c25]">พ้นสภาพ/ลาออก/ยุติการรับทุน</th>
+                                <th class="p-4 text-center border-b font-bold bg-[#f7f6f2]">รวมทั้งสิ้น</th>
+                            </tr>
+                        </thead>
+                        <tbody id="status-table-body" class="divide-y divide-gray-50"></tbody>
+                        <tfoot id="status-table-foot" class="bg-[#fcfbf9] font-bold border-t-2"></tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- Tab 3: Nationality -->
+        <section id="content-nationality" class="hidden-tab">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="lg:col-span-2 earth-card p-6">
+                    <h2 class="text-lg font-bold mb-6">นักศึกษาไทย/ต่างชาติ (ไม่รวมนักศึกษาพ้นสภาพฯ)</h2>
+                    <div class="h-[600px]"><canvas id="improvedNationalityChart"></canvas></div>
+                </div>
+                <div class="earth-card p-6">
+                    <h2 class="text-lg font-bold mb-6">ระดับการศึกษาตามสัญชาติ</h2>
+                    <div class="h-[200px] mb-6"><canvas id="nationalityStackedChart"></canvas></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-8">
+                <div class="earth-card p-6">
+                    <h2 class="text-lg font-bold mb-6">จำนวนนักศึกษาแยกตามประเทศ</h2>
+                    <div class="h-[500px]">
+                        <canvas id="countriesBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 4: Publications -->
+        <section id="content-publications" class="hidden-tab">
+             <div class="earth-card p-6 overflow-hidden">
+                <h2 class="text-lg font-bold mb-6">ตารางสรุปจำนวนผลงานตีพิมพ์แยกตามโครงการทุน</h2>
+                <div class="overflow-x-auto table-container">
+                    <table class="w-full text-sm border-collapse">
+                        <thead class="bg-[#fcfbf9] text-[#8c7e6a]">
+                            <tr>
+                                <th class="p-4 text-left border-b font-bold">ชื่อโครงการทุน / ปีการศึกษา</th>
+                                <th class="p-4 text-center border-b font-bold bg-[#f7f6f2]">จำนวนผลงานที่ต้องตีพิมพ์ทั้งหมด</th>
+                                <th class="p-4 text-center border-b font-bold bg-[#fcfbf9]">เป้าหมาย (Q1)</th>
+                                <th class="p-4 text-center border-b font-bold">Q1</th>
+                                <th class="p-4 text-center border-b font-bold">Q2</th>
+                                <th class="p-4 text-center border-b font-bold">รวมผลงานปัจจุบัน</th>
+                                <th class="p-4 text-right border-b font-bold bg-[#fdfcf9] text-[#a19a8e]">งบประมาณโครงการ (บาท)</th>
+                                <th class="p-4 text-right border-b font-bold bg-[#f3f9f4] text-[#166534]">เฉลี่ยต่อยอดที่ต้องตีพิมพ์ (บาท)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr>
+                                <td class="p-4">
+                                    <div class="font-medium">1. ทุนสนับสนุนค่าธรรมเนียมการศึกษา</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2563-2564</div>
+                                </td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9] text-base text-[#5d574d]">59</td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9]">30</td>
+                                <td class="p-4 text-center text-lg font-semibold">
+                                    38 <span class="text-[11px] font-normal highlight-q1">(64.41%)</span>
+                                </td>
+                                <td class="p-4 text-center text-lg font-semibold">
+                                    14 <span class="text-[11px] font-normal highlight-q2">(23.73%)</span>
+                                </td>
+                                <td class="p-4 text-center font-bold">52</td>
+                                <td class="p-4 text-right font-medium text-gray-600 bg-[#fdfcf9]">7,648,936</td>
+                                <td class="p-4 text-right font-bold text-[#166534] bg-[#f0fdf4]">129,642.98</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="font-medium">2. ทุนสนับสนุนค่าธรรมเนียมการศึกษา</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2566</div>
+                                </td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9] text-base text-[#5d574d]">29</td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9]">15</td>
+                                <td class="p-4 text-center text-lg font-semibold">
+                                    6 <span class="text-[11px] font-normal highlight-q1">(20.69%)</span>
+                                </td>
+                                <td class="p-4 text-center text-lg font-semibold">
+                                    3 <span class="text-[11px] font-normal highlight-q2">(10.34%)</span>
+                                </td>
+                                <td class="p-4 text-center font-bold">9</td>
+                                <td class="p-4 text-right font-medium text-gray-600 bg-[#fdfcf9]">4,753,640</td>
+                                <td class="p-4 text-right font-bold text-[#166534] bg-[#f0fdf4]">163,918.62</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="font-medium">3. ทุน Grad MFU Scholarship 2024</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2567</div>
+                                </td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9] text-base text-[#5d574d]">9</td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9]">5</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center font-bold text-gray-300">0</td>
+                                <td class="p-4 text-right font-medium text-gray-600 bg-[#fdfcf9]">1,847,000</td>
+                                <td class="p-4 text-right font-bold text-[#166534] bg-[#f0fdf4]">205,222.22</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="font-medium">4. ทุน MFU 25th Anniversary 25 Ph.D.</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2567</div>
+                                </td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9] text-base text-[#5d574d]">20</td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9]">10</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center font-bold text-gray-300">0</td>
+                                <td class="p-4 text-right font-medium text-gray-600 bg-[#fdfcf9]">4,774,000</td>
+                                <td class="p-4 text-right font-bold text-[#166534] bg-[#f0fdf4]">238,700.00</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="font-medium">5. ทุน Grad MFU Scholarship 2025</div>
+                                    <div class="text-xs text-gray-500 mt-1">ปีการศึกษา 2568</div>
+                                </td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9] text-base text-[#5d574d]">34</td>
+                                <td class="p-4 text-center font-bold bg-[#fcfbf9]">17</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center text-lg font-semibold text-gray-300">0</td>
+                                <td class="p-4 text-center font-bold text-gray-300">0</td>
+                                <td class="p-4 text-right font-medium text-gray-600 bg-[#fdfcf9]">4,727,000</td>
+                                <td class="p-4 text-right font-bold text-[#166534] bg-[#f0fdf4]">139,029.41</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="bg-[#fcfbf9] font-bold border-t-2">
+                            <tr>
+                                <td class="p-4 text-right">ยอดรวมทั้งสิ้น</td>
+                                <td class="p-4 text-center text-xl text-[#8c7e6a] bg-[#fcfbf9]">151</td>
+                                <td class="p-4 text-center text-xl text-[#4a453e] bg-[#fcfbf9]">77</td>
+                                <td class="p-4 text-center text-xl text-[#4a453e]">44</td>
+                                <td class="p-4 text-center text-xl text-[#4a453e]">17</td>
+                                <td class="p-4 text-center text-xl">61</td>
+                                <td class="p-4 text-right text-lg text-gray-700 bg-[#fdfcf9]">23,750,576</td>
+                                <td class="p-4 text-right text-xl text-[#166534] bg-[#f0fdf4]">157,288.58</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border-l-4 border-[#8ba391] flex flex-col gap-1">
+                    <p class="text-sm text-[#8c7e6a] font-semibold">
+                        หมายเหตุ: กำหนดเป้าหมายผลงานตีพิมพ์ในฐานข้อมูล Scopus ระดับ Q1 ของแต่ละโครงการต้องไม่ต่ำกว่าร้อยละ 50
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        * จำนวนเงินทุนการศึกษาเฉลี่ยต่อผลงานที่ต้องตีพิมพ์ = งบประมาณโครงการทั้งหมด หารด้วย จำนวนผลงานที่ต้องตีพิมพ์รวมทั้งหมดตามข้อตกลงและสัญญาของโครงการทุน
+                    </p>
+                </div>
+             </div>
+        </section>
+ 
+    </div>
+ 
+    <script>
+        Chart.register(ChartDataLabels);
+ 
+        const rawSchools = [
+            'วิทยาศาสตร์', 'อุตสาหกรรมเกษตร', 'การจัดการ', 'เวชศาสตร์ชะลอวัยฯ', 'ศิลปศาสตร์', 
+            'แพทยศาสตร์', 'วิทยาศาสตร์สุขภาพ', 'วิทยาศาสตร์เครื่องสำอาง', 'การแพทย์บูรณาการ', 
+            'เทคโนโลยีดิจิทัลประยุกต์', 'นวัตกรรมสังคม'
+        ];
+        
+        // แก้ไขค่าเฉพาะ 'เทคโนโลยีดิจิทัลประยุกต์' (ดัชนีที่ 9): ปกติ จาก 4 เป็น 3, สำเร็จการศึกษา จาก 5 เป็น 6
+        const rawActive = [19, 11, 5, 5, 1, 4, 10, 6, 1, 3, 1]; 
+        const rawGrad = [20, 5, 1, 0, 0, 0, 2, 1, 0, 6, 1]; 
+        const rawDismissed = [1, 4, 0, 1, 0, 0, 2, 1, 0, 0, 1]; 
+        
+        const rawThai = [21, 13, 3, 1, 0, 4, 12, 7, 1, 9, 2]; 
+        const rawForeign = [18, 3, 3, 4, 1, 0, 0, 0, 0, 0, 0]; 
+ 
+        const combinedData = rawSchools.map((name, idx) => {
+            const active = rawActive[idx];
+            const grad = rawGrad[idx];
+            const dismissed = rawDismissed[idx];
+            const total = active + grad + dismissed;
+            const thai = rawThai[idx] || 0;
+            const foreign = rawForeign[idx] || 0;
+            return { name, active, grad, dismissed, total, thai, foreign };
+        }).sort((a, b) => b.total - a.total);
+ 
+        const sortedSchools = combinedData.map(d => d.name);
+        
+        const countriesLabels = ['ไทย', 'จีน', 'พม่า', 'ศรีลังกา', 'มอริเซียส', 'เวียดนาม', 'อินโดนีเซีย', 'ภูฎาน', 'อุซเบกิสถาน'];
+        const countriesValues = [73, 10, 5, 5, 3, 2, 2, 1, 1];
+ 
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            
+            const allTabs = ['scholarship-type', 'status', 'nationality', 'publications'];
+            allTabs.forEach(t => {
+                const el = document.getElementById('content-' + t);
+                if (el) el.classList.add('hidden-tab');
+            });
+            document.getElementById('content-' + tab).classList.remove('hidden-tab');
+        }
+ 
+        // กราฟจำนวนนักศึกษาทุนแยกตามสำนักวิชา (Tab: สถานะการศึกษา)
+        // แก้ไขสียอดรวมและข้อความสรุปด้านบนกราฟ จากเดิม "ปกติ (67 คน)" และ "สำเร็จการศึกษา (35 คน)" เป็น "ปกติ (66 คน)" และ "สำเร็จการศึกษา (36 คน)"
+        new Chart(document.getElementById('mainBarChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: sortedSchools,
+                datasets: [
+                    { 
+                        label: 'ปกติ (66 คน)', 
+                        data: combinedData.map(d => d.active), 
+                        backgroundColor: '#8ba391' 
+                    },
+                    { 
+                        label: 'สำเร็จการศึกษา (36 คน)', 
+                        data: combinedData.map(d => d.grad), 
+                        backgroundColor: '#e9edc9' 
+                    }
+                ]
+            },
+            options: { 
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                layout: {
+                    padding: { right: 40 }
+                },
+                scales: { 
+                    x: { stacked: true, beginAtZero: true }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: { 
+                        color: '#4a453e', 
+                        font: { weight: '600' },
+                        formatter: (v) => v > 0 ? v : '' 
+                    } 
+                }
+            },
+            plugins: [{
+                id: 'totalLabels',
+                afterDatasetsDraw(chart) {
+                    const { ctx, data } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 12px Sarabun';
+                    ctx.fillStyle = '#4a453e';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'middle';
+
+                    data.labels.forEach((label, i) => {
+                        let total = 0;
+                        data.datasets.forEach(dataset => {
+                            total += dataset.data[i];
+                        });
+                        
+                        if (total > 0) {
+                            const meta = chart.getDatasetMeta(data.datasets.length - 1);
+                            const bar = meta.data[i];
+                            ctx.fillText(`(${total})`, bar.x + 8, bar.y);
+                        }
+                    });
+                    ctx.restore();
+                }
+            }]
+        });
+ 
+        new Chart(document.getElementById('levelDonutChart').getContext('2d'), {
+            type: 'doughnut',
+            data: { 
+                labels: ['ป.เอก (49 คน)', 'ป.โท (53 คน)'], 
+                datasets: [{ data: [49, 53], backgroundColor: ['#8ba391', '#ccd5ae'] }] 
+            },
+            options: { cutout: '70%', plugins: { legend: { position: 'bottom' } } }
+        });
+ 
+        new Chart(document.getElementById('improvedNationalityChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: sortedSchools,
+                datasets: [
+                    { 
+                        label: 'ไทย (73 คน)', 
+                        data: combinedData.map(d => d.thai), 
+                        backgroundColor: '#8ba391',
+                        datalabels: {
+                            color: '#fff',
+                            font: { weight: 'bold' },
+                            formatter: (v) => (v && v > 0 ? v : '') 
+                        }
+                    },
+                    { 
+                        label: 'ต่างชาติ (29 คน)', 
+                        data: combinedData.map(d => d.foreign), 
+                        backgroundColor: '#d4a373',
+                        datalabels: {
+                            color: '#fff',
+                            font: { weight: 'bold' },
+                            formatter: (v) => (v && v > 0 ? v : '') 
+                        }
+                    }
+                ]
+            },
+            options: { 
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                scales: { 
+                    x: { stacked: true, beginAtZero: true, grace: '10%' }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: {
+                        display: true 
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.x + ' คน';
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                id: 'customTotalLabels',
+                afterDatasetsDraw(chart) {
+                    const { ctx, data } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 11px Sarabun';
+                    ctx.fillStyle = '#475569';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'middle';
+
+                    data.labels.forEach((label, i) => {
+                        let total = 0;
+                        data.datasets.forEach(dataset => {
+                            total += dataset.data[i];
+                        });
+                        
+                        if (total > 0) {
+                            const meta = chart.getDatasetMeta(data.datasets.length - 1);
+                            const bar = meta.data[i];
+                            ctx.fillText('(' + total + ')', bar.x + 5, bar.y);
+                        }
+                    });
+                    ctx.restore();
+                }
+            }]
+        });
+ 
+        new Chart(document.getElementById('nationalityStackedChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['ป.เอก (49 คน)', 'ป.โท (53 คน)'],
+                datasets: [
+                    { 
+                        label: 'ไทย (73 คน)', 
+                        data: [22, 51], 
+                        backgroundColor: '#8ba391',
+                        datalabels: { color: '#fff', font: { weight: 'bold' }, formatter: (v) => v > 0 ? v : '' }
+                    },
+                    { 
+                        label: 'ต่างชาติ (29 คน)', 
+                        data: [27, 2], 
+                        backgroundColor: '#d4a373',
+                        datalabels: { color: '#fff', font: { weight: 'bold' }, formatter: (v) => v > 0 ? v : '' }
+                    }
+                ]
+            },
+            options: { 
+                indexAxis: 'y', 
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    x: { stacked: true, beginAtZero: true, grace: '15%' }, 
+                    y: { stacked: true } 
+                },
+                plugins: { 
+                    datalabels: { display: true }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('countriesBarChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: countriesLabels,
+                datasets: [{
+                    label: 'จำนวนนักศึกษา (คน)',
+                    data: countriesValues,
+                    backgroundColor: ['#8ba391', '#d4a373', '#ccd5ae', '#a3b8a8', '#bc6c25', '#e9edc9', '#dda15e', '#606c38', '#283618'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: { 
+                        anchor: 'end', 
+                        align: 'top', 
+                        color: '#4a453e', 
+                        font: { weight: 'bold' }, 
+                        formatter: (v) => (v && v > 0 ? v : '') 
+                    }
+                },
+                scales: { 
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#f0f0f0' },
+                        grace: '5%'
+                    }, 
+                    x: { grid: { display: false } } 
+                }
+            }
+        });
+
+        const stBody = document.getElementById('status-table-body');
+        let tAct = 0, tGrad = 0, tDis = 0, tAll = 0;
+        combinedData.forEach(row => {
+            tAct += row.active; tGrad += row.grad; tDis += row.dismissed; tAll += row.total;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td class="p-4 font-semibold">${row.name}</td><td class="p-4 text-center">${row.active}</td><td class="p-4 text-center">${row.grad}</td><td class="p-4 text-center text-[#bc6c25] font-bold">${row.dismissed}</td><td class="p-4 text-center font-bold bg-[#fcfbf9]">${row.total}</td>`;
+            stBody.appendChild(tr);
+        });
+        document.getElementById('status-table-foot').innerHTML = `<tr><td class="p-4">รวมทั้งสิ้น</td><td class="p-4 text-center">${tAct}</td><td class="p-4 text-center">${tGrad}</td><td class="p-4 text-center text-[#bc6c25]">${tDis}</td><td class="p-4 text-center bg-[#f7f6f2] text-xl">${tAll}</td></tr>`;
+
+        window.onload = () => switchTab('scholarship-type');
+    </script>
+</body>
+</html>
