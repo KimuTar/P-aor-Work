@@ -248,6 +248,7 @@
   .advisor-block:last-child{margin-bottom:0;}
   .advisor-role{font-size:11.5px; color:var(--ink-soft); font-weight:700; text-transform:uppercase; letter-spacing:.02em; margin-bottom:3px;}
   .advisor-name{font-size:14.5px; font-weight:700; color:var(--navy-900);}
+  /* เพิ่ม white-space: pre-line เพื่อรองรับจุดไข่ปลาขึ้นบรรทัดใหม่ของอาจารย์ */
   .advisor-note{font-size:12.6px; color:var(--ink-soft); margin-top:3px; line-height:1.55; white-space: pre-line;}
   .advisor-block hr{border:none; border-top:1px dashed var(--line); margin:12px 0;}
 
@@ -463,7 +464,7 @@ const MASTER_DATA = {
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Resident Vet, Amo Farms Sieberer Hatchery Ltd."},
     ]}
   ],
-fund2: [
+  fund2: [
     {no:1,name:"Miss Pallavi Chattopadhyay",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แบบ 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"",grandTotal:"273,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.63 / 4.00",thesis:"The association and coevolution between termites and Termitomyces in Thailand",publication:"Phonemany, M. et al. (2025). Identification and therapeutic efficacy of Pleurotus djamor var fuscopruinosus. Scientific Reports, 15(1), 18929. (Scopus/Q1) และอีก 1 ผลงาน (Chiang Mai Journal of Science, Scopus/Q2)",workHistory:"Research (Young Professional), ICAR – National Bureau of Agriculturally Important Microorganism, Mau, Uttar Pradesh, India",
     advisorMain:"อาจารย์ ดร.นริษฎา ทองกลาง",
     advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.1
@@ -531,13 +532,15 @@ fund2: [
      {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำที่มีคุณสมบัติเป็นที่ปรึกษาหลักในหลักสูตร",result:"fail",detail:"ผลตรวจสอบคุณสมบัติยังไม่ครบถ้วน ต้องตรวจสอบเพิ่มเติมจากสำนักวิชา"},
     ]},
 
-    {no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"2.81 / 4.00",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",publication:" - ",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",
-    advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
-    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 
+    {no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",
+     tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"2.81 / 4.00",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",
+     publication:" - ",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",
+     advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
+     advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 
 · ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) 
 · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
-    advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",
-    advisorCoNote: `· Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia 
+     advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",
+     advisorCoNote: `· Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia 
 · คุณวุฒิปริญญาเอก / รองศาสตราจารย์ 
 · มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565)
 · อีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
@@ -705,8 +708,10 @@ function renderMain(){
         <div class="section">
           <div class="section-title"><span class="ic">📚</span>ผลงานตีพิมพ์ทางวิชาการ / ประสบการณ์ที่เกี่ยวข้อง</div>
           <div class="content-static-block">${s.publication}</div>
-          <hr style="border:none;border-top:1px dashed var(--line);margin:10px 0;">
-          <div class="lbl" style="margin-bottom:4px; font-size:11.5px; color:var(--ink-soft); font-weight:600;">ประวัติการทำงาน (ถ้ามี)</div>
+        </div>
+        <!-- 💼 แยกกล่องประวัติการทำงานออกมาเป็นกล่องใหม่เดี่ยวๆ ด้านล่างผลงานตีพิมพ์ -->
+        <div class="section">
+          <div class="section-title"><span class="ic">💼</span>ประวัติการทำงาน (ถ้ามี)</div>
           <div class="content-static-block">${s.workHistory || 'ไม่มีข้อมูล'}</div>
         </div>
       </div>
