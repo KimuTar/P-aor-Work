@@ -340,123 +340,290 @@ const STATUS_META = {
 };
 
 const MASTER_DATA = {
-  fund1: [
+fund1: [
     {no:1,name:"นายธีระพงษ์ ศรีปะโค",school:"สำนักวิชาวิทยาศาสตร์",major:"เคมีประยุกต์",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"210,000",
      monthly:"252,000",grandTotal:"462,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.61 / 4.00 (สำเร็จการศึกษา)",thesis:"Antifungal properties of cellulose film from pineapple peel incorporating essential oils for application as bread packaging",
      publication:"Sripahco, T., Khruengsai, S. & Pripdeevech, P. (2023). Biodegradable antifungal films from nanocellulose-gellan gum incorporated with Anethum graveolens essential oil for bread packaging. International Journal of Biological Macromolecules, 243, 125244. (Scopus/Q1)",
-     workHistory:"ไม่มีข้อมูล",advisorMain:"รศ.ดร.พัชรีย์ พริบดีเวช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงานตีพิมพ์ Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Siau Hui Hah",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · วุฒิปริญญาเอก / รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+     workHistory:" - ",
+     advisorMain:"รศ.ดร.พัชรีย์ พริบดีเวช",
+     advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาเคมีประยุกต์ แบบ 1.1
+· มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน)
+· มีผลงานตีพิมพ์ Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+     advisorCo:"Assoc. Prof. Dr. Siau Hui Hah",
+     advisorCoNote: `· School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia
+· คุณวุฒิปริญญาเอก / รองศาสตราจารย์
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.61"},
-     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:"มีผลงานตีพิมพ์ระดับ Scopus/Q1 ประกอบหัวข้อ"},
-     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:""},
     ]},
-    {no:2,name:"Miss Chamali Shanika Kodikara",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.69 / 4.00",thesis:"Biodiversity, phylogeny and biocontrol of fungi associated with roses and hydrangea in Chiang Rai province",publication:"Keerthirathna, L. et al. (2025). Chondrilla juncea polysaccharide-mediated green synthesis of silver nanoparticles: Potent anticancer and antimicrobial activities. Biology, 14(7), 904. (Scopus/Q2)",workHistory:"Teaching Assistant, University of Sri Jayewardenepura, Sri Lanka",advisorMain:"ผศ.ดร. Ruvishika Jayawardena",advisorMainNote:"มีนักศึกษาในกำกับดูแล 7 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Shaobin Fu",advisorCoNote:"Faculty of Pharmacy, Zunyi Medical University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+
+    {no:2,name:"Miss Chamali Shanika Kodikara",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.69 / 4.00",thesis:"Biodiversity, phylogeny and biocontrol of fungi associated with roses and hydrangea in Chiang Rai province",publication:"Keerthirathna, L. et al. (2025). Chondrilla juncea polysaccharide-mediated green synthesis of silver nanoparticles: Potent anticancer and antimicrobial activities. Biology, 14(7), 904. (Scopus/Q2)",workHistory:"Teaching Assistant, University of Sri Jayewardenepura, Sri Lanka",
+    advisorMain:"ผศ.ดร. Ruvishika Jayawardena",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.2
+· มีนักศึกษาในกำกับดูแล 7 คน (รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Dr. Shaobin Fu",
+    advisorCoNote: `· Faculty of Pharmacy, Zunyi Medical University, China
+· คุณวุฒิปริญญาเอก
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.69 มีผลงานตีพิมพ์ 1 ผลงาน (Scopus/Q2)"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.69"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Teaching Assistant, University of Sri Jayewardenepura"},
     ]},
-    {no:3,name:"Miss Hira Arshad",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.73 / 4.00",thesis:"Eurotiomycetes diversity and evolution",publication:"Phukhamsakda, C. et al. (2025). Unveiling Sordariomycetes taxa associated with woody litter in Northern Thailand. MycoKeys, 115, 155-185. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"Dr. Chitrabhanu Sharma Bhunjun",advisorMainNote:"มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Sinang Hongsanan Onodera",advisorCoNote:"College of Life Science and Oceanography, Shenzhen University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"pass",
+
+    {no:3,name:"Miss Hira Arshad",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.73 / 4.00",thesis:"Eurotiomycetes diversity and evolution",publication:"Phukhamsakda, C. et al. (2025). Unveiling Sordariomycetes taxa associated with woody litter in Northern Thailand. MycoKeys, 115, 155-185. (Scopus/Q1)",workHistory:"",
+    advisorMain:"Dr. Chitrabhanu Sharma Bhunjun",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.1
+· มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Dr. Sinang Hongsanan Onodera",
+    advisorCoNote: `· College of Life Science and Oceanography, Shenzhen University, China
+· คุณวุฒิปริญญาเอก
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.73"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.73"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:" - ",detail:""},
     ]},
-    {no:4,name:"Miss Vidana Gamage Umesha Lakmini",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00",thesis:"Antibiotic Resistance Patterns of Microalgae-bacteria consortia in three Selected Polluted Lentic Water Bodies in Sri Lanka and its Potential Impact on Environment and Public Health",publication:"Luo, L. et al. (2025). Two new and one new morph record of Calycina species from Southwestern China. MycoKeys, 122, 13-33. (Scopus/Q1)",workHistory:"Temporary Demonstrator, University of Ruhuna, Sri Lanka",advisorMain:"Adjunct Prof. Dr. Kevin David Hyde",advisorMainNote:"มีนักศึกษาในกำกับดูแล 10 คน (รับได้ 15 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Yukanpin Xiao",advisorCoNote:"School of Pharmaceutical Engineering, Guizhou Institute of Technology, China · วุฒิปริญญาเอก · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+
+    {no:4,name:"Miss Vidana Gamage Umesha Lakmini",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00",thesis:"Antibiotic Resistance Patterns of Microalgae-bacteria consortia in three Selected Polluted Lentic Water Bodies in Sri Lanka and its Potential Impact on Environment and Public Health",publication:" - ",workHistory:"Temporary Demonstrator, University of Ruhuna, Sri Lanka",
+    advisorMain:"Adjunct Prof. Dr. Kevin David Hyde",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.2
+· มีนักศึกษาในกำกับดูแล 10 คน (รับได้ 15 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Dr. Yukanpin Xiao",
+    advisorCoNote: `· School of Pharmaceutical Engineering, Guizhou Institute of Technology, China
+· คุณวุฒิปริญญาเอก
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.62"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.62"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Temporary Demonstrator, University of Ruhuna"},
     ]},
-    {no:5,name:"นางสาวรามิล ภพลือชัย",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00",thesis:"A Study on Enhancing Humanitarian Logistics and Urban Mobility in GMS Border Cities",publication:"Phopluechai, R. et al. (2025). Investigating travel mode choices under environmental stress: Evidence from air pollution events in Chiang Rai, Thailand. Urban Science, 9(8), 323. (Scopus/Q2)",workHistory:"เจ้าหน้าที่พัฒนาเด็กและเยาวชน โครงการพัฒนาดอยตุง · ผู้ช่วยสอนสาขาการจัดการโลจิสติกส์ฯ · นักศึกษาแลกเปลี่ยน ณ Muroran Institute of Technology, Japan",advisorMain:"ผศ.ดร.ทศพร อารีราษฎร์",advisorMainNote:"มีนักศึกษาในกำกับดูแล 6 คน (รับได้ 10 คน) · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Xiaoyan Jia",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 12 มิ.ย. 2569",status:"pass",
+
+    {no:5,name:"นางสาวรามิล ภพลือชัย",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00",thesis:"A Study on Enhancing Humanitarian Logistics and Urban Mobility in GMS Border Cities",publication:"Phopluechai, R. et al. (2025). Investigating travel mode choices under environmental stress: Evidence from air pollution events in Chiang Rai, Thailand. Urban Science, 9(8), 323. (Scopus/Q2)",workHistory:`เจ้าหน้าที่พัฒนาเด็กและเยาวชน โครงการพัฒนาดอยตุง 
+    · ผู้ช่วยสอนสาขาการจัดการโลจิสติกส์ฯ 
+    · นักศึกษาแลกเปลี่ยน ณ Muroran Institute of Technology, Japan`,
+    advisorMain:"ผศ.ดร.ทศพร อารีราษฎร์",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1
+· มีนักศึกษาในกำกับดูแล จำนวน 6 คน (อาจารย์รับได้ 10 คน) - เป็นนักศึกษาทุน ป.เอก จำนวน 3 คน
+· มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Assoc. Prof. Dr. Xiaoyan Jia",
+    advisorCoNote: `· School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia
+· คุณวุฒิปริญญาเอก / รองศาสตราจารย์
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 4.00 มีผลงานตีพิมพ์ Scopus/Q2"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 4.00"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"มีประสบการณ์ทำงาน/ผู้ช่วยสอน"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:""},
     ]},
-    {no:6,name:"Miss Yuechen Chen",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.50 / 4.00",thesis:"Development of a Logistics 5.0 Maturity Level Framework for Multimodal Transport Risk Management and Agile Operations",publication:"Sittivangkul, K. et al. (2025). Ambulance Location for Service Coverage in an Urban-rural Area in Chiang Rai using Machine Learning. Journal of Mobile Multimedia, 21(5), 831-854. (Scopus/Q2)",workHistory:"Teacher, LingoAce Education, China",advisorMain:"อาจารย์ ดร.สุนิดา ธิว่อง",advisorMainNote:"⚠ มีนักศึกษาในกำกับดูแล 5 คน (รับได้เต็มโควตา 5 คน) — เกินหลักเกณฑ์เมื่อรวมผู้สมัครรายนี้",advisorCo:"Prof. Dr. Erwin Rauch",advisorCoNote:"Faculty of Engineering, Free University of Bozen-Bolzano, Italy · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 1 ก.ค. 2569",status:"conditional",
+
+    {no:6,name:"Miss Yuechen Chen",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.50 / 4.00",thesis:"Development of a Logistics 5.0 Maturity Level Framework for Multimodal Transport Risk Management and Agile Operations",publication:" - ",workHistory:"Teacher, LingoAce Education, China",
+    advisorMain:"อาจารย์ ดร.สุนิดา ธิว่อง",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1
+· ⚠ มีนักศึกษาในกำกับดูแล 5 คน (รับได้เต็มโควตา 5 คน) — เกินหลักเกณฑ์เมื่อรวมผู้สมัครรายนี้
+· มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Erwin Rauch",
+    advisorCoNote: `· Faculty of Engineering, Free University of Bozen-Bolzano, Italy
+· คุณวุฒิปริญญาเอก / ศาสตราจารย์
+· มีผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"fail",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.50 (เท่าเกณฑ์ขั้นต่ำพอดี)"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.50"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. จำนวนนักศึกษาในกำกับดูแลของอาจารย์ที่ปรึกษาไม่เกินเกณฑ์ข้อบังคับฯ",result:"fail",detail:"อาจารย์ที่ปรึกษามีนักศึกษาครบโควตา 5/5 คนแล้ว ต้องขอยกเว้น/ตรวจสอบเพิ่มเติม"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Teacher, LingoAce Education, China"},
     ]},
-    {no:7,name:"นางสาวคุณกนก น้อยนัน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"270,000",monthly:"252,000",grandTotal:"522,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.91 / 4.00",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:"Kham, S. L. & Aunsri, N. (2026). Bayesian filtering techniques for state of charge and state of health estimation in lithium-ion batteries for electric vehicles. Applied Energy, 417, 128015. (Scopus/Q1) และอีก 1 ผลงาน (Information Fusion, Scopus/Q1)",workHistory:"ผู้จัดการ บริษัท เจ็นเทคเฮ้าส์ จำกัด",advisorMain:"รองศาสตราจารย์ ดร.พรรณฤมล เต็มดี",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) — เป็นนักศึกษาทุน ป.โท 2 คน · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Rafia Mumtaz",advisorCoNote:"Kohsar University Murree, NUST, Pakistan · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 1 ก.ค. 2569",status:"pass",
+
+    {no:7,name:"นางสาวคุณกนก น้อยนัน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"270,000",monthly:"252,000",grandTotal:"522,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.91 / 4.00",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:" - ",workHistory:"ผู้จัดการ บริษัท เจ็นเทคเฮ้าส์ จำกัด",
+    advisorMain:"รองศาสตราจารย์ ดร.พรรณฤมล เต็มดี",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ แบบ 2.1
+· มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) — เป็นนักศึกษาทุน ป.โท 2 คน
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Rafia Mumtaz",
+    advisorCoNote: `· Kohsar University Murree, NUST, Pakistan
+· คุณวุฒิปริญญาเอก / ศาสตราจารย์
+· มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"na",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.91 มีผลงานตีพิมพ์ 2 ผลงาน (Scopus/Q1)"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.91"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"ผู้จัดการ บริษัท เจ็นเทคเฮ้าส์ จำกัด"},
     ]},
-    {no:8,name:"Mr. Sai Laung Kham",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.98 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:"Kham, S. L. & Aunsri, N. (2026). Bayesian filtering techniques for state of charge and state of health estimation in lithium-ion batteries for electric vehicles. Applied Energy, 417, 128015. (Scopus/Q1) และอีก 1 ผลงาน (Information Fusion, Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"รองศาสตราจารย์ ดร.ณัฐพล อุ่นศรี",advisorMainNote:"มีนักศึกษาในกำกับดูแล 3 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Zoi Heleni Michalopoulou",advisorCoNote:"Department of Mathematical Sciences, New Jersey Institute of Technology, USA · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"conditional",
+
+    {no:8,name:"Mr. Sai Laung Kham",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.98 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:"Kham, S. L. & Aunsri, N. (2026). Bayesian filtering techniques for state of charge and state of health estimation in lithium-ion batteries for electric vehicles. Applied Energy, 417, 128015. (Scopus/Q1) และอีก 1 ผลงาน (Information Fusion, Scopus/Q1)",workHistory:" - ",
+    advisorMain:"รองศาสตราจารย์ ดร.ณัฐพล อุ่นศรี",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ แบบ 2.2
+· มีนักศึกษาในกำกับดูแล จำนวน 3 คน (อาจารย์รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Zoi Heleni Michalopoulou",
+    advisorCoNote: `· Department of Mathematical Sciences, New Jersey Institute of Technology, USA
+· คุณวุฒิปริญญาเอก / ศาสตราจารย์
+· มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"conditional",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.98 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.98 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:" - "},
     ]},
-    {no:9,name:"นางสาวภูษณิศา สุขโสภณธน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"450,000",monthly:"420,000",grandTotal:"870,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00",thesis:"การแก้ไขปัญหาภาวะซ้อนทับระหว่างหลายกลุ่มที่เกิดขึ้นพร้อมกันในข้อมูลมิติสูง (Resolving Simultaneous Multi-Class Overlap in High-Dimensional Data)",publication:"Khonsiri, T. et al. (2026). Systematic optimization of transfer learning for acne severity classification. Cosmetics, 13, 166. (Scopus/Q1) และอีก 1 ผลงาน (Maternal and Child Health Journal, Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.ภัทรมน วุฒิพิทยามงคล",advisorMainNote:"⚠ อาจารย์ที่ปรึกษาหลัก ไม่ได้เป็นอาจารย์ผู้รับผิดชอบหลักสูตร/อาจารย์ประจำหลักสูตร — ต้องตรวจสอบคุณสมบัติเพิ่มเติม · มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน)",advisorCo:"Prof. Dr. Eyad Elyan",advisorCoNote:"School of Computing, Robert Gordon University, UK · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"conditional",
+
+    {no:9,name:"นางสาวภูษณิศา สุขโสภณธน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"450,000",monthly:"420,000",grandTotal:"870,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00",thesis:"การแก้ไขปัญหาภาวะซ้อนทับระหว่างหลายกลุ่มที่เกิดขึ้นพร้อมกันในข้อมูลมิติสูง (Resolving Simultaneous Multi-Class Overlap in High-Dimensional Data)",publication:" - ",workHistory:" - ",
+    advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.ภัทรมน วุฒิพิทยามงคล",
+    advisorMainNote: `· ⚠ อาจารย์ที่ปรึกษาหลัก ไม่ได้เป็นอาจารย์ผู้รับผิดชอบหลักสูตร/อาจารย์ประจำหลักสูตร — ต้องตรวจสอบคุณสมบัติเพิ่มเติม
+· อาจารย์ผู้รับผิดชอบ/ประจำหลักปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ แบบ 2.2
+· มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Eyad Elyan",
+    advisorCoNote: `· School of Computing, Robert Gordon University, UK
+· คุณวุฒิปริญญาเอก / ศาสตราจารย์
+· มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"conditional",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.92"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.92"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำหลักสูตรที่ขอรับทุน",result:"fail",detail:"ไม่ได้เป็นอาจารย์ผู้รับผิดชอบหลักสูตร/อาจารย์ประจำหลักสูตร"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:" - "},
     ]},
-    {no:10,name:"Miss Hay Mar Thein Zan",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.87 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Oilseed protein sources: Green bioprocess-assisted extraction, techno-functional properties and its application in plant-based meat analogue",publication:"Sharma, K. et al. (2026). Physicochemical properties and fatty acid profiling of texturized pea protein patties. Foods, 15(2), 270. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) มีนักศึกษาทำผิดสัญญา 2 คน · มีทุนวิจัยภายนอกจาก วช. 7,500,000 บาท",advisorCo:"Assoc. Prof. Dr. Young Hoon Jung",advisorCoNote:"School of Food Science and Biotechnology, Kyungpook National University, Korea · รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+
+    {no:10,name:"Miss Hay Mar Thein Zan",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.87 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Oilseed protein sources: Green bioprocess-assisted extraction, techno-functional properties and its application in plant-based meat analogue",publication:" - ",workHistory:" - ",
+    advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชานวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร แบบ 2.2
+· มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน) (มีนักศึกษาทำผิดสัญญา 2 คน)
+· มีทุนอุดหนุนการวิจัยและนวัตกรรมจากสำนักงานวิจัยแห่งชาติ สัญญาเลขที่ N42A690538 (ตั้งแต่ 24 มี.ค. 69 - 23 มี.ค. 72) งบประมาณ 7,500,000 บาท
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Assoc. Prof. Dr. Young Hoon Jung",
+    advisorCoNote: `· School of Food Science and Biotechnology, Kyungpook National University, Korea
+· คุณวุฒิปริญญาเอก / รองศาสตราจารย์
+· มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.87 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.87 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. โครงการวิจัยที่ได้รับทุนอุดหนุนจากหน่วยงานภายนอก (ถ้ามี)",result:"pass",detail:"ทุน วช. สัญญาเลขที่ N42A690538 งบประมาณ 7,500,000 บาท"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:" - "},
     ]},
-    {no:11,name:"Mr. Johnson Makinwa Ogunsua",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.85 / 4.00",thesis:"Development of a Natural Rubber-Based Slow-Release Ethylene Packaging System for Uniform Ripening in Climacteric Fruits",publication:"Chaiwong, S. et al. (2021). Performance of different bunch cover materials to improve quality of Cavendish banana. Agronomy, 11(3), 610. (Scopus/Q1)",workHistory:"Principal Research Officer, Nigerian Stored Products Research Institute, Nigeria",advisorMain:"รศ.ดร.เสาวภา ไชยวงศ์",advisorMainNote:"มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) เป็นนักศึกษาทุน ป.โท 1 คน (มีนักศึกษาทำผิดสัญญา 1 คน)",advisorCo:"Dr.-Ing. Pramod V. Mahajan",advisorCoNote:"Leibniz Institute for Agricultural Engineering & Bioeconomy (ATB), Germany · วุฒิปริญญาเอก · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"pass",
+
+    {no:11,name:"Mr. Johnson Makinwa Ogunsua",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.85 / 4.00",thesis:"Development of a Natural Rubber-Based Slow-Release Ethylene Packaging System for Uniform Ripening in Climacteric Fruits",publication:"Chaiwong, S. et al. (2021). Performance of different bunch cover materials to improve quality of Cavendish banana. Agronomy, 11(3), 610. (Scopus/Q1)",workHistory:"Principal Research Officer, Nigerian Stored Products Research Institute, Nigeria",
+    advisorMain:"รศ.ดร.เสาวภา ไชยวงศ์",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชานวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร แบบ 1.1
+· มีนักศึกษาในกำกับดูแล จำนวน 2 คน (อาจารย์รับได้ 10 คน) - เป็นนักศึกษาทุน ป.โท จำนวน 1 คน (นักศึกษาทุนทำผิดสัญญา 1 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Dr.-Ing. Pramod V. Mahajan",
+    advisorCoNote: `· Leibniz Institute for Agricultural Engineering & Bioeconomy (ATB), Germany
+· คุณวุฒิปริญญาเอก
+· มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.85"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.85"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Principal Research Officer, Nigerian Stored Products Research Institute"},
     ]},
-    {no:12,name:"นายนพวิทย์ โสภณอริยกิตติ์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การศึกษาสมบัติทางเคมีกายภาพ โครงสร้าง และการผสานเมทริกซ์ของไมโคโปรตีนจากข้าวมอลต์ในระบบอาหารไฮบริด",publication:"Pawde, S. V. et al. (2026). Mushrooms as sustainable protein alternatives. Foods, 15(8), 1301. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) มีนักศึกษาทุนทำผิดสัญญา 2 คน · มีทุนวิจัยภายนอกจาก วช. 7,500,000 บาท",advisorCo:"Prof. Dr. Mag. Pignitter Marc",advisorCoNote:"Institute of Physiological Chemistry, University of Vienna, Austria · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"conditional",
+
+    {no:12,name:"นายนพวิทย์ โสภณอริยกิตติ์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การศึกษาสมบัติทางเคมีกายภาพ โครงสร้าง และการผสานเมทริกซ์ของไมโคโปรตีนจากข้าวมอลต์ในระบบอาหารไฮบริด",publication:" - ",workHistory:" - ",
+    advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชานวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร แบบ 2.2
+· มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน) (มีนักศึกษาทุนทำผิดสัญญา 2 คน)
+· ทุนอุดหนุนการวิจัยและนวัตกรรมจากสำนักงานวิจัยแห่งชาติ สัญญาเลขที่ N42A690538 (ตั้งแต่ 24 มี.ค. 69 - 23 มี.ค. 72) งบประมาณ 7,500,000 บาท
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Mag. Pignitter Marc",
+    advisorCoNote: `· Institute of Physiological Chemistry, University of Vienna, Austria
+· คุณวุฒิปริญญาเอก / ศาสตราจารย์
+· มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"conditional",
     criteria:[
-     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข"},
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"condition",detail:"คาดว่าจะสำเร็จการศึกษาภาค 2/68 — รอเกรดฝึกงาน กำหนดส่งภายใน 31 ก.ค. 2569"},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.92"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"คาดว่าจะสำเร็จการศึกษาภาค 2/68 — รอเกรดฝึกงาน กำหนดส่งภายใน 31 ก.ค. 2569"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:" "},
     ]},
-    {no:13,name:"นายวสวัตติ์ เปรมปรีจิรภาคย์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การพัฒนาฟิล์มและสารเคลือบพอลิเมอร์ชีวภาพคอมโพสิตที่ปรับปรุงด้วยพลาสมาร่วมกับคาร์บอนควอนตัมดอทเพื่อการต้านจุลินทรีย์และการยืดอายุเก็บรักษาผลไม้",publication:"Kraisitthisirintr, R. et al. (2025). Biodegradable planting bags composed of a biocomposite film using cassava starch and soy protein isolate. Environmental Technology & Innovation, 39, 104299. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผศ.ดร.วิรงรอง ทองดีสุนทร",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) — ทุน ป.เอก 1 คน ป.โท 2 คน (มีนักศึกษาทำผิดสัญญา 1 คน) · มีทุนวิจัย ววน. งบประมาณ 970,000 บาท",advisorCo:"Prof. Dr. Yasunori Hamauzu",advisorCoNote:"Faculty of Agriculture, Shinshu University, Japan · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"conditional",
+
+    {no:13,name:"นายวสวัตติ์ เปรมปรีจิรภาคย์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การพัฒนาฟิล์มและสารเคลือบพอลิเมอร์ชีวภาพคอมโพสิตที่ปรับปรุงด้วยพลาสมาร่วมกับคาร์บอนควอนตัมดอทเพื่อการต้านจุลินทรีย์และการยืดอายุเก็บรักษาผลไม้",publication:" - ",workHistory:" - ",
+    advisorMain:"ผศ.ดร.วิรงรอง ทองดีสุนทร",
+    advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชานวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร แบบ 2.2
+· มีนักศึกษาในกำกับดูแล จำนวน 5 คน (อาจารย์รับได้ 10 คน) - เป็นนักศึกษาทุน ป.เอก 1 คน และ ป.โท 2 คน (มีนักศึกษาทำผิดสัญญา 1 คน)
+· มีทุนวิจัยจากกองทุนส่งเสริมวิทยาศาสตร์ วิจัยและนวัตกรรม (กองทุนส่งเสริม ววน.) Fundamental Fund: FF ประเภท Basic Research Fund ประจำปีงบประมาณ 2569 เลขที่ 692A04023 งบประมาณ 970,000 บาท
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Yasunori Hamauzu",
+    advisorCoNote: `· Faculty of Agriculture, Shinshu University, Japan
+· มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)
+· มีอีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,status:"conditional",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข"},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.62"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
-     {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"คาดว่าจะสำเร็จการศึกษาภาค 2/68 — รอเกรดฝึกงาน กำหนดส่งภายใน 31 ก.ค. 2569"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:" "},
     ]},
-    {no:14,name:"Miss Yonn Pwint Phyu",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"Comparative green extraction, functional characterization, and synbiotic beverage formulation of oligosaccharides from agricultural by-products",publication:"Sharma, K. et al. (2026). Peach palm as a sustainable source of plant proteins, dietary fiber and other functional ingredients. Foods, 15(4), 736. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผศ.ดร.ณัฏยา คนซื่อ",advisorMainNote:"มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Si Qin",advisorCoNote:"College of Food Science and Technology, Hunan Agricultural University, China · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"conditional",
+
+    {no:14,name:"Miss Yonn Pwint Phyu",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"Comparative green extraction, functional characterization, and synbiotic beverage formulation of oligosaccharides from agricultural by-products",publication:"Sharma, K. et al. (2026). Peach palm as a sustainable source of plant proteins, dietary fiber and other functional ingredients. Foods, 15(4), 736. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",
+    advisorMain:"ผศ.ดร.ณัฏยา คนซื่อ",
+    advisorMainNote: `· มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Si Qin",
+    advisorCoNote: `· College of Food Science and Technology, Hunan Agricultural University, China
+· ศาสตราจารย์
+· ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569`,status:"conditional",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข — รอเกรดวิทยานิพนธ์ กำหนดส่งภายใน 10 ก.ค. 2569"},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 4.00"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"รอเกรดวิทยานิพนธ์ กำหนดส่งภายในวันที่ 10 ก.ค. 2569"},
     ]},
-    {no:15,name:"Mr. J J Maung",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"สาธารณสุขศาสตร์ (ระบาดวิทยา)",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.93 / 4.00",thesis:"Determinants of social suffering and psychological well-being among young Myanmar migrants in Thailand: A sequential mixed methods study",publication:"Maung, J. J. et al. (2025). The role of equanimity in predicting the mental well-being of the residents in long-term care facilities in Thailand. Nursing Reports, 15(4), 123. (Scopus/Q2)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.พิลาสินี วงษ์นุช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Karl Peltzer",advisorCoNote:"Department of Psychology, College of Medical and Health Science, Asia University, Taiwan · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"pass",
+
+    {no:15,name:"Mr. J J Maung",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"สาธารณสุขศาสตร์ (ระบาดวิทยา)",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.93 / 4.00",thesis:"Determinants of social suffering and psychological well-being among young Myanmar migrants in Thailand: A sequential mixed methods study",publication:"Maung, J. J. et al. (2025). The role of equanimity in predicting the mental well-being of the residents in long-term care facilities in Thailand. Nursing Reports, 15(4), 123. (Scopus/Q2)",workHistory:"ไม่มีข้อมูล",
+    advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.พิลาสินี วงษ์นุช",
+    advisorMainNote: `· มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Karl Peltzer",
+    advisorCoNote: `· Department of Psychology, College of Medical and Health Science, Asia University, Taiwan
+· ศาสตราจารย์
+· ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569`,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.93"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
     ]},
-    {no:16,name:"Mr. Anuoluwapo Ighodalo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Development of a Microencapsulated Polyherbal Nutraceutical from Chrysophyllum albidum and Tetrapleura tetraptera: Phytochemical Synergy, In Vivo Gastro-Metabolic Protection, Oxidative Stress Modulation, and Sub-chronic Toxicity Profiling",publication:"Awaeloh, N. et al. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1)",workHistory:"Health, Safety and Environment Research Analyst, Rapid Builders Educational Consultancy, Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Zebo Huang",advisorCoNote:"School of Food Science and Engineering, Wuhan Donghu University, China · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"fail",
+
+    {no:16,name:"Mr. Anuoluwapo Ighodalo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Development of a Microencapsulated Polyherbal Nutraceutical from Chrysophyllum albidum and Tetrapleura tetraptera: Phytochemical Synergy, In Vivo Gastro-Metabolic Protection, Oxidative Stress Modulation, and Sub-chronic Toxicity Profiling",publication:"Awaeloh, N. et al. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1)",workHistory:"Health, Safety and Environment Research Analyst, Rapid Builders Educational Consultancy, Nigeria",
+    advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
+    advisorMainNote: `· ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Prof. Dr. Zebo Huang",
+    advisorCoNote: `· School of Food Science and Engineering, Wuhan Donghu University, China
+· ศาสตราจารย์
+· ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง
+· ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569`,status:"fail",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Health, Safety and Environment Research Analyst"},
     ]},
-    {no:17,name:"Mr. Oladeji Isaac Olawale",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Mechanistic Investigation of African Polyherbal Formulations in Modulating the Inflammation-Microbiome-Metabolic Axis for the prevention and management of Gastric Cancer",publication:"Awaeloh, N. et al. (2025). Exploring antioxidant properties of standardized extracts from medicinal plants approved by the Thai FDA. Nutrients, 17(5), 898. (Scopus/Q1)",workHistory:"Resident Vet, Amo Farms Sieberer Hatchery Ltd., Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Goon Jo Aan",advisorCoNote:"Department of Biochemistry, Faculty of Medicine, Universiti Kebangsaan Malaysia · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง",status:"fail",
+
+    {no:17,name:"Mr. Oladeji Isaac Olawale",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Mechanistic Investigation of African Polyherbal Formulations in Modulating the Inflammation-Microbiome-Metabolic Axis for the prevention and management of Gastric Cancer",publication:"Awaeloh, N. et al. (2025). Exploring antioxidant properties of standardized extracts from medicinal plants approved by the Thai FDA. Nutrients, 17(5), 898. (Scopus/Q1)",workHistory:"Resident Vet, Amo Farms Sieberer Hatchery Ltd., Nigeria",
+    advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
+    advisorMainNote: `· ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน)
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+    advisorCo:"Assoc. Prof. Dr. Goon Jo Aan",
+    advisorCoNote: `· Department of Biochemistry, Faculty of Medicine, Universiti Kebangsaan Malaysia
+· รองศาสตราจารย์
+· ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง`,status:"fail",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
