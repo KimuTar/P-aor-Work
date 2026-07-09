@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา ปริญญาเอก (ทุนประเภทที่ 2)</title>
+<title>รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา ปริญญาเอก</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -39,42 +39,23 @@
   .app{
     max-width:1320px;
     margin:0 auto;
+    padding-top:10px;
   }
-  /* Top toolbar */
-  .toolbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    background:var(--navy-950);
-    color:#fff;
-    padding:12px 20px;
-    border-radius:14px;
-    margin-bottom:14px;
-    box-shadow:0 6px 18px rgba(11,31,56,0.25);
-  }
-  .toolbar-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-  .file-badge{
-    display:flex;align-items:center;gap:8px;
-    background:rgba(255,255,255,0.08);
-    padding:7px 12px;border-radius:9px;
-    font-size:13px;
-  }
-  .file-badge .ic{
-    width:20px;height:20px;border-radius:4px;
-    background:#1c9c5e;display:flex;align-items:center;justify-content:center;
-    font-size:11px;font-weight:800;color:#fff;flex:none;
-  }
-  .file-name{
-    outline:none; min-width:120px;
+
+  /* Print Button Floating Area */
+  .top-action-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
   }
   .btn{
     display:inline-flex;align-items:center;gap:7px;
     background:var(--gold-500);
     color:var(--navy-950);
-    border:none;padding:9px 16px;border-radius:9px;
-    font-weight:700; font-size:13.5px; cursor:pointer;
+    border:none;padding:10px 20px;border-radius:9px;
+    font-weight:700; font-size:14px; cursor:pointer;
     font-family:inherit;
+    box-shadow:0 4px 12px rgba(11,31,56,0.15);
     transition:transform .12s ease, background .12s ease;
   }
   .btn:hover{background:var(--gold-400); transform:translateY(-1px);}
@@ -104,18 +85,52 @@
   .card-header{
     background:linear-gradient(120deg, var(--navy-950), var(--navy-800));
     color:#fff;
-    padding:22px 28px;
-    display:flex; justify-content:space-between; align-items:flex-start; gap:20px;
+    padding:24px 28px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
     border-bottom:4px solid var(--gold-500);
+  }
+  .header-left-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
   .card-title{
     font-family:'Noto Serif Thai', serif;
     font-weight:700;
-    font-size:21px;
-    outline:none;
+    font-size:22px;
     line-height:1.4;
-    max-width:640px;
+    max-width:700px;
   }
+
+  /* Tab Menu Design */
+  .tab-menu {
+    display: flex;
+    gap: 8px;
+  }
+  .tab-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 18px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+  .tab-btn.active {
+    background: var(--gold-500);
+    color: var(--navy-950);
+    border-color: var(--gold-500);
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(201, 162, 39, 0.25);
+  }
+
   .org{
     text-align:right; font-size:13px; line-height:1.6; color:var(--gold-100);
     min-width:220px;
@@ -148,7 +163,7 @@
     outline:none;
   }
   select.school-select:focus{border-color:var(--gold-500);}
-  .stu-list{display:flex; flex-direction:column; gap:8px; max-height:520px; overflow-y:auto; padding-right:4px;}
+  .stu-list{display:flex; flex-direction:column; gap:8px; max-height:540px; overflow-y:auto; padding-right:4px;}
   .stu-item{
     background:#fff; border:1px solid var(--line); border-radius:11px;
     padding:10px 12px; cursor:pointer;
@@ -176,7 +191,7 @@
     display:flex; justify-content:space-between; align-items:flex-start;
     gap:18px; margin-bottom:18px; flex-wrap:wrap;
   }
-  .person(display:flex; gap:14px; align-items:center;}
+  .person{display:flex; gap:14px; align-items:center;}
   .avatar{
     width:56px;height:56px;border-radius:50%;
     background:linear-gradient(135deg, var(--navy-800), var(--navy-950));
@@ -258,7 +273,7 @@
 
   @media print{
     body{background:#fff; padding:0;}
-    .toolbar, .navrow, .sidebar, .footer-note{display:none !important;}
+    .top-action-bar, .navrow, .sidebar, .footer-note, .tab-menu{display:none !important;}
     .layout{grid-template-columns:1fr;}
     .card{box-shadow:none; border:none;}
   }
@@ -267,6 +282,8 @@
     .layout{grid-template-columns:1fr;}
     .sidebar{border-right:none; border-bottom:1px solid var(--line);}
     .grid-2, .two-col{grid-template-columns:1fr;}
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .org { text-align: left; min-width: auto; }
   }
 
   #loadingOverlay{
@@ -286,21 +303,13 @@
 
 <div id="loadingOverlay">
   <div class="spinner"></div>
-  <div>กำลังโหลดข้อมูลผู้สมัคร...</div>
+  <div>กำลังโหลดระบบรายงานข้อมูลผู้สมัคร...</div>
 </div>
 
 <div class="app">
-  <div class="toolbar">
-    <div class="toolbar-left">
-      <div class="file-badge">
-        <span class="ic">X</span>
-        <span>เอกสารอ้างอิงหลัก:</span>
-        <span class="file-name">ตรวจสอบคุณสมบัติผู้สมัคร_เอก2_จัดระเบียบใหม่.xlsx</span>
-      </div>
-    </div>
-    <div>
-      <button class="btn" onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
-    </div>
+  <!-- Top Floating Action Bar -->
+  <div class="top-action-bar">
+    <button class="btn" onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
   </div>
 
   <div class="navrow">
@@ -310,7 +319,14 @@
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title" id="mainTitle">รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก - ทุนประเภทที่ 2)</div>
+      <div class="header-left-group">
+        <div class="card-title" id="mainTitle">รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก)</div>
+        <!-- Tab Menu แยกประเภททุน -->
+        <div class="tab-menu">
+          <button class="tab-btn active" id="tabFund1" onclick="switchFundTab(1)">🏆 ทุนประเภทที่ 1</button>
+          <button class="tab-btn" id="tabFund2" onclick="switchFundTab(2)">🏅 ทุนประเภทที่ 2</button>
+        </div>
+      </div>
       <div class="org">
         <b>สำนักงานบัณฑิตศึกษา มหาวิทยาลัยแม่ฟ้าหลวง</b>
         <span>Mae Fah Luang University</span>
@@ -327,7 +343,7 @@
       </div>
 
       <div class="main" id="mainPanel">
-        <!-- เรนเดอร์ด้วย JavaScript -->
+        <!-- rendered by JS -->
       </div>
     </div>
   </div>
@@ -343,62 +359,203 @@ const STATUS_META = {
 };
 
 /* ======================================================
-  ✏️ หากต้องการแก้ไขหรืออัปเดตข้อมูลนักศึกษา สามารถแก้ที่ก้อนข้อมูลตรงนี้ได้เลย
-  ======================================================
-*/
-const DEFAULT_DATA = [
-{no:1,name:"Miss Pallavi Chattopadhyay",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แบบ 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"",grandTotal:"273,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.63 / 4.00",thesis:"The association and coevolution between termites and Termitomyces in Thailand",publication:"Phonemany, M. et al. (2025). Identification and therapeutic efficacy of Pleurotus djamor var fuscopruinosus. Scientific Reports, 15(1), 18929. (Scopus/Q1) และอีก 1 ผลงาน (Chiang Mai Journal of Science, Scopus/Q2)",workHistory:"Research (Young Professional), ICAR – National Bureau of Agriculturally Important Microorganism, Mau, Uttar Pradesh, India",advisorMain:"อาจารย์ ดร.นริษฎา ทองกลาง",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.1 · มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน) · มีผลงาน Scopus Q1/Q2 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Samantha Chandranath Karunarathna",advisorCoNote:"Center for Yunnan Plateau Biological Resources Protection and Utilization, College of Biological Resource and Food Engineering, Qujing Normal University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
-criteria:[
- {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
- {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.63"},
- {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
- {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Research (Young Professional), ICAR India"},
-]},
+  📦 ข้อมูลผู้สมัครรับทุนทั้งหมด (รวมร่างรวมเป็นก้อนเดียว 22 คน)
+  ====================================================== */
+const MASTER_DATA = {
+  fund1: [
+    {no:1,name:"นายธีระพงษ์ ศรีปะโค",school:"สำนักวิชาวิทยาศาสตร์",major:"เคมีประยุกต์",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"210,000",monthly:"252,000",grandTotal:"462,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.61 / 4.00 (สำเร็จการศึกษา)",thesis:"Antifungal properties of cellulose film from pineapple peel incorporating essential oils for application as bread packaging",publication:"Sripahco, T., Khruengsai, S. & Pripdeevech, P. (2023). Biodegradable antifungal films from nanocellulose-gellan gum incorporated with Anethum graveolens essential oil for bread packaging. International Journal of Biological Macromolecules, 243, 125244. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"รศ.ดร.พัชรีย์ พริบดีเวช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงานตีพิมพ์ Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Siau Hui Hah",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · วุฒิปริญญาเอก / รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.61"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:"มีผลงานตีพิมพ์ระดับ Scopus/Q1 ประกอบหัวข้อ"},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+    ]},
+    {no:2,name:"Miss Chamali Shanika Kodikara",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.69 / 4.00",thesis:"Biodiversity, phylogeny and biocontrol of fungi associated with roses and hydrangea in Chiang Rai province",publication:"Keerthirathna, L. et al. (2025). Chondrilla juncea polysaccharide-mediated green synthesis of silver nanoparticles: Potent anticancer and antimicrobial activities. Biology, 14(7), 904. (Scopus/Q2)",workHistory:"Teaching Assistant, University of Sri Jayewardenepura, Sri Lanka",advisorMain:"ผศ.ดร. Ruvishika Jayawardena",advisorMainNote:"มีนักศึกษาในกำกับดูแล 7 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Shaobin Fu",advisorCoNote:"Faculty of Pharmacy, Zunyi Medical University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.69 มีผลงานตีพิมพ์ 1 ผลงาน (Scopus/Q2)"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Teaching Assistant, University of Sri Jayewardenepura"},
+    ]},
+    {no:3,name:"Miss Hira Arshad",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.73 / 4.00",thesis:"Eurotiomycetes diversity and evolution",publication:"Phukhamsakda, C. et al. (2025). Unveiling Sordariomycetes taxa associated with woody litter in Northern Thailand. MycoKeys, 115, 155-185. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"Dr. Chitrabhanu Sharma Bhunjun",advisorMainNote:"มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Sinang Hongsanan Onodera",advisorCoNote:"College of Life Science and Oceanography, Shenzhen University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.73"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+    ]},
+    {no:4,name:"Miss Vidana Gamage Umesha Lakmini",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"455,000",monthly:"420,000",grandTotal:"875,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00",thesis:"Antibiotic Resistance Patterns of Microalgae-bacteria consortia in three Selected Polluted Lentic Water Bodies in Sri Lanka and its Potential Impact on Environment and Public Health",publication:"Luo, L. et al. (2025). Two new and one new morph record of Calycina species from Southwestern China. MycoKeys, 122, 13-33. (Scopus/Q1)",workHistory:"Temporary Demonstrator, University of Ruhuna, Sri Lanka",advisorMain:"Adjunct Prof. Dr. Kevin David Hyde",advisorMainNote:"มีนักศึกษาในกำกับดูแล 10 คน (รับได้ 15 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Yukanpin Xiao",advisorCoNote:"School of Pharmaceutical Engineering, Guizhou Institute of Technology, China · วุฒิปริญญาเอก · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.62"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Temporary Demonstrator, University of Ruhuna"},
+    ]},
+    {no:5,name:"นางสาวรามิล ภพลือชัย",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00",thesis:"A Study on Enhancing Humanitarian Logistics and Urban Mobility in GMS Border Cities",publication:"Phopluechai, R. et al. (2025). Investigating travel mode choices under environmental stress: Evidence from air pollution events in Chiang Rai, Thailand. Urban Science, 9(8), 323. (Scopus/Q2)",workHistory:"เจ้าหน้าที่พัฒนาเด็กและเยาวชน โครงการพัฒนาดอยตุง · ผู้ช่วยสอนสาขาการจัดการโลจิสติกส์ฯ · นักศึกษาแลกเปลี่ยน ณ Muroran Institute of Technology, Japan",advisorMain:"ผศ.ดร.ทศพร อารีราษฎร์",advisorMainNote:"มีนักศึกษาในกำกับดูแล 6 คน (รับได้ 10 คน) · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Xiaoyan Jia",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 12 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 4.00 มีผลงานตีพิมพ์ Scopus/Q2"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"มีประสบการณ์ทำงาน/ผู้ช่วยสอน"},
+    ]},
+    {no:6,name:"Miss Yuechen Chen",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.50 / 4.00",thesis:"Development of a Logistics 5.0 Maturity Level Framework for Multimodal Transport Risk Management and Agile Operations",publication:"Sittivangkul, K. et al. (2025). Ambulance Location for Service Coverage in an Urban-rural Area in Chiang Rai using Machine Learning. Journal of Mobile Multimedia, 21(5), 831-854. (Scopus/Q2)",workHistory:"Teacher, LingoAce Education, China",advisorMain:"อาจารย์ ดร.สุนิดา ธิว่อง",advisorMainNote:"⚠ มีนักศึกษาในกำกับดูแล 5 คน (รับได้เต็มโควตา 5 คน) — เกินหลักเกณฑ์เมื่อรวมผู้สมัครรายนี้",advisorCo:"Prof. Dr. Erwin Rauch",advisorCoNote:"Faculty of Engineering, Free University of Bozen-Bolzano, Italy · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 1 ก.ค. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.50 (เท่าเกณฑ์ขั้นต่ำพอดี)"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. จำนวนนักศึกษาในกำกับดูแลของอาจารย์ที่ปรึกษาไม่เกินเกณฑ์ข้อบังคับฯ",result:"fail",detail:"อาจารย์ที่ปรึกษามีนักศึกษาครบโควตา 5/5 คนแล้ว ต้องขอยกเว้น/ตรวจสอบเพิ่มเติม"},
+    ]},
+    {no:7,name:"นางสาวคุณกนก น้อยนัน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"270,000",monthly:"252,000",grandTotal:"522,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.91 / 4.00",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:"Kham, S. L. & Aunsri, N. (2026). Bayesian filtering techniques for state of charge and state of health estimation in lithium-ion batteries for electric vehicles. Applied Energy, 417, 128015. (Scopus/Q1) และอีก 1 ผลงาน (Information Fusion, Scopus/Q1)",workHistory:"ผู้จัดการ บริษัท เจ็นเทคเฮ้าส์ จำกัด",advisorMain:"รองศาสตราจารย์ ดร.พรรณฤมล เต็มดี",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) — เป็นนักศึกษาทุน ป.โท 2 คน · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Rafia Mumtaz",advisorCoNote:"Kohsar University Murree, NUST, Pakistan · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 1 ก.ค. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"na",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.91 มีผลงานตีพิมพ์ 2 ผลงาน (Scopus/Q1)"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"ผู้จัดการ บริษัท เจ็นเทคเฮ้าส์ จำกัด"},
+    ]},
+    {no:8,name:"Mr. Sai Laung Kham",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.98 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Efficient hybridization of Bayesian filtering and machine learning framework for state of charge and state of health of lithium-ion batteries in electric vehicles",publication:"Kham, S. L. & Aunsri, N. (2026). Bayesian filtering techniques for state of charge and state of health estimation in lithium-ion batteries for electric vehicles. Applied Energy, 417, 128015. (Scopus/Q1) และอีก 1 ผลงาน (Information Fusion, Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"รองศาสตราจารย์ ดร.ณัฐพล อุ่นศรี",advisorMainNote:"มีนักศึกษาในกำกับดูแล 3 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Zoi Heleni Michalopoulou",advisorCoNote:"Department of Mathematical Sciences, New Jersey Institute of Technology, USA · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ในฐาน Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.98 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+    ]},
+    {no:9,name:"นางสาวภูษณิศา สุขโสภณธน",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,000",tuitionTotal:"450,000",monthly:"420,000",grandTotal:"870,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00",thesis:"การแก้ไขปัญหาภาวะซ้อนทับระหว่างหลายกลุ่มที่เกิดขึ้นพร้อมกันในข้อมูลมิติสูง (Resolving Simultaneous Multi-Class Overlap in High-Dimensional Data)",publication:"Khonsiri, T. et al. (2026). Systematic optimization of transfer learning for acne severity classification. Cosmetics, 13, 166. (Scopus/Q1) และอีก 1 ผลงาน (Maternal and Child Health Journal, Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.ภัทรมน วุฒิพิทยามงคล",advisorMainNote:"⚠ อาจารย์ที่ปรึกษาหลัก ไม่ได้เป็นอาจารย์ผู้รับผิดชอบหลักสูตร/อาจารย์ประจำหลักสูตร — ต้องตรวจสอบคุณสมบัติเพิ่มเติม · มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน)",advisorCo:"Prof. Dr. Eyad Elyan",advisorCoNote:"School of Computing, Robert Gordon University, UK · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.92"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำหลักสูตรที่ขอรับทุน",result:"fail",detail:"ไม่ได้เป็นอาจารย์ผู้รับผิดชอบหลักสูตร/อาจารย์ประจำหลักสูตร"},
+    ]},
+    {no:10,name:"Miss Hay Mar Thein Zan",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.87 / 4.00 (อยู่ระหว่างรอสภาอนุมัติ)",thesis:"Oilseed protein sources: Green bioprocess-assisted extraction, techno-functional properties and its application in plant-based meat analogue",publication:"Sharma, K. et al. (2026). Physicochemical properties and fatty acid profiling of texturized pea protein patties. Foods, 15(2), 270. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) มีนักศึกษาทำผิดสัญญา 2 คน · มีทุนวิจัยภายนอกจาก วช. 7,500,000 บาท",advisorCo:"Assoc. Prof. Dr. Young Hoon Jung",advisorCoNote:"School of Food Science and Biotechnology, Kyungpook National University, Korea · รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.87 — อยู่ระหว่างรอสภาอนุมัติผลการศึกษา"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. โครงการวิจัยที่ได้รับทุนอุดหนุนจากหน่วยงานภายนอก (ถ้ามี)",result:"pass",detail:"ทุน วช. สัญญาเลขที่ N42A690538 งบประมาณ 7,500,000 บาท"},
+    ]},
+    {no:11,name:"Mr. Johnson Makinwa Ogunsua",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.85 / 4.00",thesis:"Development of a Natural Rubber-Based Slow-Release Ethylene Packaging System for Uniform Ripening in Climacteric Fruits",publication:"Chaiwong, S. et al. (2021). Performance of different bunch cover materials to improve quality of Cavendish banana. Agronomy, 11(3), 610. (Scopus/Q1)",workHistory:"Principal Research Officer, Nigerian Stored Products Research Institute, Nigeria",advisorMain:"รศ.ดร.เสาวภา ไชยวงศ์",advisorMainNote:"มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) เป็นนักศึกษาทุน ป.โท 1 คน (มีนักศึกษาทำผิดสัญญา 1 คน)",advisorCo:"Dr.-Ing. Pramod V. Mahajan",advisorCoNote:"Leibniz Institute for Agricultural Engineering & Bioeconomy (ATB), Germany · วุฒิปริญญาเอก · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.85"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Principal Research Officer, Nigerian Stored Products Research Institute"},
+    ]},
+    {no:12,name:"นายนพวิทย์ โสภณอริยกิตติ์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.92 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การศึกษาสมบัติทางเคมีกายภาพ โครงสร้าง และการผสานเมทริกซ์ของไมโคโปรตีนจากข้าวมอลต์ในระบบอาหารไฮบริด",publication:"Pawde, S. V. et al. (2026). Mushrooms as sustainable protein alternatives. Foods, 15(8), 1301. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ศ.ดร.สาโรจน์ รอดคืน",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) มีนักศึกษาทุนทำผิดสัญญา 2 คน · มีทุนวิจัยภายนอกจาก วช. 7,500,000 บาท",advisorCo:"Prof. Dr. Mag. Pignitter Marc",advisorCoNote:"Institute of Physiological Chemistry, University of Vienna, Austria · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.92"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"คาดว่าจะสำเร็จการศึกษาภาค 2/68 — รอเกรดฝึกงาน กำหนดส่งภายใน 31 ก.ค. 2569"},
+    ]},
+    {no:13,name:"นายวสวัตติ์ เปรมปรีจิรภาคย์",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.2 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"4 ปี (8 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"280,000",monthly:"336,000",grandTotal:"616,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"3.62 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"การพัฒนาฟิล์มและสารเคลือบพอลิเมอร์ชีวภาพคอมโพสิตที่ปรับปรุงด้วยพลาสมารร่วมกับคาร์บอนควอนตัมดอทเพื่อการต้านจุลินทรีย์และการยืดอายุเก็บรักษาผลไม้",publication:"Kraisitthisirintr, R. et al. (2025). Biodegradable planting bags composed of a biocomposite film using cassava starch and soy protein isolate. Environmental Technology & Innovation, 39, 104299. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผศ.ดร.วิรงรอง ทองดีสุนทร",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) — ทุน ป.เอก 1 คน ป.โท 2 คน (มีนักศึกษาทำผิดสัญญา 1 คน) · มีทุนวิจัย ววน. งบประมาณ 970,000 บาท",advisorCo:"Prof. Dr. Yasunori Hamauzu",advisorCoNote:"Faculty of Agriculture, Shinshu University, Japan · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.62"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"คาดว่าจะสำเร็จการศึกษาภาค 2/68 — รอเกรดฝึกงาน กำหนดส่งภายใน 31 ก.ค. 2569"},
+    ]},
+    {no:14,name:"Miss Yonn Pwint Phyu",school:"สำนักวิชาอุตสาหกรรมเกษตร",major:"นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"252,000",grandTotal:"525,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"4.00 / 4.00 (ผู้มีสิทธิ์แบบมีเงื่อนไข)",thesis:"Comparative green extraction, functional characterization, and synbiotic beverage formulation of oligosaccharides from agricultural by-products",publication:"Sharma, K. et al. (2026). Peach palm as a sustainable source of plant proteins, dietary fiber and other functional ingredients. Foods, 15(4), 736. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผศ.ดร.ณัฏยา คนซื่อ",advisorMainNote:"มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Si Qin",advisorCoNote:"College of Food Science and Technology, Hunan Agricultural University, China · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 25 มิ.ย. 2569",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข — รอเกรดวิทยานิพนธ์ กำหนดส่งภายใน 10 ก.ค. 2569"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 4.00"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. Status การสำเร็จการศึกษา",result:"fail",detail:"รอเกรดวิทยานิพนธ์ กำหนดส่งภายในวันที่ 10 ก.ค. 2569"},
+    ]},
+    {no:15,name:"Mr. J J Maung",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"สาธารณสุขศาสตร์ (ระบาดวิทยา)",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"252,000",grandTotal:"552,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.93 / 4.00",thesis:"Determinants of social suffering and psychological well-being among young Myanmar migrants in Thailand: A sequential mixed methods study",publication:"Maung, J. J. et al. (2025). The role of equanimity in predicting the mental well-being of the residents in long-term care facilities in Thailand. Nursing Reports, 15(4), 123. (Scopus/Q2)",workHistory:"ไม่มีข้อมูล",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.พิลาสินี วงษ์นุช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 5 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Karl Peltzer",advisorCoNote:"Department of Psychology, College of Medical and Health Science, Asia University, Taiwan · ศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.93"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:"ไม่มีข้อมูล"},
+    ]},
+    {no:16,name:"Mr. Anuoluwapo Ighodalo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Development of a Microencapsulated Polyherbal Nutraceutical from Chrysophyllum albidum and Tetrapleura tetraptera: Phytochemical Synergy, In Vivo Gastro-Metabolic Protection, Oxidative Stress Modulation, and Sub-chronic Toxicity Profiling",publication:"Awaeloh, N. et al. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1)",workHistory:"Health, Safety and Environment Research Analyst, Rapid Builders Educational Consultancy, Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Prof. Dr. Zebo Huang",advisorCoNote:"School of Food Science and Engineering, Wuhan Donghu University, China · ศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง · ตรวจสอบเอกสารวันที่ 2 ก.ค. 2569",status:"fail",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Health, Safety and Environment Research Analyst"},
+    ]},
+    {no:17,name:"Mr. Oladeji Isaac Olawale",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"420,000",grandTotal:"920,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Mechanistic Investigation of African Polyherbal Formulations in Modulating the Inflammation-Microbiome-Metabolic Axis for the prevention and management of Gastric Cancer",publication:"Awaeloh, N. et al. (2025). Exploring antioxidant properties of standardized extracts from medicinal plants approved by the Thai FDA. Nutrients, 17(5), 898. (Scopus/Q1)",workHistory:"Resident Vet, Amo Farms Sieberer Hatchery Ltd., Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Goon Jo Aan",advisorCoNote:"Department of Biochemistry, Faculty of Medicine, Universiti Kebangsaan Malaysia · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง",status:"fail",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Resident Vet, Amo Farms Sieberer Hatchery Ltd."},
+    ]}
+  ],
+  fund2: [
+    {no:1,name:"Miss Pallavi Chattopadhyay",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แบบ 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"",grandTotal:"273,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.63 / 4.00",thesis:"The association and coevolution between termites and Termitomyces in Thailand",publication:"Phonemany, M. et al. (2025). Identification and therapeutic efficacy of Pleurotus djamor var fuscopruinosus. Scientific Reports, 15(1), 18929. (Scopus/Q1) และอีก 1 ผลงาน (Chiang Mai Journal of Science, Scopus/Q2)",workHistory:"Research (Young Professional), ICAR – National Bureau of Agriculturally Important Microorganism, Mau, Uttar Pradesh, India",advisorMain:"อาจารย์ ดร.นริษฎา ทองกลาง",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.1 · มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน) · มีผลงาน Scopus Q1/Q2 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Samantha Chandranath Karunarathna",advisorCoNote:"Center for Yunnan Plateau Biological Resources Protection and Utilization, College of Biological Resource and Food Engineering, Qujing Normal University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.63"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Research (Young Professional), ICAR India"},
+    ]},
+    {no:2,name:"นางสาวณัฐกานต์ ภัทรภูสิทธิ์",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แบบ 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"",grandTotal:"300,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.86 / 4.00",thesis:"การพัฒนาโมเดลการออกแบบประสบการณ์ลูกค้าเพื่อเปลี่ยนจากผู้รับบริการครั้งคราวสู่การเป็นสมาชิกชุมชนสุขภาวะในธุรกิจสุขภาพและเวลเนสจังหวัดเชียงราย (The Development of a Customer Experience Design Model to Facilitate the Transition from Occasional Service Users to Wellness Community Membership in the Health and Wellness Industry in Chiang Rai Province)",publication:"Yodsuwan, C., Pathan, A. & Butcher, K. (2025). How gender differences affect drivers of consumer perceived value in attending academic conferences. Tourism and Hospitality Research. (Scopus/Q1) และอีก 1 ผลงาน (International Journal of Event and Festival Management, Scopus/Q2)",workHistory:"พยาบาลวิชาชีพ ศูนย์บริการสุขภาพแบบครบวงจรแห่งภาคเหนือและอนุภูมิภาคลุ่มแม่น้ำโขง",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.อาทิตยา ปาทาน",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1 · มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Longzhu Dong",advisorCoNote:"College of Business, University of Wisconsin Eau Claire, USA · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.86"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"พยาบาลวิชาชีพ ศูนย์บริการสุขภาพแบบครบวงจรฯ"},
+    ]},
+    {no:3,name:"นายเสฐียรพงศ์ วงษา",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แบบ 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"",grandTotal:"300,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.81 / 4.00",thesis:"ปัจจัยที่ส่งผลต่อการยอมรับปัญญาประดิษฐ์ในงานบัญชีของนักธุรกิจรุ่นใหม่ในภาคเหนือตอนบน (Determinants of Artificial Intelligence Adoption in Accounting among Young Entrepreneurs in Upper Northern Thailand)",publication:"Hasachoo, N., Rodbundith, T. S., Sirisawat, P. & Jongsureyapart, C. (2023). Controlling schedule instability in hospital food production. International Journal of Innovative Computing, Information and Control, 19(1), 239-253. (Scopus/Q2) และอีก 1 ผลงาน (Management and Accounting Review, Scopus/Q3)",workHistory:"กรรมการผู้จัดการ บจก.ยูที อิเลคทริค จำกัด",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.ฉัตรฤดี จองสุรียภาส",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1 · มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) — เป็นนักศึกษาทุน ป.เอก 1 คน · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Khalid Bin Abdul Wahid",advisorCoNote:"Faculty of Information Science, Universiti Teknologi MARA, Cawangan Kelantan, Malaysia · รองศาสตราจารย์ · มีอีเมลยืนยันตอบรับ",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.81"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"กรรมการผู้จัดการ บจก.ยูที อิเลคทริค จำกัด"},
+    ]},
+    {no:4,name:"นายสุบัณฑิต ปานสมบัติ",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,000",tuitionTotal:"270,000",monthly:"",grandTotal:"270,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.83 / 4.00",thesis:"การวิเคราะห์ข้อมูลผู้สมัครและนักศึกษาขนาดใหญ่เพื่อพยากรณ์แนวโน้มจำนวนนักศึกษาใหม่ และสนับสนุนการออกแบบหลักสูตรและกลยุทธ์การรับสมัครของมหาวิทยาลัยแม่ฟ้าหลวงด้วยปัญญาประดิษฐ์ (AI-Driven Analysis of Large-Scale Applicant and Student Data for Forecasting New Student Enrollment Trends and Supporting Curriculum Design and Enrollment Strategies at Mae Fah Luang University)",publication:"Maneerat, T., Iam-On, N., Boongoen, T., Kirimasthong, K. et al. (2024). Optimisation of multiple clustering based undersampling using artificial bee colony. Information Sciences, 687, 121407. (Scopus/Q1) และอีก 1 ผลงาน (Expert Systems with Applications, Scopus/Q1)",workHistory:"เจ้าหน้าที่บริหาร ส่วนทะเบียนและประมวลผล มหาวิทยาลัยแม่ฟ้าหลวง · รางวัล TED Youth Startup (สป.อว.) และรางวัล RAISE Showcase & Hackathon 2025 (School of Applied Digital Technology)",advisorMain:"ผศ.ดร.ขวัญตา คีรีมาศทอง",advisorMainNote:"⚠ ผลตรวจสอบคุณสมบัติการเป็นอาจารย์ที่ปรึกษาหลักในหลักสูตรที่ขอรับทุนยังไม่ครบถ้วน (ต้องตรวจสอบเพิ่มเติม) · มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Natthakan Iam-On",advisorCoNote:"Department of Computer Science, Aberystwyth University, UK · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565) · มีอีเมลยืนยันตอบรับ",status:"conditional",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข (คาดว่าจะสำเร็จการศึกษา 2/68) — อยู่ระหว่างตรวจรูปแบบการพิมพ์วิทยานิพนธ์ ยังไม่ได้ส่งเล่มฉบับสมบูรณ์ และรอเกรดวิทยานิพนธ์"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.83 มีรางวัล TED Youth Startup และ RAISE Showcase & Hackathon 2025"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำที่มีคุณสมบัติเป็นที่ปรึกษาหลักในหลักสูตร",result:"fail",detail:"ผลตรวจสอบคุณสมบัติยังไม่ครบถ้วน ต้องตรวจสอบเพิ่มเติมจากสำนักวิชา"},
+    ]},
+    {no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",publication:"Awaeloh, N., Limsuwan, S., Na-Phatthalung, P., Kaewmanee, T. & Chusri, S. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1) และอีก 1 ผลงาน (Nutrients, Scopus/Q1)",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 · ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",advisorCoNote:"Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia · รองศาสตราจารย์ · มีอีเมลยืนยันตอบรับ",status:"pass",
+    criteria:[
+     {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
+     {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
+     {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Laboratory Research Assistant, Ajayi Crowther University"},
+    ]}
+  ]
+};
 
-{no:2,name:"นางสาวณัฐกานต์ ภัทรภูสิทธิ์",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แบบ 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"",grandTotal:"300,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.86 / 4.00",thesis:"การพัฒนาโมเดลการออกแบบประสบการณ์ลูกค้าเพื่อเปลี่ยนจากผู้รับบริการครั้งคราวสู่การเป็นสมาชิกชุมชนสุขภาวะในธุรกิจสุขภาพและเวลเนสจังหวัดเชียงราย (The Development of a Customer Experience Design Model to Facilitate the Transition from Occasional Service Users to Wellness Community Membership in the Health and Wellness Industry in Chiang Rai Province)",publication:"Yodsuwan, C., Pathan, A. & Butcher, K. (2025). How gender differences affect drivers of consumer perceived value in attending academic conferences. Tourism and Hospitality Research. (Scopus/Q1) และอีก 1 ผลงาน (International Journal of Event and Festival Management, Scopus/Q2)",workHistory:"พยาบาลวิชาชีพ ศูนย์บริการสุขภาพแบบครบวงจรแห่งภาคเหนือและอนุภูมิภาคลุ่มแม่น้ำโขง",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.อาทิตยา ปาทาน",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1 · มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Longzhu Dong",advisorCoNote:"College of Business, University of Wisconsin Eau Claire, USA · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
-criteria:[
- {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
- {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.86"},
- {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
- {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"พยาบาลวิชาชีพ ศูนย์บริการสุขภาพแบบครบวงจรฯ"},
-]},
-
-{no:3,name:"นายเสฐียรพงศ์ วงษา",school:"สำนักวิชาการจัดการ",major:"บริหารธุรกิจ",plan:"แบบ 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"300,000",monthly:"",grandTotal:"300,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.81 / 4.00",thesis:"ปัจจัยที่ส่งผลต่อการยอมรับปัญญาประดิษฐ์ในงานบัญชีของนักธุรกิจรุ่นใหม่ในภาคเหนือตอนบน (Determinants of Artificial Intelligence Adoption in Accounting among Young Entrepreneurs in Upper Northern Thailand)",publication:"Hasachoo, N., Rodbundith, T. S., Sirisawat, P. & Jongsureyapart, C. (2023). Controlling schedule instability in hospital food production. International Journal of Innovative Computing, Information and Control, 19(1), 239-253. (Scopus/Q2) และอีก 1 ผลงาน (Management and Accounting Review, Scopus/Q3)",workHistory:"กรรมการผู้จัดการ บจก.ยูที อิเลคทริค จำกัด",advisorMain:"ผู้ช่วยศาสตราจารย์ ดร.ฉัตรฤดี จองสุรียภาส",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาบริหารธุรกิจ แบบ 2.1 · มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) — เป็นนักศึกษาทุน ป.เอก 1 คน · มีผลงาน Scopus ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Khalid Bin Abdul Wahid",advisorCoNote:"Faculty of Information Science, Universiti Teknologi MARA, Cawangan Kelantan, Malaysia · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
-criteria:[
- {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
- {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ TCI/Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.81"},
- {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
- {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"กรรมการผู้จัดการ บจก.ยูที อิเลคทริค จำกัด"},
-]},
-
-{no:4,name:"นายสุบัณฑิต ปานสมบัติ",school:"สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",major:"วิศวกรรมคอมพิวเตอร์",plan:"แผน 2.1 (ศึกษารายวิชาที่กำหนดร่วมกับวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,000",tuitionTotal:"270,000",monthly:"",grandTotal:"270,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.83 / 4.00",thesis:"การวิเคราะห์ข้อมูลผู้สมัครและนักศึกษาขนาดใหญ่เพื่อพยากรณ์แนวโน้มจำนวนนักศึกษาใหม่ และสนับสนุนการออกแบบหลักสูตรและกลยุทธ์การรับสมัครของมหาวิทยาลัยแม่ฟ้าหลวงด้วยปัญญาประดิษฐ์ (AI-Driven Analysis of Large-Scale Applicant and Student Data for Forecasting New Student Enrollment Trends and Supporting Curriculum Design and Enrollment Strategies at Mae Fah Luang University)",publication:"Maneerat, T., Iam-On, N., Boongoen, T., Kirimasthong, K. et al. (2024). Optimisation of multiple clustering based undersampling using artificial bee colony. Information Sciences, 687, 121407. (Scopus/Q1) และอีก 1 ผลงาน (Expert Systems with Applications, Scopus/Q1)",workHistory:"เจ้าหน้าที่บริหาร ส่วนทะเบียนและประมวลผล มหาวิทยาลัยแม่ฟ้าหลวง · รางวัล TED Youth Startup (สป.อว.) และรางวัล RAISE Showcase & Hackathon 2025 (School of Applied Digital Technology)",advisorMain:"ผศ.ดร.ขวัญตา คีรีมาศทอง",advisorMainNote:"⚠ ผลตรวจสอบคุณสมบัติการเป็นอาจารย์ที่ปรึกษาหลักในหลักสูตรที่ขอรับทุนยังไม่ครบถ้วน (ต้องตรวจสอบเพิ่มเติม) · มีนักศึกษาในกำกับดูแล 2 คน (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Natthakan Iam-On",advisorCoNote:"Department of Computer Science, Aberystwyth University, UK · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565) · มีอีเมลยืนยันตอบรับ",status:"conditional",
-criteria:[
- {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:"เป็นผู้มีสิทธิ์เข้าศึกษาแบบมีเงื่อนไข (คาดว่าจะสำเร็จการศึกษา 2/68) — อยู่ระหว่างตรวจรูปแบบการพิมพ์วิทยานิพนธ์ ยังไม่ได้ส่งเล่มฉบับสมบูรณ์ และรอเกรดวิทยานิพนธ์"},
- {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ Scopus",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.83 มีรางวัล TED Youth Startup และ RAISE Showcase & Hackathon 2025"},
- {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
- {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำที่มีคุณสมบัติเป็นที่ปรึกษาหลักในหลักสูตร",result:"fail",detail:"ผลตรวจสอบคุณสมบัติยังไม่ครบถ้วน ต้องตรวจสอบเพิ่มเติมจากสำนักวิชา"},
-]},
-
-{no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"2.81 / 4.00",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",publication:"Awaeloh, N., Limsuwan, S., Na-Phatthalung, P., Kaewmanee, T. & Chusri, S. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1) และอีก 1 ผลงาน (Nutrients, Scopus/Q1)",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 · ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",advisorCoNote:"Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia · รองศาสตราจารย์ · ผลงานตีพิมพ์ไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565) · มีอีเมลยืนยันตอบรับ",status:"pass",
-criteria:[
- {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
- {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสม 2.81"},
- {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
- {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Laboratory Research Assistant, Ajayi Crowther University"},
-]},
-];
-
+let activeFund = 1; // 1 = ทุนประเภทที่ 1, 2 = ทุนประเภทที่ 2
 let currentSchool = "ทั้งหมด";
 let currentIndex = 0;
 
+function getActiveData() {
+  return activeFund === 1 ? MASTER_DATA.fund1 : MASTER_DATA.fund2;
+}
+
+function switchFundTab(fundNum) {
+  activeFund = fundNum;
+  currentSchool = "ทั้งหมด";
+  currentIndex = 0;
+  
+  // ปรับเปลี่ยนสถานะปุ่ม Tab
+  document.getElementById('tabFund1').classList.toggle('active', fundNum === 1);
+  document.getElementById('tabFund2').classList.toggle('active', fundNum === 2);
+  
+  // อัปเดตหัวข้อรายงานย่อย
+  const mainTitle = document.getElementById('mainTitle');
+  mainTitle.textContent = `รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก - ทุนประเภทที่ ${fundNum})`;
+
+  renderAll();
+}
+
 function schoolList(){
-  const set = [...new Set(DEFAULT_DATA.map(d=>d.school))];
+  const data = getActiveData();
+  const set = [...new Set(data.map(d=>d.school))];
   return ["ทั้งหมด", ...set];
 }
 
 function filteredStudents(){
-  if(currentSchool === "ทั้งหมด") return DEFAULT_DATA;
-  return DEFAULT_DATA.filter(d=>d.school===currentSchool);
+  const data = getActiveData();
+  if(currentSchool === "ทั้งหมด") return data;
+  return data.filter(d=>d.school===currentSchool);
 }
 
 function renderSchoolSelect(){
@@ -408,7 +565,7 @@ function renderSchoolSelect(){
   sel.onchange = ()=>{
     currentSchool = sel.value;
     const list = filteredStudents();
-    currentIndex = DEFAULT_DATA.indexOf(list[0]);
+    currentIndex = getActiveData().indexOf(list[0]);
     renderAll();
   };
 }
@@ -417,8 +574,10 @@ function renderStuList(){
   const wrap = document.getElementById('stuList');
   if(!wrap) return;
   const list = filteredStudents();
+  const activeData = getActiveData();
+  
   wrap.innerHTML = list.map(s=>{
-    const idx = DEFAULT_DATA.indexOf(s);
+    const idx = activeData.indexOf(s);
     const active = idx===currentIndex ? 'active' : '';
     const dot = STATUS_META[s.status]?.dot || 'dot-conditional';
     return `<div class="stu-item ${active}" data-idx="${idx}">
@@ -426,6 +585,7 @@ function renderStuList(){
       <div class="mj">${s.major}</div>
     </div>`;
   }).join('');
+  
   [...wrap.querySelectorAll('.stu-item')].forEach(el=>{
     el.onclick = ()=>{ currentIndex = parseInt(el.dataset.idx); renderAll(); };
   });
@@ -445,8 +605,10 @@ function critRowHtml(c){
 }
 
 function renderMain(){
-  const s = DEFAULT_DATA[currentIndex];
+  const activeData = getActiveData();
+  const s = activeData[currentIndex];
   if(!s) return;
+  
   const meta = STATUS_META[s.status] || STATUS_META['conditional'];
   const initials = s.name.replace(/^(Mr\.|Miss|Mrs\.|นาย|นางสาว|นาง)\s*/,'').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
   const main = document.getElementById('mainPanel');
@@ -483,7 +645,7 @@ function renderMain(){
       </div>
       <div class="info-box">
         <div class="lbl">ประเภททุนที่สมัคร</div>
-        <div class="val">${s.fundType || 'ทุนประเภทที่ 2'}</div>
+        <div class="val">${s.fundType || ('ทุนประเภทที่ ' + activeFund)}</div>
       </div>
     </div>
 
@@ -546,7 +708,8 @@ function renderMain(){
 
 function updateNavButtons(){
   const list = filteredStudents();
-  const posInList = list.indexOf(DEFAULT_DATA[currentIndex]);
+  const activeData = getActiveData();
+  const posInList = list.indexOf(activeData[currentIndex]);
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   if(prevBtn) prevBtn.classList.toggle('disabled', posInList<=0);
@@ -557,8 +720,9 @@ const prevBtn = document.getElementById('prevBtn');
 if(prevBtn) {
   prevBtn.onclick = ()=>{
     const list = filteredStudents();
-    const pos = list.indexOf(DEFAULT_DATA[currentIndex]);
-    if(pos>0){ currentIndex = DEFAULT_DATA.indexOf(list[pos-1]); renderAll(); }
+    const activeData = getActiveData();
+    const pos = list.indexOf(activeData[currentIndex]);
+    if(pos>0){ currentIndex = activeData.indexOf(list[pos-1]); renderAll(); }
   };
 }
 
@@ -566,8 +730,9 @@ const nextBtn = document.getElementById('nextBtn');
 if(nextBtn) {
   nextBtn.onclick = ()=>{
     const list = filteredStudents();
-    const pos = list.indexOf(DEFAULT_DATA[currentIndex]);
-    if(pos<list.length-1){ currentIndex = DEFAULT_DATA.indexOf(list[pos+1]); renderAll(); }
+    const activeData = getActiveData();
+    const pos = list.indexOf(activeData[currentIndex]);
+    if(pos<list.length-1){ currentIndex = activeData.indexOf(list[pos+1]); renderAll(); }
   };
 }
 
@@ -578,7 +743,8 @@ function renderAll(){
 }
 
 function init(){
-  renderAll();
+  // ตั้งค่าเริ่มต้นที่ทุนประเภทที่ 1
+  switchFundTab(1);
   const overlay = document.getElementById('loadingOverlay');
   if(overlay) overlay.style.display = 'none';
 }
