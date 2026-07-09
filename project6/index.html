@@ -68,10 +68,6 @@
   .file-name{
     outline:none; min-width:120px;
   }
-  .file-name:focus{background:rgba(255,255,255,0.12); border-radius:4px; padding:0 4px;}
-  .toolbar-note{
-    font-size:11.5px; color:var(--gold-100); opacity:0.85; font-style:italic;
-  }
   .btn{
     display:inline-flex;align-items:center;gap:7px;
     background:var(--gold-500);
@@ -82,10 +78,6 @@
     transition:transform .12s ease, background .12s ease;
   }
   .btn:hover{background:var(--gold-400); transform:translateY(-1px);}
-  .btn.ghost{
-    background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.35);
-  }
-  .btn.ghost:hover{background:rgba(255,255,255,0.1);}
 
   /* nav arrows row */
   .navrow{
@@ -124,7 +116,6 @@
     line-height:1.4;
     max-width:640px;
   }
-  .card-title:focus{background:rgba(255,255,255,0.08); border-radius:6px;}
   .org{
     text-align:right; font-size:13px; line-height:1.6; color:var(--gold-100);
     min-width:220px;
@@ -196,7 +187,7 @@
   .person-name{font-family:'Noto Serif Thai',serif; font-weight:700; font-size:19px; outline:none;}
   .badge{
     display:inline-flex; align-items:center; gap:6px;
-    font-size:12px; font-weight:700; padding:4px 11px; border-radius:99px;
+    font-size:12px; font-weight:700; padding:6px 14px; border-radius:99px;
     margin-top:5px;
   }
   .badge-pass{background:var(--green-bg); color:var(--green);}
@@ -204,14 +195,12 @@
   .badge-fail{background:var(--red-bg); color:var(--red);}
 
   .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;}
-  .grid-2.wide{grid-template-columns:1fr 1fr;}
   .info-box{
     background:var(--cream); border:1px solid var(--line); border-radius:12px;
     padding:13px 15px;
   }
   .info-box .lbl{font-size:11.5px; color:var(--ink-soft); font-weight:600; margin-bottom:4px;}
   .info-box .val{font-size:14.5px; font-weight:600; outline:none; line-height:1.5;}
-  .info-box .val[contenteditable]:focus{background:#fff; border-radius:5px;}
 
   .section{
     background:#fff; border:1px solid var(--line); border-radius:14px;
@@ -227,11 +216,10 @@
     color:var(--gold-500); display:flex; align-items:center; justify-content:center;
     font-size:12px; flex:none;
   }
-  .content-editable-block{
-    font-size:13.8px; line-height:1.65; color:var(--ink); outline:none;
-    min-height:20px;
+  .content-static-block{
+    font-size:13.8px; line-height:1.65; color:var(--ink);
+    min-height:20px; white-space: pre-line;
   }
-  .content-editable-block:focus{background:var(--cream); border-radius:6px; padding:4px 6px;}
 
   .two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;}
   @media (max-width:980px){.two-col{grid-template-columns:1fr;}}
@@ -253,7 +241,6 @@
   .crit-text{flex:1;}
   .crit-label{font-size:13.4px; font-weight:600; outline:none; line-height:1.5;}
   .crit-detail{font-size:12.6px; color:var(--ink-soft); margin-top:3px; outline:none; line-height:1.55;}
-  .crit-text [contenteditable]:focus{background:rgba(255,255,255,0.7); border-radius:5px; padding:2px 4px;}
 
   .advisor-block{margin-bottom:14px;}
   .advisor-block:last-child{margin-bottom:0;}
@@ -261,24 +248,6 @@
   .advisor-name{font-size:14.5px; font-weight:700; color:var(--navy-900); outline:none;}
   .advisor-note{font-size:12.6px; color:var(--ink-soft); margin-top:3px; outline:none; line-height:1.55;}
   .advisor-block hr{border:none; border-top:1px dashed var(--line); margin:12px 0;}
-
-  .status-select-row{display:flex; align-items:center; gap:10px; margin-top:4px;}
-  .status-pill-select{
-    border-radius:99px; padding:6px 14px; font-size:12.5px; font-weight:700;
-    border:1px solid var(--line); cursor:pointer; font-family:inherit;
-  }
-
-  .add-crit-btn{
-    align-self:flex-start; margin-top:4px; font-size:12.5px; font-weight:700;
-    color:var(--navy-800); background:none; border:1px dashed var(--navy-700);
-    padding:7px 12px; border-radius:9px; cursor:pointer; font-family:inherit;
-  }
-  .add-crit-btn:hover{background:var(--cream);}
-  .del-crit{
-    background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:15px;
-    padding:2px 6px; border-radius:5px; flex:none;
-  }
-  .del-crit:hover{background:rgba(0,0,0,0.06); color:var(--red);}
 
   .footer-note{
     text-align:center; font-size:11.5px; color:#8b93a0; margin-top:16px; padding-bottom:4px;
@@ -311,17 +280,28 @@
     animation:spin 0.9s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg);}}
-  .save-indicator{
-    font-size:11.5px; color:var(--gold-100); opacity:0.85;
-    display:flex; align-items:center; gap:5px; white-space:nowrap;
-  }
-  .save-indicator .sv-dot{width:6px;height:6px;border-radius:50%; background:#5fd18f; flex:none;}
-  .save-indicator.saving .sv-dot{background:#e0b23a;}
-  .save-indicator.error .sv-dot{background:#e05a4a;}
 </style>
 </head>
 <body>
 
+<div id="loadingOverlay">
+  <div class="spinner"></div>
+  <div>กำลังโหลดข้อมูลผู้สมัคร...</div>
+</div>
+
+<div class="app">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <div class="file-badge">
+        <span class="ic">X</span>
+        <span>เอกสารอ้างอิงหลัก:</span>
+        <span class="file-name">ตรวจสอบคุณสมบัติผู้สมัคร_เอก2_จัดระเบียบใหม่.xlsx</span>
+      </div>
+    </div>
+    <div>
+      <button class="btn" onclick="window.print()">🖨️ พิมพ์ / บันทึกเป็น PDF</button>
+    </div>
+  </div>
 
   <div class="navrow">
     <div class="nav-arrow" id="prevBtn">‹</div>
@@ -330,10 +310,10 @@
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title" contenteditable="true" id="mainTitle">รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก - ทุนประเภทที่ 2)</div>
+      <div class="card-title" id="mainTitle">รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก - ทุนประเภทที่ 2)</div>
       <div class="org">
-        <b contenteditable="true">ฝ่ายบัณฑิตศึกษา มหาวิทยาลัยแม่ฟ้าหลวง</b>
-        <span contenteditable="true">Mae Fah Luang University</span>
+        <b>สำนักงานบัณฑิตศึกษา มหาวิทยาลัยแม่ฟ้าหลวง</b>
+        <span>Mae Fah Luang University</span>
       </div>
     </div>
 
@@ -347,21 +327,24 @@
       </div>
 
       <div class="main" id="mainPanel">
-        <!-- rendered by JS -->
-      </div>
+        </div>
     </div>
   </div>
 
-  <div class="footer-note">หน้านี้แก้ไขได้ทุกส่วน — คลิกที่ข้อความใดก็ได้เพื่อพิมพ์แก้ไข การเปลี่ยนแปลงจะยังคงอยู่จนกว่าจะรีเฟรชหน้า</div>
+  <div class="footer-note">สำนักงานบัณฑิตศึกษา มหาวิทยาลัยแม่ฟ้าหลวง</div>
 </div>
 
 <script>
 const STATUS_META = {
   pass:{label:'✓ คุณสมบัติผ่านเกณฑ์', badge:'badge-pass', dot:'dot-pass'},
   conditional:{label:'⚠ ผ่านแบบมีเงื่อนไข', badge:'badge-conditional', dot:'dot-conditional'},
-  fail:{label:'✕ ไม่ผ่านเกณฑ์ / รอตรวจสอบเพิ่มเติม', badge:'badge-fail', dot:'dot-fail'}
+  fail:{label:'✕ ไม่ผ่านเกณฑ์', badge:'badge-fail', dot:'dot-fail'}
 };
 
+/* ======================================================
+  ✏️ แก้ไข/อัปเดตข้อมูลนักศึกษาทั้งหมดโดยตรงในก้อนข้อมูลด้านล่างนี้
+  ======================================================
+*/
 const DEFAULT_DATA = [
 {no:1,name:"Miss Pallavi Chattopadhyay",school:"สำนักวิชาวิทยาศาสตร์",major:"วิทยาศาสตร์ชีวภาพ",plan:"แบบ 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"45,500",tuitionTotal:"273,000",monthly:"",grandTotal:"273,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.63 / 4.00",thesis:"The association and coevolution between termites and Termitomyces in Thailand",publication:"Phonemany, M. et al. (2025). Identification and therapeutic efficacy of Pleurotus djamor var fuscopruinosus. Scientific Reports, 15(1), 18929. (Scopus/Q1) และอีก 1 ผลงาน (Chiang Mai Journal of Science, Scopus/Q2)",workHistory:"Research (Young Professional), ICAR – National Bureau of Agriculturally Important Microorganism, Mau, Uttar Pradesh, India",advisorMain:"อาจารย์ ดร.นริษฎา ทองกลาง",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาศาสตร์ชีวภาพ แบบ 1.1 · มีนักศึกษาในกำกับดูแล 4 คน (รับได้ 5 คน) · มีผลงาน Scopus Q1/Q2 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Dr. Samantha Chandranath Karunarathna",advisorCoNote:"Center for Yunnan Plateau Biological Resources Protection and Utilization, College of Biological Resource and Food Engineering, Qujing Normal University, China · วุฒิปริญญาเอก · ผลงานตีพิมพ์ไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560) · มีอีเมลยืนยันตอบรับ",status:"pass",
 criteria:[
@@ -404,66 +387,17 @@ criteria:[
 ]},
 ];
 
-const STORAGE_KEY = 'students-data-fund2-v1';
-let DATA = [];
 let currentSchool = "ทั้งหมด";
-let currentIndex = 0; // index within DATA (global list)
-let saveTimer = null;
-
-function setSaveIndicator(state){
-  const ind = document.getElementById('saveIndicator');
-  const txt = document.getElementById('saveText');
-  if(!ind) return;
-  ind.classList.remove('saving','error');
-  if(state==='saving'){ ind.classList.add('saving'); txt.textContent = 'กำลังบันทึก...'; }
-  else if(state==='error'){ ind.classList.add('error'); txt.textContent = 'บันทึกไม่สำเร็จ (ลองใหม่)'; }
-  else { txt.textContent = 'บันทึกอัตโนมัติแล้ว'; }
-}
-
-async function saveData(){
-  setSaveIndicator('saving');
-  clearTimeout(saveTimer);
-  try{
-    const result = await window.storage.set(STORAGE_KEY, JSON.stringify(DATA), true);
-    if(!result){ setSaveIndicator('error'); return; }
-    setSaveIndicator('ok');
-  }catch(err){
-    console.error('Save failed', err);
-    setSaveIndicator('error');
-  }
-}
-
-async function loadData(){
-  try{
-    const result = await window.storage.get(STORAGE_KEY, true);
-    if(result && result.value){
-      DATA = JSON.parse(result.value);
-    }else{
-      DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
-    }
-  }catch(err){
-    // key not found yet, or other error -> fall back to defaults
-    DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
-  }
-}
-
-async function resetToDefaults(){
-  if(!confirm('รีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้นจากไฟล์ Excel ต้นฉบับ? การแก้ไขทั้งหมดจะหายไป')) return;
-  DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
-  currentSchool = "ทั้งหมด";
-  currentIndex = 0;
-  await saveData();
-  renderAll();
-}
+let currentIndex = 0;
 
 function schoolList(){
-  const set = [...new Set(DATA.map(d=>d.school))];
+  const set = [...new Set(DEFAULT_DATA.map(d=>d.school))];
   return ["ทั้งหมด", ...set];
 }
 
 function filteredStudents(){
-  if(currentSchool === "ทั้งหมด") return DATA;
-  return DATA.filter(d=>d.school===currentSchool);
+  if(currentSchool === "ทั้งหมด") return DEFAULT_DATA;
+  return DEFAULT_DATA.filter(d=>d.school===currentSchool);
 }
 
 function renderSchoolSelect(){
@@ -472,7 +406,7 @@ function renderSchoolSelect(){
   sel.onchange = ()=>{
     currentSchool = sel.value;
     const list = filteredStudents();
-    currentIndex = DATA.indexOf(list[0]);
+    currentIndex = DEFAULT_DATA.indexOf(list[0]);
     renderAll();
   };
 }
@@ -481,7 +415,7 @@ function renderStuList(){
   const wrap = document.getElementById('stuList');
   const list = filteredStudents();
   wrap.innerHTML = list.map(s=>{
-    const idx = DATA.indexOf(s);
+    const idx = DEFAULT_DATA.indexOf(s);
     const active = idx===currentIndex ? 'active' : '';
     const dot = STATUS_META[s.status].dot;
     return `<div class="stu-item ${active}" data-idx="${idx}">
@@ -494,36 +428,32 @@ function renderStuList(){
   });
 }
 
-function critRowHtml(c, si, ci){
+function critRowHtml(c){
   const cls = c.result==='pass'?'crit-pass':(c.result==='fail'?'crit-fail':'crit-na');
   const icon = c.result==='pass'?'✓':(c.result==='fail'?'✕':'–');
   const iconCls = c.result==='pass'?'pass':(c.result==='fail'?'fail':'na');
-  return `<div class="crit-item ${cls}" data-si="${si}" data-ci="${ci}">
-    <div class="crit-icon ${iconCls}" data-role="toggle" title="คลิกเพื่อสลับผล">${icon}</div>
+  return `<div class="crit-item ${cls}">
+    <div class="crit-icon ${iconCls}">${icon}</div>
     <div class="crit-text">
-      <div class="crit-label" contenteditable="true" data-field="label">${c.label}</div>
-      <div class="crit-detail" contenteditable="true" data-field="detail" data-placeholder="รายละเอียดเพิ่มเติม...">${c.detail||''}</div>
+      <div class="crit-label">${c.label}</div>
+      ${c.detail ? `<div class="crit-detail">${c.detail}</div>` : ''}
     </div>
-    <button class="del-crit" data-role="del" title="ลบข้อนี้">✕</button>
   </div>`;
 }
 
 function renderMain(){
-  const s = DATA[currentIndex];
+  const s = DEFAULT_DATA[currentIndex];
   const meta = STATUS_META[s.status];
   const initials = s.name.replace(/^(Mr\.|Miss|Mrs\.|นาย|นางสาว|นาง)\s*/,'').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
   const main = document.getElementById('mainPanel');
+  
   main.innerHTML = `
     <div class="top-row">
       <div class="person">
         <div class="avatar">${initials}</div>
         <div>
-          <div class="person-name" contenteditable="true" data-field="name">${s.name}</div>
-          <select class="status-pill-select badge ${meta.badge}" id="statusSelect">
-            <option value="pass" ${s.status==='pass'?'selected':''}>✓ คุณสมบัติผ่านเกณฑ์</option>
-            <option value="conditional" ${s.status==='conditional'?'selected':''}>⚠ ผ่านแบบมีเงื่อนไข</option>
-            <option value="fail" ${s.status==='fail'?'selected':''}>✕ ไม่ผ่านเกณฑ์ / รอตรวจสอบ</option>
-          </select>
+          <div class="person-name">${s.name}</div>
+          <div class="badge ${meta.badge}">${meta.label}</div>
         </div>
       </div>
     </div>
@@ -531,24 +461,24 @@ function renderMain(){
     <div class="grid-2">
       <div class="info-box">
         <div class="lbl">สำนักวิชา / สาขาวิชา</div>
-        <div class="val" contenteditable="true" data-field="school">${s.school}</div>
-        <div class="val" contenteditable="true" data-field="major" style="font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;">${s.major}</div>
+        <div class="val">${s.school}</div>
+        <div class="val" style="font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;">${s.major}</div>
       </div>
       <div class="info-box">
-        <div class="lbl" contenteditable="true" data-field="gpaLabel">${s.gpaLabel}</div>
-        <div class="val" contenteditable="true" data-field="gpaValue">${s.gpaValue}</div>
+        <div class="lbl">${s.gpaLabel}</div>
+        <div class="val">${s.gpaValue}</div>
       </div>
     </div>
 
     <div class="grid-2">
       <div class="info-box">
         <div class="lbl">แผนการศึกษา / ระยะเวลา</div>
-        <div class="val" contenteditable="true" data-field="plan" style="font-size:13.5px;">${s.plan}</div>
-        <div class="val" contenteditable="true" data-field="duration" style="font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;">${s.duration}</div>
+        <div class="val" style="font-size:13.5px;">${s.plan}</div>
+        <div class="val" style="font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;">${s.duration}</div>
       </div>
       <div class="info-box">
         <div class="lbl">ประเภททุนที่สมัคร</div>
-        <div class="val" contenteditable="true" data-field="fundType">${s.fundType || 'ระบุประเภททุน'}</div>
+        <div class="val">${s.fundType || 'ทุนประเภทที่ 2'}</div>
       </div>
     </div>
 
@@ -556,36 +486,35 @@ function renderMain(){
       <div class="info-box" style="grid-column:1 / -1;">
         <div class="lbl">อัตราค่าธรรมเนียมการศึกษาตลอดหลักสูตร</div>
         <div class="val" style="font-size:13.5px;">
-          <span contenteditable="true" data-field="tuitionPerTerm">${s.tuitionPerTerm}</span> บาท/ภาคการศึกษา
-          &nbsp;|&nbsp; รวมค่าเทอม <span contenteditable="true" data-field="tuitionTotal">${s.tuitionTotal}</span> บาท
+          <span>${s.tuitionPerTerm}</span> บาท/ภาคการศึกษา
+          &nbsp;|&nbsp; รวมค่าเทอม <span>${s.tuitionTotal}</span> บาท
         </div>
         <div class="val" style="font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;">
-          ${s.monthly ? `ค่าใช้จ่ายรายเดือนตลอดหลักสูตร <span contenteditable="true" data-field="monthly">${s.monthly}</span> บาท ·` : ''}
-          รวมทั้งสิ้น <b contenteditable="true" data-field="grandTotal">${s.grandTotal}</b> บาท
+          ${s.monthly ? `ค่าใช้จ่ายรายเดือนตลอดหลักสูตร <span>${s.monthly}</span> บาท ·` : ''}
+          รวมทั้งสิ้น <b>${s.grandTotal}</b> บาท
         </div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title"><span class="ic">✔</span>รายละเอียดผลประเมินตามเกณฑ์รับสมัคร</div>
-      <div class="criteria-list" id="critList">
-        ${s.criteria.map((c,ci)=>critRowHtml(c,currentIndex,ci)).join('')}
+      <div class="criteria-list">
+        ${s.criteria.map(c=>critRowHtml(c)).join('')}
       </div>
-      <button class="add-crit-btn" id="addCritBtn">+ เพิ่มหัวข้อเกณฑ์การตรวจสอบ</button>
     </div>
 
     <div class="two-col">
       <div>
         <div class="section">
           <div class="section-title"><span class="ic">📄</span>โครงร่างงานวิจัยหลัก (Proposed Dissertation Topic)</div>
-          <div class="content-editable-block" contenteditable="true" data-field="thesis">${s.thesis}</div>
+          <div class="content-static-block">${s.thesis}</div>
         </div>
         <div class="section">
           <div class="section-title"><span class="ic">📚</span>ผลงานตีพิมพ์ทางวิชาการ / ประสบการณ์ที่เกี่ยวข้อง</div>
-          <div class="content-editable-block" contenteditable="true" data-field="publication">${s.publication}</div>
+          <div class="content-static-block">${s.publication}</div>
           <hr style="border:none;border-top:1px dashed var(--line);margin:10px 0;">
-          <div class="lbl" style="margin-bottom:4px;">ประวัติการทำงาน (ถ้ามี)</div>
-          <div class="content-editable-block" contenteditable="true" data-field="workHistory">${s.workHistory}</div>
+          <div class="lbl" style="margin-bottom:4px; font-size:11.5px; color:var(--ink-soft); font-weight:600;">ประวัติการทำงาน (ถ้ามี)</div>
+          <div class="content-static-block">${s.workHistory || 'ไม่มีข้อมูล'}</div>
         </div>
       </div>
       <div>
@@ -593,122 +522,40 @@ function renderMain(){
           <div class="section-title"><span class="ic">👥</span>ข้อมูลคณะกรรมการอาจารย์ที่ปรึกษา</div>
           <div class="advisor-block">
             <div class="advisor-role">อาจารย์ที่ปรึกษาหลัก</div>
-            <div class="advisor-name" contenteditable="true" data-field="advisorMain">${s.advisorMain}</div>
-            <div class="advisor-note" contenteditable="true" data-field="advisorMainNote">${s.advisorMainNote}</div>
+            <div class="advisor-name">${s.advisorMain}</div>
+            <div class="advisor-note">${s.advisorMainNote}</div>
           </div>
           <hr>
           <div class="advisor-block">
             <div class="advisor-role">อาจารย์ที่ปรึกษาร่วม / ผู้เชี่ยวชาญ (Co-advisor)</div>
-            <div class="advisor-name" contenteditable="true" data-field="advisorCo">${s.advisorCo}</div>
-            <div class="advisor-note" contenteditable="true" data-field="advisorCoNote">${s.advisorCoNote}</div>
+            <div class="advisor-name">${s.advisorCo}</div>
+            <div class="advisor-note">${s.advisorCoNote}</div>
           </div>
         </div>
       </div>
     </div>
   `;
 
-  // wire up field edits -> persist into DATA on blur
-  main.querySelectorAll('[data-field]').forEach(el=>{
-    el.addEventListener('blur', ()=>{
-      const f = el.dataset.field;
-      const newVal = el.innerText.trim();
-      if(f in s && s[f] !== newVal){
-        s[f] = newVal;
-        saveData();
-      }
-      // refresh sidebar/name/status displays that depend on this field
-      if(f==='name' || f==='major' || f==='school'){ renderStuList(); renderSchoolSelect(); }
-    });
-  });
-
-  document.getElementById('statusSelect').onchange = (e)=>{
-    s.status = e.target.value;
-    saveData();
-    renderMain();
-    renderStuList();
-  };
-
-  // criteria interactions
-  wireCriteria(s);
-
-  document.getElementById('addCritBtn').onclick = ()=>{
-    s.criteria.push({label:"หัวข้อใหม่", result:"na", detail:""});
-    saveData();
-    renderMain();
-  };
-
   updateNavButtons();
-}
-
-function wireCriteria(s){
-  document.querySelectorAll('#critList .crit-item').forEach(row=>{
-    const ci = parseInt(row.dataset.ci);
-    row.querySelector('[data-role="toggle"]').onclick = ()=>{
-      const order = ['pass','fail','na'];
-      const idx = order.indexOf(s.criteria[ci].result);
-      s.criteria[ci].result = order[(idx+1)%order.length];
-      saveData();
-      renderMain();
-    };
-    row.querySelector('[data-role="del"]').onclick = ()=>{
-      s.criteria.splice(ci,1);
-      saveData();
-      renderMain();
-    };
-    row.querySelectorAll('[data-field]').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        const newVal = el.innerText.trim();
-        if(s.criteria[ci][el.dataset.field] !== newVal){
-          s.criteria[ci][el.dataset.field] = newVal;
-          saveData();
-        }
-      });
-    });
-  });
 }
 
 function updateNavButtons(){
   const list = filteredStudents();
-  const posInList = list.indexOf(DATA[currentIndex]);
+  const posInList = list.indexOf(DEFAULT_DATA[currentIndex]);
   document.getElementById('prevBtn').classList.toggle('disabled', posInList<=0);
   document.getElementById('nextBtn').classList.toggle('disabled', posInList>=list.length-1);
 }
 
 document.getElementById('prevBtn').onclick = ()=>{
   const list = filteredStudents();
-  const pos = list.indexOf(DATA[currentIndex]);
-  if(pos>0){ currentIndex = DATA.indexOf(list[pos-1]); renderAll(); }
+  const pos = list.indexOf(DEFAULT_DATA[currentIndex]);
+  if(pos>0){ currentIndex = DEFAULT_DATA.indexOf(list[pos-1]); renderAll(); }
 };
 document.getElementById('nextBtn').onclick = ()=>{
   const list = filteredStudents();
-  const pos = list.indexOf(DATA[currentIndex]);
-  if(pos<list.length-1){ currentIndex = DATA.indexOf(list[pos+1]); renderAll(); }
+  const pos = list.indexOf(DEFAULT_DATA[currentIndex]);
+  if(pos<list.length-1){ currentIndex = DEFAULT_DATA.indexOf(list[pos+1]); renderAll(); }
 };
-
-document.getElementById('addStudentBtn').onclick = ()=>{
-  const newStu = {
-    no: DATA.length+1, name:"ผู้สมัครใหม่", school: currentSchool==='ทั้งหมด' ? DATA[0].school : currentSchool,
-    major:"ระบุสาขาวิชา", plan:"ระบุแผนการศึกษา", duration:"ระบุระยะเวลา", fundType:"ทุนประเภทที่ 2",
-    tuitionPerTerm:"0", tuitionTotal:"0", monthly:"", grandTotal:"0",
-    gpaLabel:"เกรดเฉลี่ยสะสม", gpaValue:"0.00 / 4.00",
-    thesis:"ระบุหัวข้อวิทยานิพนธ์...", publication:"ระบุผลงานตีพิมพ์...", workHistory:"ไม่มีข้อมูล",
-    advisorMain:"ระบุชื่ออาจารย์ที่ปรึกษาหลัก", advisorMainNote:"",
-    advisorCo:"ระบุชื่ออาจารย์ที่ปรึกษาร่วม", advisorCoNote:"",
-    status:"conditional",
-    criteria:[
-      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"na",detail:""},
-      {label:"2. เกรดเฉลี่ยสะสม / ผลงานตีพิมพ์",result:"na",detail:""},
-      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"na",detail:""},
-      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"na",detail:""},
-    ]
-  };
-  DATA.push(newStu);
-  currentIndex = DATA.length-1;
-  saveData();
-  renderAll();
-};
-
-document.getElementById('resetBtn').onclick = resetToDefaults;
 
 function renderAll(){
   renderSchoolSelect();
@@ -716,8 +563,7 @@ function renderAll(){
   renderMain();
 }
 
-async function init(){
-  await loadData();
+function init(){
   renderAll();
   const overlay = document.getElementById('loadingOverlay');
   if(overlay) overlay.style.display = 'none';
