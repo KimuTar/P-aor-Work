@@ -248,7 +248,7 @@
   .advisor-block:last-child{margin-bottom:0;}
   .advisor-role{font-size:11.5px; color:var(--ink-soft); font-weight:700; text-transform:uppercase; letter-spacing:.02em; margin-bottom:3px;}
   .advisor-name{font-size:14.5px; font-weight:700; color:var(--navy-900);}
-  .advisor-note{font-size:12.6px; color:var(--ink-soft); margin-top:3px; line-height:1.55;}
+  .advisor-note{font-size:12.6px; color:var(--ink-soft); margin-top:3px; outline:none; line-height:1.55; white-space: pre-line;}
   .advisor-block hr{border:none; border-top:1px dashed var(--line); margin:12px 0;}
 
   .footer-note{
@@ -340,7 +340,10 @@ const STATUS_META = {
 
 const MASTER_DATA = {
   fund1: [
-    {no:1,name:"นายธีระพงษ์ ศรีปะโค",school:"สำนักวิชาวิทยาศาสตร์",major:"เคมีประยุกต์",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"210,000",monthly:"252,000",grandTotal:"462,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.61 / 4.00 (สำเร็จการศึกษา)",thesis:"Antifungal properties of cellulose film from pineapple peel incorporating essential oils for application as bread packaging",publication:"Sripahco, T., Khruengsai, S. & Pripdeevech, P. (2023). Biodegradable antifungal films from nanocellulose-gellan gum incorporated with Anethum graveolens essential oil for bread packaging. International Journal of Biological Macromolecules, 243, 125244. (Scopus/Q1)",workHistory:"ไม่มีข้อมูล",advisorMain:"รศ.ดร.พัชรีย์ พริบดีเวช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงานตีพิมพ์ Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Siau Hui Hah",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · วุฒิปริญญาเอก / รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
+    {no:1,name:"นายธีระพงษ์ ศรีปะโค",school:"สำนักวิชาวิทยาศาสตร์",major:"เคมีประยุกต์",plan:"แผน 1.1 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"3 ปี (6 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 1",tuitionPerTerm:"35,000",tuitionTotal:"210,000",
+     monthly:"252,000",grandTotal:"462,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาโท)",gpaValue:"3.61 / 4.00 (สำเร็จการศึกษา)",thesis:"Antifungal properties of cellulose film from pineapple peel incorporating essential oils for application as bread packaging",
+     publication:"Sripahco, T., Khruengsai, S. & Pripdeevech, P. (2023). Biodegradable antifungal films from nanocellulose-gellan gum incorporated with Anethum graveolens essential oil for bread packaging. International Journal of Biological Macromolecules, 243, 125244. (Scopus/Q1)",
+     workHistory:"ไม่มีข้อมูล",advisorMain:"รศ.ดร.พัชรีย์ พริบดีเวช",advisorMainNote:"มีนักศึกษาในกำกับดูแล 1 คน (รับได้ 10 คน) · มีผลงานตีพิมพ์ Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Siau Hui Hah",advisorCoNote:"School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia · วุฒิปริญญาเอก / รองศาสตราจารย์ · ตรวจสอบเอกสารวันที่ 30 มิ.ย. 2569",status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
      {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาโท ไม่ต่ำกว่า 3.50 หรือมีผลงานตีพิมพ์ในฐาน Scopus อย่างน้อย 1 ผลงาน",result:"pass",detail:"เกรดเฉลี่ยสะสม 3.61"},
@@ -489,10 +492,21 @@ const MASTER_DATA = {
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. อาจารย์ที่ปรึกษาหลักเป็นอาจารย์ประจำที่มีคุณสมบัติเป็นที่ปรึกษาหลักในหลักสูตร",result:"fail",detail:"ผลตรวจสอบคุณสมบัติยังไม่ครบถ้วน ต้องตรวจสอบเพิ่มเติมจากสำนักวิชา"},
     ]},
-    {no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"4.00 / 4.00 (เกรดไม่ได้อยู่ในระบบ — รอเทียบเกรด)",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",publication:"Awaeloh, N., Limsuwan, S., Na-Phatthalung, P., Kaewmanee, T. & Chusri, S. (2025). Novel development and sensory evaluation of extruded snacks from unripe banana and rice flour enriched with Curcuma longa microcapsules. Foods, 14(2), 205. (Scopus/Q1) และอีก 1 ผลงาน (Nutrients, Scopus/Q1)",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",advisorMainNote:"อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 · ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) · มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน",advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",advisorCoNote:"Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia · รองศาสตราจารย์ · มีอีเมลยืนยันตอบรับ",status:"pass",
+    {no:5,name:"Mr. Kehinde John Temitayo",school:"สำนักวิชาวิทยาศาสตร์สุขภาพ",major:"วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",plan:"แผน 1.2 (ไม่มีรายวิชา เน้นทำวิทยานิพนธ์)",duration:"5 ปี (10 ภาคการศึกษา)",fundType:"ทุนประเภทที่ 2",
+     tuitionPerTerm:"50,000",tuitionTotal:"500,000",monthly:"",grandTotal:"500,000",gpaLabel:"เกรดเฉลี่ยสะสม (ระดับปริญญาตรี)",gpaValue:"2.81 / 4.00",thesis:"Investigation of in vitro antioxidant activities of rock snail (Thais coronata) acetone/methanol crude extraction and fractions",
+     publication:" - ",workHistory:"Laboratory Research Assistant, Ajayi Crowther University, Nigeria",
+     advisorMain:"รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
+     advisorMainNote: `· อาจารย์ผู้รับผิดชอบ/ประจำหลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์ แผน 1.2 
+· ไม่มีนักศึกษาในกำกับดูแล (รับได้ 10 คน) 
+· มีผลงาน Scopus Q1 ย้อนหลัง 5 ปี 2 ผลงาน`,
+     advisorCo:"Assoc. Prof. Dr. Tham Chau Ling",
+     advisorCoNote: `· Department of Biomedical Science, Faculty of Medicine and Health Sciences, Universiti Putra Malaysia, Malaysia 
+· คุณวุฒิปริญญาเอก / รองศาสตราจารย์ 
+· มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2565)
+· อีเมลตอบรับการเป็นอาจารย์ที่ปรึกษาร่วม`,,status:"pass",
     criteria:[
      {label:"1. เป็นผู้มีสิทธิเข้าศึกษาในภาคการศึกษา 1/2569",result:"pass",detail:""},
-     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสมไม่ได้อยู่ในระบบ (แจ้ง 4.00) — รอผลการเทียบเกรดจากสำนักวิชา"},
+     {label:"2. เกรดเฉลี่ยสะสมระดับปริญญาตรี ไม่ต่ำกว่า 3.25 หรือมีผลงานตีพิมพ์ Scopus",result:"fail",detail:"เกรดเฉลี่ยสะสม 2.81"},
      {label:"3. มีหัวข้อวิทยานิพนธ์หรือดุษฎีนิพนธ์",result:"pass",detail:""},
      {label:"4. ประวัติการทำงาน (ถ้ามี)",result:"pass",detail:"Laboratory Research Assistant, Ajayi Crowther University"},
     ]}
@@ -515,8 +529,9 @@ function switchFundTab(fundNum) {
   document.getElementById('tabFund1').classList.toggle('active', fundNum === 1);
   document.getElementById('tabFund2').classList.toggle('active', fundNum === 2);
   
+  // เปลี่ยนจาก textContent เป็น innerHTML เพื่อให้รองรับแท็ก <br> สำหรับขึ้นบรรทัดใหม่
   const mainTitle = document.getElementById('mainTitle');
-  mainTitle.textContent = `รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา (ระดับปริญญาเอก - ทุนประเภทที่ ${fundNum})`;
+  mainTitle.innerHTML = `รายงานการตรวจสอบคุณสมบัติผู้สมัครรับทุนการศึกษา <br><span style="font-size: 18px; font-weight: 500; opacity: 0.9;">(ระดับปริญญาเอก - ทุนประเภทที่ ${fundNum})</span>`;
 
   renderAll();
 }
