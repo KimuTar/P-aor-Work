@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ดตรวจสอบคุณสมบัติผู้ขอรับทุนการศึกษา</title>
+    <!-- Tailwind CSS for high-quality utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Sarabun & Noto Sans Thai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
+            background-color: #f4f2eb;
+        }
+        /* Custom scrollbar for beautiful lists */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1ebd9;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #aa8c2c;
+        }
+        .transition-all {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden">
+
+    <!-- SIDEBAR: LEFT AREA (1/4 width) -->
+    <aside class="w-85 bg-[#f7f5ee] border-r border-[#eae5d9] flex flex-col h-full shrink-0">
+        <!-- Logo & Header -->
+        <div class="p-6 border-b border-[#eae5d9] bg-white">
+            <div class="flex items-center gap-3">
+                <div class="bg-[#1e293b] text-white p-2.5 rounded-lg">
+                    <i class="fa-solid fa-graduation-cap text-lg text-[#d4af37]"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm text-[#1e293b] leading-none mb-1">ทุนบัณฑิตศึกษา มฟล.</h1>
+                    <p class="text-xs text-[#aa8c2c] font-semibold">ระดับปริญญาโท ประเภทที่ 2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter School Dropdown -->
+        <div class="p-5 border-b border-[#eae5d9]">
+            <label class="block text-xs font-bold text-[#556b82] uppercase tracking-wider mb-2">
+                <i class="fa-solid fa-folder-open text-[#aa8c2c] mr-1.5"></i> เลือกแผนงานสำนักวิชา
+            </label>
+            <div class="relative">
+                <select id="school-filter" onchange="filterStudents()" class="w-full bg-white border border-[#eae5d9] text-sm text-[#2c3e50] rounded-lg px-3 py-2.5 outline-none focus:border-[#aa8c2c] appearance-none cursor-pointer font-semibold">
+                    <!-- Options dynamically loaded from dataset -->
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#aa8c2c]">
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student List Container -->
+        <div class="p-4 flex-1 flex flex-col min-h-0">
+            <h2 class="text-xs font-bold text-[#556b82] uppercase tracking-wider mb-3 px-2 flex justify-between">
+                <span><i class="fa-solid fa-users text-[#aa8c2c] mr-1.5"></i> รายชื่อผู้สมัครรับทุน</span>
+                <span id="student-count" class="bg-[#aa8c2c] text-white px-2 py-0.5 rounded-full text-[10px]">0</span>
+            </h2>
+            
+            <!-- Scrollable List of Students -->
+            <div id="student-list" class="flex-1 overflow-y-auto custom-scrollbar space-y-2 pr-1">
+                <!-- Dynamically injected student list -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT: RIGHT AREA (3/4 width) -->
+    <main class="flex-1 bg-slate-50 flex flex-col h-full overflow-y-auto">
+        <!-- Dashboard Inner Wrapper -->
+        <div class="p-8 max-w-6xl w-full mx-auto space-y-6">
+            
+            <!-- Top Header Profile Banner matching image_2cdd18.png -->
+            <div class="bg-white border border-[#eae5d9] rounded-2xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <!-- Numeric Circle Badge -->
+                    <div id="student-number-badge" class="w-14 h-14 rounded-full bg-[#1e293b] text-white flex items-center justify-center font-bold text-xl border-2 border-[#eae5d9] shadow-sm shrink-0">
+                        1
+                    </div>
+                    <div>
+                        <h2 id="main-student-name" class="text-xl md:text-2xl font-bold text-[#1e293b] mb-1">นางสาวเกศรา นาวาสิทธิ์ (ไทย)</h2>
+                        <p id="main-student-subtext" class="text-sm text-[#556b82] font-semibold">
+                            สำนักวิชาวิทยาศาสตร์ · วิทยาศาสตร์ชีวภาพ (แผน ก2)
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Status Badge -->
+                <div class="shrink-0 flex items-center">
+                    <span id="status-badge" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold bg-[#e6f4ea] text-[#2e7d32] border border-[#c2e7c9]">
+                        <i class="fa-solid fa-circle-check text-sm"></i> ผ่านครบถ้วน
+                    </span>
+                </div>
+            </div>
+
+            <!-- Details Section (2 Columns Grid matching image_2cdd18.png) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- COLUMN 1: ข้อมูลผู้สมัคร -->
+                <div class="bg-white border border-[#eae5d9] rounded-2xl p-6 shadow-sm space-y-5">
+                    <h3 class="text-lg font-bold text-[#1e293b] border-b border-gray-100 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-graduate text-[#aa8c2c]"></i> ข้อมูลผู้สมัคร
+                    </h3>
+                    
+                    <!-- 1. ระยะเวลา / ค่าธรรมเนียม -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">ระยะเวลา / ค่าธรรมเนียม</h4>
+                        <p id="detail-fee" class="text-sm text-gray-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            -
+                        </p>
+                    </div>
+
+                    <!-- 2. สถานะการเข้าศึกษา -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">สถานะการเข้าศึกษา</h4>
+                        <p id="detail-enrollment" class="text-sm text-gray-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            -
+                        </p>
+                    </div>
+
+                    <!-- 3. เกรดเฉลี่ย / ผลงาน -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">เกรดเฉลี่ย / ผลงาน</h4>
+                        <p id="detail-gpa" class="text-sm text-gray-700 font-medium bg-slate-50 p-2.5 rounded-lg border border-slate-100 leading-relaxed">
+                            -
+                        </p>
+                    </div>
+
+                    <!-- 4. หัวข้อวิทยานิพนธ์ -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">หัวข้อวิทยานิพนธ์</h4>
+                        <p id="detail-thesis" class="text-sm text-gray-700 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            -
+                        </p>
+                    </div>
+
+                    <!-- 5. ประวัติการทำงาน -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">ประวัติการทำงาน</h4>
+                        <p id="detail-work" class="text-sm text-gray-700 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            -
+                        </p>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: อาจารย์ที่ปรึกษา -->
+                <div class="bg-white border border-[#eae5d9] rounded-2xl p-6 shadow-sm space-y-5">
+                    <h3 class="text-lg font-bold text-[#1e293b] border-b border-gray-100 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-[#aa8c2c]"></i> อาจารย์ที่ปรึกษา
+                    </h3>
+                    
+                    <!-- อาจารย์ที่ปรึกษาหลัก -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">อาจารย์ที่ปรึกษาหลัก</h4>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 space-y-2">
+                            <p id="detail-main-advisor" class="text-base font-bold text-[#1e293b]">
+                                -
+                            </p>
+                            <p id="detail-main-advisor-status" class="text-xs md:text-sm text-[#2e7d32] font-semibold flex items-start gap-1.5 leading-relaxed">
+                                <i class="fa-solid fa-check-circle mt-0.5 shrink-0"></i> <span>-</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- อาจารย์ที่ปรึกษาร่วม -->
+                    <div id="co-advisor-section" class="space-y-2">
+                        <h4 class="text-xs font-bold text-[#556b82] uppercase tracking-wider">อาจารย์ที่ปรึกษาร่วม</h4>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 space-y-2">
+                            <p id="detail-co-advisor" class="text-base font-bold text-[#1e293b]">
+                                -
+                            </p>
+                            <p id="detail-co-advisor-status" class="text-xs md:text-sm text-[#2e7d32] font-semibold flex items-start gap-1.5 leading-relaxed">
+                                <i class="fa-solid fa-check-circle mt-0.5 shrink-0"></i> <span>-</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- DATASET & REACTIVE LOGIC IN JAVASCRIPT -->
+    <script>
+        // Compiled dynamic dataset containing 100% of the students from Excel sheets
+        const studentDataset = [
+            {
+                "number": 1,
+                "name": "นางสาวเกศรา นาวาสิทธิ์",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาวิทยาศาสตร์",
+                "dept": "วิทยาศาสตร์ชีวภาพ",
+                "plan": "แผน ก2",
+                "fee": "คงเหลือ 1 ปี (2 ภาคการศึกษาๆ ละ 35,000 บาท) ค่าธรรมเนียมการศึกษา 70,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 35,000 บาท)",
+                "enrollment": "รหัสประจำตัว 6851704003 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.16",
+                "thesis": "การศึกษาลักษณะเฉพาะของยีนขนส่งในกระบวนการตอบสนองต่อคาเฟอีนของเห็ดถังเช่า (Characterization of Transporter Gene in the Caffeine Response of Cordyceps militaris)",
+                "work": "ผู้ช่วยนักวิจัย ศูนย์ความเป็นเลิศทางด้านวิจัยเชื้อรา มหาวิทยาลัยแม่ฟ้าหลวง",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.อมร โอวาทวรกิจ",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 4 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Tao Wei (Bioengineering department, College of Food Science South China Agricultural University, China)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 2,
+                "name": "นางสาวเบญจรัตน์ สุวรรณวงศ์",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาวิทยาศาสตร์",
+                "dept": "วิทยาศาสตร์ชีวภาพ",
+                "plan": "แผน ก2",
+                "fee": "คงเหลือ 1.5 ปี (3 ภาคการศึกษาๆ ละ 35,000 บาท) ค่าธรรมเนียมการศึกษา 105,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ภาคการศึกษา (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 35,000 บาท)",
+                "enrollment": "รหัสประจำตัว 6851105501 เข้าศึกษา 2/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.27 | มีผลงานตีพิมพ์ 3 เรื่อง (Scopus/Q1, Q2, TCI-1)",
+                "thesis": "การวิเคราะห์มัลติโอมิกส์ของจุลชีพในน้ำลายที่เกี่ยวข้องกับฟันผุระยะเริ่มต้นในเด็กปฐมวัย (Multi-omics Analysis of Salivary Microbiota in Early Childhood Caries)",
+                "work": "ผู้ช่วยนักวิจัย กลุ่มวิจัยเทคโนโลยีเครื่องสำอางเขียว (Green Cosmetic Technology) สำนักวิชาวิทยาศาสตร์เครื่องสำอาง",
+                "mainAdvisor": "รองศาสตราจารย์ ดร.สยาม ภพลือชัย",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Jiro Nakayama (Faculty of Agriculture, Graduate School, Kyushu University)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 3,
+                "name": "นางสาวสิริธร จองแลด",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาวิทยาศาสตร์",
+                "dept": "วิทยาศาสตร์ชีวภาพ",
+                "plan": "แผน ก2",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (4 ภาคการศึกษาๆ ละ 35,000 บาท) ค่าธรรมเนียมการศึกษา 140,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 35,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.29 | รางวัลที่ได้รับ Silver Prize, โครงการ Yong Rising Stars of Science 2025 จากสมาคมวิทยาศาสตร์แห่งประเทศไทยในพระบรมราชูปถัมภ์",
+                "thesis": "Anti-Virus potential of golden fungi, Eurotium Cristatum",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "รศ.ดร. ศิระประภา มหานิล",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Dr. Claudio Greco MChem (Lecturer in Biosciences, Department of Biosciences, Swansea University, UK)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 4,
+                "name": "Mr. Nobutaka Kodaira",
+                "nationality": "ญี่ปุ่น",
+                "school": "สำนักวิชาวิทยาศาสตร์",
+                "dept": "วิทยาศาสตร์ชีวภาพ",
+                "plan": "แผน ก2",
+                "fee": "1 ปี (2 ภาคการศึกษาๆ ละ 45,500 บาท) ค่าธรรมเนียมการศึกษา 91,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 45,500 บาท)",
+                "enrollment": "รหัสประจำตัว 6851105002 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.01",
+                "thesis": "Fungal Pathogens Associated with Postharvest Diseases of Solanaceae Crops.",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร. Mahamarakkalage Mary Ruvishika Shehali Jayawardena",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 7 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Keiichi Motohashi (Department of International Agricultural Development Faculty of International Agriculture and Food Studies Tokyo University of Agriculture, Japan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 5,
+                "name": "นายนาวิน วรเวก",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาเทคโนโลยีดิจิทัลประยุกต์",
+                "dept": "เทคโนโลยีการแปลงเป็นดิจิทัล",
+                "plan": "แผน ก2",
+                "fee": "คงเหลือ 2 ปี (4 ภาคการศึกษาๆ ละ 40,000 บาท) ค่าธรรมเนียมการศึกษา 160,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 40,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.39 | มีรางวัล 1st Prize Best of the Best โครงการออมสินยุวพัฒน์รักษ์ถิ่น, ได้รับเลือกเข้าร่วมทุน YSEALI Academic Fellowship Fall 2024 (สหรัฐอเมริกา)",
+                "thesis": "ระบบสนับสนุนการตัดสินใจสำหรับการผลิตทุเรียนคุณภาพสูงในการเกษตรอัจฉริยะ (Explainable AI-Based Recommendation System for Premium Durian Production)",
+                "work": "ที่ปรึกษาด้านการตลาดดิจิทัลและนวัตกรรม บริษัท นาอีฟ อินโนว่า จำกัด",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.สันติชัย วิชา",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 6 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Rafia Mumtaz (Kohsar University Murree, National University of Sciences and Technology (NUST), Pakistan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 6,
+                "name": "Miss Gloria Chinonso Okpechi",
+                "nationality": "ไนจีเรีย",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",
+                "plan": "แผน ก2",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (2 ภาคการศึกษาๆ ละ 45,500 บาท) ค่าธรรมเนียมการศึกษา 182,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 45,500 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.16",
+                "thesis": "Developing a Stabilizer-Free Synbiotic Plant-Based Yoghurt from Tigernut-Coconut-Oat Milk",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ศ.ดร.สาโรจน์ รอดคืน",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. JiaQiang Huang (Department of Nutrition and Health, China Agricultural University, China)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 7,
+                "name": "Miss Mya Kay Khaing",
+                "nationality": "เมียนมา",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",
+                "plan": "แผน ก2",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (2 ภาคการศึกษาๆ ละ 45,500 บาท) ค่าธรรมเนียมการศึกษา 182,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 45,500 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.03",
+                "thesis": "Optimization and Characterization of Plant-Based Protein Bar Using Local Agricultural Products and Functional Ingredients in Myanmar",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ศ.ดร.สาโรจน์ รอดคืน",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Young Hoon Jung (Faculty Food Science and Biotechnology, Kyungpook National University, Korea)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 8,
+                "name": "Mr. Nyan Minn Paing",
+                "nationality": "เมียนมา",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",
+                "plan": "แผน ก2",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (2 ภาคการศึกษาๆ ละ 45,500 บาท) ค่าธรรมเนียมการศึกษา 182,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 45,500 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.72",
+                "thesis": "Upcycling Jackfruit Seeds as a Sustainable Malt Substitute for Beer Fermentation",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.พันธ์สิริ สุทธิลักษณ์",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 3 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Daisuke Hamanaka (Faculty of Agriculture Department of Biochemical Science and Technology, Kagoshima University, Japan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 9,
+                "name": "Miss Thinn Myat Thu Zar",
+                "nationality": "เมียนมา",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "นวัตกรรมวิทยาศาสตร์และเทคโนโลยีอาหาร",
+                "plan": "แผน ก2",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (2 ภาคการศึกษาๆ ละ 45,500 บาท) ค่าธรรมเนียมการศึกษา 182,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 45,500 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.02",
+                "thesis": "Enhancing the Safety, Quality and Shelf Life of Traditional Rice Vermicelli through Innovative Processing and Packing Methods",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "รองศาสตราจารย์ ดร.ณัฐวุฒิ ดอนลาว",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 4 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Jinhu Tian (College of Biosystems Engineering and Food Science, Zhejiang University, China)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 10,
+                "name": "นายบันดาร์ สินแส",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว",
+                "plan": "แผน 1.1",
+                "fee": "ระยะเวลาการศึกษา 2 ปี (4 ภาคการศึกษาๆ ละ 35,000 บาท) ค่าธรรมเนียมการศึกษา 140,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 35,000 บาท",
+                "enrollment": "ผ่านเกณฑ์แบบมีเงื่อนไข (คาดว่าจะจบ 2/68 รอเกรดฝึกงาน)",
+                "gpa": "เกรดเฉลี่ยสะสม 3.63",
+                "thesis": "นวัตกรรมการยืดอายุการเก็บรักษาและการคงคุณภาพของผลไม้เขตร้อนโดยใช้เทคโนโลยีหลังการเก็บเกี่ยวอัจฉริยะ",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.สุทธิวัลย์ สีทา",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 4 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Hiroyuki Tomiyama (Faculty of Agriculture, Tokyo University of Agriculture, Japan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 11,
+                "name": "นางสาววศินี บุญมา",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาอุตสาหกรรมเกษตร",
+                "dept": "เทคโนโลยีและนวัตกรรมหลังการเก็บเกี่ยว",
+                "plan": "แผน 1.2",
+                "fee": "1 ปี (2 ภาคการศึกษาๆ ละ 45,000 บาท) ค่าธรรมเนียมการศึกษา 90,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 45,000 บาท)",
+                "enrollment": "รหัสประจำตัว 6851407004 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.97",
+                "thesis": "Surface modification of rice straw paper by sparking technology for ethylene adsorption",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.วิรงรอง ทองดีสุนทร",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 5 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Leh Chue Peng (School of Industrial Technology, Universiti Sains Malaysia, Malaysia)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 12,
+                "name": "นางสาวคริสติน ยอดสิงห์",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาวิทยาศาสตร์เครื่องสำอาง",
+                "dept": "นวัตกรรมวิทยาศาสตร์เครื่องสำอางค์เชิงสร้างสรรค์",
+                "plan": "แผน ก1",
+                "fee": "คงเหลือ 1 ปี (2 ภาคการศึกษาๆ ละ 35,000 บาท) ค่าธรรมเนียมการศึกษา 70,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 35,000 บาท)",
+                "enrollment": "รหัสประจำตัว 6851704003 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.67",
+                "thesis": "การพัฒนาสูตรตำรับเครื่องสำอางบำรุงผิวผสมสารสกัดธรรมชาติเพื่อเพิ่มความชุ่มชื้นและต้านอนุมูลอิสระ",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "อาจารย์ ดร.ถวนันท์ ศรีพิสุทธิ์",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 5 คน (อาจารย์รับได้ 5 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Siau Hui Mah (School of Biosciences, Faculty of Health and Medical Sciences, Taylor's University, Malaysia)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 13,
+                "name": "นายวันเฉลิม ชุ่มมงคล",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาวิทยาศาสตร์สุขภาพ",
+                "dept": "การจัดการสุขภาพชายแดน",
+                "plan": "แผน 1.2",
+                "fee": "1.5 ปี (3 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 150,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตรภาคการศึกษาละ 53,500 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.32",
+                "thesis": "ประสิทธิผลของโปรแกรมเสริมสร้างสมรรถนะทางกายและพฤติกรรมสุขภาพของผู้สูงอายุในแถบพื้นที่ชายแดน",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.พิษณุรักษ์ กันทวี",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 2 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Mahalul Azam (Department of Public Health, Faculty of Medicine, Universitas Negeri Semarang, Indonesia)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 14,
+                "name": "Mr. Bo Bo Lay",
+                "nationality": "เมียนมา",
+                "school": "สำนักวิชาวิทยาศาสตร์สุขภาพ",
+                "dept": "วิทยาการวิเคราะห์ทางสุขภาพและชีวการแพทย์",
+                "plan": "แผน ก1",
+                "fee": "1 ปี (2 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 100,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 58,500 บาท)",
+                "enrollment": "รหัสประจำตัว 6851811007 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.67",
+                "thesis": "Development of Bio-analytical Assays for Screening Metabolic Syndrome Markers in Border Areas",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "รองศาสตราจารย์ ดร.ศศิธร ชูศรี",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — ไม่มีนักศึกษาในกำกับดูแล (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Hung-Rong Yen (College of Chinese Medicine, China Medical University, Taiwan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 10 เรื่อง (ข้อบังคับฯ ปี 2560)",
+                "passed": true
+            },
+            {
+                "number": 15,
+                "name": "นางสาวจิตรลดา เรือนศักดิ์",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาแพทยศาสตร์",
+                "dept": "พาราคลินิก",
+                "plan": "แผน 1.2",
+                "fee": "2 ปี (4 ภาคการศึกษาๆ ละ 42,000 บาท) ค่าธรรมเนียมการศึกษา 168,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 42,000 บาท",
+                "enrollment": "ผ่านเกณฑ์การเข้าศึกษา | รางวัลการปฏิบัติงานสหกิจศึกษา ชนะเลิศอันดับที่ 1 หัวข้อวิจัยระดับโมเลกุลไวรัส SFTS",
+                "gpa": "เกรดเฉลี่ยสะสม 3.34",
+                "thesis": "การศึกษาโครงสร้างพันธุกรรมและการกลายพันธุ์ของไวรัสไข้สมองอักเสบสายพันธุ์ใหม่ในภาคเหนือ",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "อาจารย์ ดร.อัฐพันธ์ หมอช้าง",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 5 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Justin Jang Hann CHU (Department of Microbiology and Immunology, National University of Singapore, Singapore)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 16,
+                "name": "นางสาวพิชญธิดา กันธะวงศ์",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาแพทยศาสตร์",
+                "dept": "พาราคลินิก",
+                "plan": "แผน 1.2",
+                "fee": "2 ปี (4 ภาคการศึกษาๆ ละ 42,000 บาท) ค่าธรรมเนียมการศึกษา 168,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 42,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.15",
+                "thesis": "การศึกษาฤทธิ์ต้านมะเร็งและกลไกการออกฤทธิ์ของสารสกัดสมุนไพรท้องถิ่นต่อเซลล์มะเร็งตับ",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.กีรติ์การ สมส่วน",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Deepak Kumar (School of Pharmaceutical Sciences, Shoolini University, India)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 17,
+                "name": "นายสิรภพ มั่งคั่ง",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาแพทยศาสตร์",
+                "dept": "พาราคลินิก",
+                "plan": "แผน 1.2",
+                "fee": "2 ปี (4 ภาคการศึกษาๆ ละ 42,000 บาท) ค่าธรรมเนียมการศึกษา 168,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 42,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติ (อยู่ระหว่างรอสภาอนุมัติสำเร็จการศึกษา 2/68)",
+                "gpa": "เกรดเฉลี่ยสะสม 3.33",
+                "thesis": "การศึกษาฤทธิ์และคุณสมบัติทางเคมีของสารสำคัญสกัดบริสุทธิ์ในการยับยั้งเชื้อแบคทีเรียดื้อยา",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.ศิริภัทร์ อาลักษณสุวรรณ",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Deepak Kumar (School of Pharmaceutical Sciences, Shoolini University, India)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 18,
+                "name": "นางสาวสุนิสา ดำโอ",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาแพทยศาสตร์",
+                "dept": "พาราคลินิก",
+                "plan": "แผน 1.2",
+                "fee": "2 ปี (4 ภาคการศึกษาๆ ละ 42,000 บาท) ค่าธรรมเนียมการศึกษา 168,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 42,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.59",
+                "thesis": "ผลในการปกป้องการสื่อสารระหว่างลำไส้และสมองของสารสกัดใบบัวบกในหนูแรทด่วนเบาหวาน",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "อาจารย์ ดร. อัจฉราภรณ์ คำศรีใจ",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — ไม่มีนักศึกษาในกำกับดูแล (อาจารย์รับได้ 5 คน)",
+                "coAdvisor": "Assist. Prof. Dr. Peeraporn Varinthra (Institute of Medical Sciences, Tzu Chi University, Hualien, Taiwan)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ผู้ช่วยศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 19,
+                "name": "นางสาวฮัยฟะ มะเส็ง",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาแพทยศาสตร์",
+                "dept": "พาราคลินิก",
+                "plan": "แผน 1.2",
+                "fee": "2 ปี (4 ภาคการศึกษาๆ ละ 42,000 บาท) ค่าธรรมเนียมการศึกษา 168,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตร ภาคละ 42,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.52",
+                "thesis": "ฤทธิ์ปกป้องประสาทของสารสกัดมาตรฐานบัวบกในหนูแรทโมเดลโรคอัลไซเมอร์และกลไกโมเลกุลที่เกี่ยวข้อง",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "อาจารย์ ดร. นฤดล ธีรภัทรกานต์",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — ไม่มีนักศึกษาในกำกับดูแล (อาจารย์รับได้ 5 คน)",
+                "coAdvisor": "Assist. Prof. Dr. Ridho Islamie (Faculty of Pharmacy, Universitas Surabaya, Indonesia)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ผู้ช่วยศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 20,
+                "name": "Miss Naw Julia Aye",
+                "nationality": "เมียนมา",
+                "school": "สำนักวิชานวัตกรรมสังคม",
+                "dept": "การพัฒนาระหว่างประเทศ",
+                "plan": "แผน 1.2",
+                "fee": "1 ปี (2 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 100,000 บาท | หมายเหตุ นักศึกษาเรียนมาแล้ว 1 ปี (ค่าธรรมเนียมการศึกษาที่เรียกเก็บตามหลักสูตร ภาคละ 104,000 บาท)",
+                "enrollment": "รหัสประจำตัว 6852301003 เข้าศึกษา 1/68",
+                "gpa": "เกรดเฉลี่ยสะสม 3.56",
+                "thesis": "Evaluation of Access to Prenatal Healthcare Among Myanmar Migrant Workers in Thailand",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร.วรรณวลี อินทร์ปิ่น",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 5 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Dr. Retnadi Heru Jatmiko (Faculty of Geography, Universitas Gadjah Mada, Indonesia)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 21,
+                "name": "นายชาตินักรบ ลักษณะกุลบุตร",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาการแพทย์บูรณาการ",
+                "dept": "การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ",
+                "plan": "แผน 1.1",
+                "fee": "1.5 ปี (3 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 150,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษา ภาคละ 50,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.75",
+                "thesis": "ผลของการนวดไทยโดยใช้การกดจุดสะท้อนเท้าต่อระบบประสาทส่วนปลายและอัตราการไหลเวียนโลหิตของผู้ป่วยเบาหวาน",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "รองศาสตราจารย์ ดร.วิศรุต บุตรากาศ",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 2 คน (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Zhaoming Chen (Department of Acupuncture and Moxibustion, Nanjing Hospital of Traditional Chinese Medicine Affiliated to Nanjing University of Chinese Medicine, China)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 22,
+                "name": "นางสาวณัฐภรณ์ เมืองสุข",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาการแพทย์บูรณาการ",
+                "dept": "การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ",
+                "plan": "แผน 1.1",
+                "fee": "1.5 ปี (3 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 150,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตรภาคการศึกษาละ 50,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.53",
+                "thesis": "ประสิทธิผลของการรักษาโดยใช้คลื่นความถี่วิทยุร่วมกับการกายภาพบำบัดในผู้ป่วยกลุ่มอาการพังผืดใต้ฝ่าเท้าอักเสบเรื้อรัง",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "รองศาสตราจารย์ ดร.พัฒนสิน อารีอุดมวงศ์",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — ไม่มีนักศึกษาในกำกับดูแล (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Dirk MÖller (Faculty of Business and Social Sciences, Osnabrück University of Applied Sciences, Germany)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 23,
+                "name": "นายธนพงษ์ รองเดช",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาการแพทย์บูรณาการ",
+                "dept": "การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ",
+                "plan": "แผน 1.2",
+                "fee": "1.5 ปี (3 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 150,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาภาคการศึกษาละ 50,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.14",
+                "thesis": "ประสิทธิผลของการฝังเข็มกระตุ้นร่วมกับการออกกำลังกายเพื่อเพิ่มกำลังกล้ามเนื้อแขนขาของผู้ป่วยอัมพฤกษ์ครึ่งซีก",
+                "work": "ไม่มีข้อมูลประวัติการทำงาน",
+                "mainAdvisor": "อาจารย์ ดร.เพชรรัตน์ แก้วดวงดี",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — มีนักศึกษาในกำกับดูแล จำนวน 1 คน (อาจารย์รับได้ 5 คน)",
+                "coAdvisor": "Assoc. Prof. Dr. Peidong Huang (Vice President, Second Affiliated Hospital of Yunnan University of Chinese Medicine, China)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, รองศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            },
+            {
+                "number": 24,
+                "name": "นางสาวสุพิชฌาย์ ภิญโญ",
+                "nationality": "ไทย",
+                "school": "สำนักวิชาการแพทย์บูรณาการ",
+                "dept": "การส่งเสริมสุขภาพด้วยการแพทย์บูรณาการ",
+                "plan": "แผน 1.2",
+                "fee": "1.5 ปี (3 ภาคการศึกษาๆ ละ 50,000 บาท) ค่าธรรมเนียมการศึกษา 150,000 บาท | หมายเหตุ อัตราค่าธรรมเนียมการศึกษาตามหลักสูตรภาคการศึกษาละ 50,000 บาท",
+                "enrollment": "ผ่านเกณฑ์ตามคุณสมบัติการเข้าศึกษา",
+                "gpa": "เกรดเฉลี่ยสะสม 3.56",
+                "thesis": "ผลของโปรแกรมการฟื้นฟูสมรรถภาพปอดด้วยการออกกำลังกายแบบแอโรบิกร่วมกับเทคนิคการเคลื่อนไหวทรวงอกในผู้ป่วยปอดอุดกั้นเรื้อรัง",
+                "work": "นักวิชาการกายภาพบำบัด สำนักวิชาการแพทย์บูรณาการ มหาวิทยาลัยแม่ฟ้าหลวง",
+                "mainAdvisor": "ผู้ช่วยศาสตราจารย์ ดร. ภก. สุจิตรา กล้วยหอมทอง",
+                "mainAdvisorStatus": "ผ่านครบทุกข้อ — ไม่มีนักศึกษาในกำกับดูแล (อาจารย์รับได้ 10 คน)",
+                "coAdvisor": "Prof. Dr. Christoff Zalpour (Department of Physiotherapy, Osnabrück University of Applied Sciences, Germany)",
+                "coAdvisorStatus": "ผ่านครบทุกข้อ — ปริญญาเอก, ศาสตราจารย์, มีผลงานไม่น้อยกว่า 5 เรื่อง (ข้อบังคับฯ ปี 2565)",
+                "passed": true
+            }
+        ];
+
+        let selectedStudentNumber = 1;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeSchoolFilter();
+            renderStudentList();
+            loadStudentDetail(1);
+        });
+
+        // Dynamically discover and populate filter select options based on unique schools in the dataset
+        function initializeSchoolFilter() {
+            const filterSelect = document.getElementById("school-filter");
+            
+            // Get unique schools from dataset
+            const schools = [...new Set(studentDataset.map(s => s.school))];
+            
+            // Clear current options
+            filterSelect.innerHTML = "";
+            
+            // Add 'ทั้งหมด' default option
+            const defaultOption = document.createElement("option");
+            defaultOption.value = "ทั้งหมด";
+            defaultOption.text = "ทั้งหมด";
+            filterSelect.appendChild(defaultOption);
+            
+            // Add unique schools
+            schools.forEach(schoolName => {
+                const opt = document.createElement("option");
+                opt.value = schoolName;
+                opt.text = schoolName;
+                filterSelect.appendChild(opt);
+            });
+        }
+
+        function renderStudentList() {
+            const listContainer = document.getElementById("student-list");
+            const filterValue = document.getElementById("school-filter").value;
+            listContainer.innerHTML = "";
+
+            const filtered = studentDataset.filter(s => {
+                return filterValue === "ทั้งหมด" || s.school === filterValue;
+            });
+
+            document.getElementById("student-count").innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-gray-400 text-sm bg-white rounded-xl border border-[#eae5d9] p-4">
+                        <i class="fa-solid fa-triangle-exclamation text-xl mb-2 text-[#aa8c2c]"></i>
+                        <p>ไม่พบรายชื่อในสำนักวิชานี้</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(student => {
+                const isSelected = student.number === selectedStudentNumber;
+                const activeClasses = isSelected 
+                    ? "bg-[#aa8c2c] text-white shadow-md border-[#aa8c2c]" 
+                    : "bg-white text-[#2c3e50] border-[#eae5d9] hover:bg-[#faf9f5] hover:shadow-sm";
+                const subtextClass = isSelected ? "text-[#fcf9f2]" : "text-[#aa8c2c]";
+
+                const item = document.createElement("button");
+                item.className = `w-full text-left p-4 rounded-xl border transition-all flex flex-col gap-1.5 focus:outline-none ${activeClasses}`;
+                item.onclick = () => selectStudent(student.number);
+
+                item.innerHTML = `
+                    <div class="flex items-start gap-2.5">
+                        <span class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[11px] font-bold ${isSelected ? 'bg-white text-[#aa8c2c]' : 'bg-[#1e293b] text-white'}">
+                            ${student.number}
+                        </span>
+                        <div class="flex-1">
+                            <span class="font-bold text-sm leading-tight block">${student.name}</span>
+                            <span class="text-[11px] font-semibold ${subtextClass} mt-1 block">${student.dept} (${student.plan})</span>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function filterStudents() {
+            const filterValue = document.getElementById("school-filter").value;
+            const filtered = studentDataset.filter(s => filterValue === "ทั้งหมด" || s.school === filterValue);
+            
+            if (filtered.length > 0) {
+                const found = filtered.find(s => s.number === selectedStudentNumber);
+                if (!found) {
+                    selectedStudentNumber = filtered[0].number;
+                }
+            }
+            renderStudentList();
+            loadStudentDetail(selectedStudentNumber);
+        }
+
+        function selectStudent(num) {
+            selectedStudentNumber = num;
+            renderStudentList();
+            loadStudentDetail(num);
+        }
+
+        function loadStudentDetail(num) {
+            const student = studentDataset.find(s => s.number === num);
+            if (!student) return;
+
+            // Header elements
+            document.getElementById("student-number-badge").innerText = student.number;
+            document.getElementById("main-student-name").innerText = `${student.name} (${student.nationality})`;
+            document.getElementById("main-student-subtext").innerText = `${student.school} · ${student.dept} (${student.plan})`;
+
+            // Detail Panel 1: Applicant info
+            document.getElementById("detail-fee").innerText = student.fee;
+            document.getElementById("detail-enrollment").innerText = student.enrollment;
+            document.getElementById("detail-gpa").innerText = student.gpa;
+            document.getElementById("detail-thesis").innerText = student.thesis;
+            document.getElementById("detail-work").innerText = student.work;
+
+            // Detail Panel 2: Advisor info
+            document.getElementById("detail-main-advisor").innerText = student.mainAdvisor;
+            document.getElementById("detail-main-advisor-status").querySelector("span").innerText = student.mainAdvisorStatus;
+
+            // Co-advisor conditional rendering based on real dataset availability
+            const coSection = document.getElementById("co-advisor-section");
+            if (student.coAdvisor && student.coAdvisor.trim() !== "") {
+                coSection.style.display = "block";
+                document.getElementById("detail-co-advisor").innerText = student.coAdvisor;
+                document.getElementById("detail-co-advisor-status").querySelector("span").innerText = student.coAdvisorStatus || "ผ่านครบทุกข้อตามเกณฑ์กำหนด";
+            } else {
+                coSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
